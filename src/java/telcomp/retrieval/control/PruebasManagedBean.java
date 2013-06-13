@@ -22,10 +22,12 @@ public class PruebasManagedBean {
 
     private String queryId;
     private String userDataQuery;
+    private String userDataTarget;
     private String targetId;
     private Operation query;
     private OperationComodin queryUserDataOperation;
     private Operation target;
+    private Operation targetUserData;
     private telcomp.retrieval.matchmaking.ws.Data[] selectedSource;
     private String selectedTarget;
     private String selectedUserDataTarget;
@@ -33,6 +35,7 @@ public class PruebasManagedBean {
     private List<telcomp.retrieval.matchmaking.ws.Data> selectedSources;
     private List<telcomp.retrieval.matchmaking.ws.Data> sourceDataElements;
     private List<telcomp.retrieval.matchmaking.ws.Data> targetDataElements;
+    private List<telcomp.retrieval.matchmaking.ws.Data> targetUserDataElements;
     private DataAssociation association;
     private List<DataAssociation> associations;
     private List<UserDataAssociation> userDataassociations;
@@ -42,6 +45,7 @@ public class PruebasManagedBean {
         System.out.println("constructor");
         this.sourceDataElements = new ArrayList<telcomp.retrieval.matchmaking.ws.Data>();
         this.targetDataElements = new ArrayList<telcomp.retrieval.matchmaking.ws.Data>();
+        this.targetUserDataElements = new ArrayList<telcomp.retrieval.matchmaking.ws.Data>();
         this.selectedSources = new ArrayList<telcomp.retrieval.matchmaking.ws.Data>();
         this.selectedTargets = new ArrayList<telcomp.retrieval.matchmaking.ws.Data>();
         this.association = new DataAssociation();
@@ -49,6 +53,9 @@ public class PruebasManagedBean {
         this.userDataassociations = new ArrayList<UserDataAssociation>();
         this.queryUserDataOperation = new OperationComodin();
         this.selectedUserDataTarget = null;
+        this.query = new Operation();
+        this.target = new Operation();
+        this.targetUserData = new Operation();
 
 //        for (int i = 0; i < 3; i++) {
 //            Data data = new Data();
@@ -126,6 +133,19 @@ public class PruebasManagedBean {
        // System.out.println("target data: " + this.targetDataElements.size());
         return this.targetDataElements;
     }
+    
+    public List<telcomp.retrieval.matchmaking.ws.Data> getUserDataOperationInputs() {
+        List<telcomp.retrieval.matchmaking.ws.Data> inputData = new ArrayList<telcomp.retrieval.matchmaking.ws.Data>();
+        for (int i = 0; i < this.targetUserData.getDataElements().size(); i++) {
+            telcomp.retrieval.matchmaking.ws.Data data = this.targetUserData.getDataElements().get(i);
+            if (data.isInput()) {
+                inputData.add(data);
+            }
+        }
+        this.targetUserDataElements = inputData;
+       // System.out.println("target data: " + this.targetDataElements.size());
+        return this.targetUserDataElements;
+    }
 
     public String getUserDataQuery() {
         return this.userDataQuery;
@@ -199,6 +219,23 @@ public class PruebasManagedBean {
         this.target = target;
     }
 
+    public String getUserDataTarget() {
+        return userDataTarget;
+    }
+
+    public void setUserDataTarget(String userDataTarget) {
+        this.userDataTarget = userDataTarget;
+        this.targetUserData = retrieveComponentById(Long.parseLong(this.userDataTarget));
+    }
+
+    public Operation getTargetUserData() {
+        return targetUserData;
+    }
+
+    public void setTargetUserData(Operation targetUserData) {
+        this.targetUserData = targetUserData;
+    }
+    
     public telcomp.retrieval.matchmaking.ws.Data[] getSelectedSource() {
         System.out.println("//getSelectedSource: " + selectedSource);
         return selectedSource;
@@ -265,6 +302,14 @@ public class PruebasManagedBean {
         this.targetDataElements = targetDataElements;
     }
 
+    public List<Data> getTargetUserDataElements() {
+        return targetUserDataElements;
+    }
+
+    public void setTargetUserDataElements(List<Data> targetUserDataElements) {
+        this.targetUserDataElements = targetUserDataElements;
+    }
+    
     public DataAssociation getAssociation() {
         return this.association;
     }

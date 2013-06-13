@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?><!--
+        *** GENERATED FROM jax-ws.xml - DO NOT EDIT !                             ***
+        *** TO MODIFY wsimport options USE Web Service node -> Edit WS Attributes ***
+        *** TO CHANGE TARGETS GENERATED TO jaxws-build.xml COPY THOSE             ***
+        *** TARGETS TO ../build.xml AND MODIFY THAT FILE INSTEAD                  ***
+
+        --><project xmlns:xalan="http://xml.apache.org/xslt" xmlns:webproject2="http://www.netbeans.org/ns/web-project/2" xmlns:jaxws="http://www.netbeans.org/ns/jax-ws/1">
+    <!--
+                ===================
+                JAX-WS WSGEN SECTION
+                ===================
+            -->
+    <!--
+                ===================
+                JAX-WS WSIMPORT SECTION
+                ===================
+            -->
+    <target name="wsimport-init" depends="init">
+        <fail if="${wsimport.bad.version}" message="WsImport ant task defined in the classpath ${j2ee.platform.wsimport.classpath} has a serious bug. See http://wiki.netbeans.org/MetroIssue for details."/>
+        <mkdir dir="${build.generated.sources.dir}/jax-ws"/>
+        <property name="j2ee.platform.wsimport.classpath" value="${libs.jaxws21.classpath}"/>
+        <taskdef name="wsimport" classname="com.sun.tools.ws.ant.WsImport">
+            <classpath path="${java.home}/../lib/tools.jar:${j2ee.platform.wsimport.classpath}:${javac.classpath}"/>
+        </taskdef>
+        <condition property="conf-dir" value="${conf.dir}/" else="">
+            <isset property="conf.dir"/>
+        </condition>
+    </target>
+    <target name="wsimport-client-JSLEEorchestrator" depends="wsimport-init">
+        <mkdir dir="${build.generated.dir}/jax-wsCache/JSLEEorchestrator"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/JSLEEorchestrator" destdir="${build.generated.dir}/jax-wsCache/JSLEEorchestrator" wsdl="${basedir}/${conf-dir}xml-resources/web-service-references/JSLEEorchestrator/wsdl/192.168.190.145_8080/JSLEEorchestrator/JSLEEorchestrator.wsdl" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" wsdlLocation="http://192.168.190.145:8080/JSLEEorchestrator/JSLEEorchestrator?WSDL" xnocompile="true" xendorsed="true">
+            <depends file="${basedir}/${conf-dir}xml-resources/web-service-references/JSLEEorchestrator/wsdl/192.168.190.145_8080/JSLEEorchestrator/JSLEEorchestrator.wsdl"/>
+            <produces dir="${build.generated.dir}/jax-wsCache/JSLEEorchestrator"/>
+        </wsimport>
+        <copy todir="${build.generated.sources.dir}/jax-ws">
+            <fileset dir="${build.generated.dir}/jax-wsCache/JSLEEorchestrator">
+                <include name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="wsimport-client-clean-JSLEEorchestrator" depends="-init-project">
+        <delete dir="${build.generated.sources.dir}/jax-ws/webservice"/>
+        <delete dir="${build.generated.dir}/jax-wsCache/JSLEEorchestrator"/>
+    </target>
+    <target name="wsimport-client-ComponentMatchmakerWSPort" depends="wsimport-init">
+        <mkdir dir="${build.generated.dir}/jax-wsCache/ComponentMatchmakerWSPort"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/ComponentMatchmakerWSPort" destdir="${build.generated.dir}/jax-wsCache/ComponentMatchmakerWSPort" wsdl="${basedir}/${conf-dir}xml-resources/web-service-references/ComponentMatchmakerWSPort/wsdl/190.90.112.7_8080/telcomp-retrieval/services/ComponentMatchmakerWSPort.wsdl" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" wsdlLocation="http://192.168.190.55:8080/telcomp-retrieval/services/ComponentMatchmakerWSPort?wsdl" xnocompile="true" xendorsed="true" package="telcomp.retrieval.matchmaking.ws">
+            <depends file="${basedir}/${conf-dir}xml-resources/web-service-references/ComponentMatchmakerWSPort/wsdl/190.90.112.7_8080/telcomp-retrieval/services/ComponentMatchmakerWSPort.wsdl"/>
+            <produces dir="${build.generated.dir}/jax-wsCache/ComponentMatchmakerWSPort"/>
+        </wsimport>
+        <copy todir="${build.generated.sources.dir}/jax-ws">
+            <fileset dir="${build.generated.dir}/jax-wsCache/ComponentMatchmakerWSPort">
+                <include name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="wsimport-client-clean-ComponentMatchmakerWSPort" depends="-init-project">
+        <delete dir="${build.generated.sources.dir}/jax-ws/telcomp/retrieval/matchmaking/ws"/>
+        <delete dir="${build.generated.dir}/jax-wsCache/ComponentMatchmakerWSPort"/>
+    </target>
+    <target name="wsimport-client-generate" depends="wsimport-client-JSLEEorchestrator, wsimport-client-ComponentMatchmakerWSPort"/>
+</project>

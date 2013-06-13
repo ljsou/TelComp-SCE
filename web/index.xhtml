@@ -190,6 +190,22 @@
 
                 //editor.layer.eventChanged.subscribe(editor.onLayerChanged, editor, true);
             }
+            
+            function coloringWireUserData() {
+                console.log("submited mapping Use Data!");
+                var userDataWireID = document.getElementById('userdata-clicked-wire').value;
+
+//                var srcDataElement = document.getElementById('srcDataElement').value;
+//                var tgtDataElement = document.getElementById('tgtDataElement').value;
+//
+//                console.log("sourceDataElement: " + srcDataElement);
+//                console.log("targetDataElement " + tgtDataElement);
+
+                console.log(userDataWireID);
+                editor.layer.userDataMapping(new String(userDataWireID));
+
+                //editor.layer.eventChanged.subscribe(editor.onLayerChanged, editor, true);
+            }
 
             function setDataElements(source, target) {
                 console.log("setDataElements()...");
@@ -349,27 +365,23 @@
         </div>
         <div >
             <h:form id="form" prependId="false">
-                <p:commandButton id="modalDialogButton" type="button" onclick="jsf.ajax.request(this, event, {render: 'dataMappingTable'});
-                return false;" style="display: none;"/>
+
                 <p:commandButton id="userDataModalDialogButton" type="button" onclick="jsf.ajax.request(this, event, {render: 'userDataMappingTable'});
                 return false;" style="display: none;"/>
-                <h:inputHidden id="clicked-wire" value="null"/>
+                <h:inputHidden id="userdata-clicked-wire" value="null"/>
                 <h:inputHidden id="operationName" value="#{pruebasManagedBean.userDataOperationName}" />
-                <h:inputHidden id="userDataQuery" value="#{pruebasManagedBean.userDataQuery}" />
-                <h:inputHidden id="queryIdInput" value="#{pruebasManagedBean.queryId}" />
-                <h:inputHidden id="targetIdInput" value="#{pruebasManagedBean.targetId}" />
+                <h:inputHidden id="userDataQuery" value="#{pruebasManagedBean.userDataQuery}" />              
+                <h:inputHidden id="userDataTarget" value="#{pruebasManagedBean.userDataTarget}" />
+
                 <h:commandButton id="operationNameBtn" onclick="jsf.ajax.request(this, event, {execute: 'operationName'});
                 return false;" style="display: none;" />
                 <h:commandButton id="userDataQueryBtn" onclick="jsf.ajax.request(this, event, {execute: 'userDataQuery'});
                 return false;" style="display: none;" />
-                <h:commandButton id="initQueryDataBtn" onclick="jsf.ajax.request(this, event, {execute: 'queryIdInput'});
-                return false;" style="display: none;" />
-                <h:commandButton id="initTargetDataBtn" onclick="jsf.ajax.request(this, event, {execute: 'targetIdInput'});
+                <h:commandButton id="userDataTargetBtn" onclick="jsf.ajax.request(this, event, {execute: 'userDataTarget'});
                 return false;" style="display: none;" />
 
-                <p:overlayPanel id="userDataMapping" widgetVar="overlayPanelUserDataMapping" for="userDataModalDialogButton" showEffect="drop" hideEffect="drop" dynamic="false" my="right top" at="right bottom" style="height:250px; padding: 40px 20px 0px 30px; margin: -20px; background: transparent;">   
+                <p:overlayPanel id="userDataMappingPanel" widgetVar="overlayPanelUserDataMapping" for="userDataModalDialogButton" showEffect="drop" hideEffect="drop" dynamic="true" my="right top" at="right bottom" style="height:250px; padding: 40px 20px 0px 30px; margin: -20px; background: transparent;">   
                     <p:dataTable id="userDataMappingTable" value="#{pruebasManagedBean.userDataOutputs}" var="userDataOutputs" 
-                                 selectionMode="multiple" selection="#{pruebasManagedBean.selectedSource}" rowKey="#{userDataOutputs.dataElementName}" 
                                  style="width:420px; font-size: 12px;">
                         <f:facet name="header">  
                             Data Mapping 2
@@ -380,20 +392,60 @@
                         </p:column> 
 
                         <p:column headerText="#{pruebasManagedBean.target.operationName}" style="width:300px;">  
-                            <p:selectOneMenu value="#{pruebasManagedBean.selectedTarget}" effect="fade" >  
+                            <p:selectOneMenu value="#{pruebasManagedBean.selectedUserDataTarget}" effect="fade" >  
                                 <f:selectItem itemLabel="Select One" itemValue="" />  
-                                <f:selectItems value="#{pruebasManagedBean.operationInputs}" var="userDataElementTarget" itemLabel="#{userDataElementTarget.dataElementName} (#{userDataElementTarget.dataType})" itemValue="#{userDataElementTarget.dataElementName}"/>  
+                                <f:selectItems value="#{pruebasManagedBean.userDataOperationInputs}" var="userDataElementTarget" itemLabel="#{userDataElementTarget.dataElementName} (#{userDataElementTarget.dataType})" itemValue="#{userDataElementTarget.dataElementName}"/>  
                             </p:selectOneMenu>   
                         </p:column> 
                         <f:facet name="footer">  
                             <p:commandButton value="Submit" icon="ui-icon-circle-triangle-e" style="height: 30px; font-size: 13px;"
-                                             onclick="dataDialog.show();"
-                                             action="#{pruebasManagedBean.createUserDataAssociation()}"/>
+                                             onclick="dlg.show();" 
+                                             update=":form:userdata"/>
                         </f:facet> 
                     </p:dataTable>
                 </p:overlayPanel>  
 
-                <p:overlayPanel id="dataMapping" widgetVar="overlayPanelMapping" for="modalDialogButton" showEffect="drop" hideEffect="drop" dynamic="true" my="right top" at="right bottom" style="height:250px; padding: 40px 20px 0px 30px; margin: -20px; background: transparent;">   
+                <p:dialog header="Selected Values" modal="true" showEffect="fade" hideEffect="fade" widgetVar="dlg">  
+                    <p:outputPanel id="userdata">  
+                        <p:dataList value="#{pruebasManagedBean.selectedUserDataTarget}" var="userData">  
+                            #{pruebasManagedBean.userDataQuery} - #{userData} 
+                            <script>
+            var source = "#{pruebasManagedBean.userDataQuery}";
+            var target = "#{userData}";
+            console.log(source);
+            console.log(target);
+            setDataElements(source, target);
+                            </script>
+                        </p:dataList>  
+                    </p:outputPanel> 
+                    <p:commandButton value="I Agree!" icon="ui-icon-circle-check"  
+                                     oncomplete="dlg.hide()" action="#{pruebasManagedBean.eraseAll()}" 
+                                     onclick="overlayPanelUserDataMapping.hide();
+                coloringWireUserData();"
+                                     style="height: 30px; font-size: 13px;"/>  
+                    <p:commandButton value="Cancel" icon="ui-icon-alert"  
+                                     oncomplete="dlg.hide()" action="#{pruebasManagedBean.eraseAll()}"
+                                     onclick="overlayPanelUserDataMapping.show();"
+                                     style="height: 30px; font-size: 13px;"/>  
+                </p:dialog>
+            </h:form>
+
+            <h:form id="form2" prependId="false">
+
+                <p:commandButton id="modalDialogButton" type="button" onclick="jsf.ajax.request(this, event, {render: 'dataMappingTable'});
+                return false;" style="display: none;"/>
+         
+                <h:inputHidden id="clicked-wire" value="null"/>
+                <h:inputHidden id="queryIdInput" value="#{pruebasManagedBean.queryId}" />
+                <h:inputHidden id="targetIdInput" value="#{pruebasManagedBean.targetId}" />
+
+
+                <h:commandButton id="initQueryDataBtn" onclick="jsf.ajax.request(this, event, {execute: 'queryIdInput'});
+                return false;" style="display: none;" />
+                <h:commandButton id="initTargetDataBtn" onclick="jsf.ajax.request(this, event, {execute: 'targetIdInput'});
+                return false;" style="display: none;" />
+
+                <p:overlayPanel id="dataMappingPanel" widgetVar="overlayPanelMapping" for="modalDialogButton" showEffect="drop" hideEffect="drop" dynamic="true" my="right top" at="right bottom" style="height:250px; padding: 40px 20px 0px 30px; margin: -20px; background: transparent;">   
                     <p:dataTable id="dataMappingTable" value="#{pruebasManagedBean.operationOutputs}" var="dataAssociation" 
                                  selectionMode="multiple" selection="#{pruebasManagedBean.selectedSource}" rowKey="#{dataAssociation.dataElementName}" 
                                  style="width:420px; font-size: 12px;">
@@ -415,7 +467,7 @@
                             <p:commandButton value="Submit" icon="ui-icon-circle-triangle-e" style="height: 30px; font-size: 13px;"
                                              onclick="dataDialog2.show();"
                                              action="#{pruebasManagedBean.createAssociation()}"
-                                             update=":form:display"/>
+                                             update=":form2:display"/>
                         </f:facet> 
                     </p:dataTable>
                 </p:overlayPanel>
@@ -446,7 +498,7 @@
                 coloringWire();"
                                          style="height: 30px; font-size: 13px;"/>  
                         <p:commandButton value="Cancel" icon="ui-icon-alert"  
-                                         oncomplete="dataDialog.2hide()" action="#{pruebasManagedBean.eraseAll()}"
+                                         oncomplete="dataDialog2.hide()" action="#{pruebasManagedBean.eraseAll()}"
                                          onclick="overlayPanelMapping.show();"
                                          style="height: 30px; font-size: 13px;"/>  
                     </f:facet> 

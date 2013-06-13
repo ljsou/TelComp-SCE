@@ -1,0 +1,163 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions name="IndexSupportedRetrievalService" targetNamespace="http://retrieval.rep.telcomp/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://retrieval.rep.telcomp/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+<xsd:schema targetNamespace="http://retrieval.rep.telcomp/" xmlns:ns0="http://retrieval.rep.telcomp/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://retrieval.rep.telcomp/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+			<xsd:complexType name="retrieveOperationEntitiesByKeyword">
+				<xsd:sequence>
+					<xsd:element minOccurs="0" name="arg0" type="xsd:string"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="retrieveOperationEntitiesByKeywordResponse">
+				<xsd:sequence>
+					<xsd:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:operationNode"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="retrieveOperationsByKeyword">
+				<xsd:sequence>
+					<xsd:element minOccurs="0" name="arg0" type="xsd:string"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="retrieveOperationsByKeywordResponse">
+				<xsd:sequence>
+					<xsd:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:retrievedOperation"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:element name="retrieveOperationEntitiesByKeyword" type="ns0:retrieveOperationEntitiesByKeyword"/>
+			<xsd:element name="retrieveOperationEntitiesByKeywordResponse" type="ns0:retrieveOperationEntitiesByKeywordResponse"/>
+			<xsd:element name="retrieveOperationsByKeyword" type="ns0:retrieveOperationsByKeyword"/>
+			<xsd:element name="retrieveOperationsByKeywordResponse" type="ns0:retrieveOperationsByKeywordResponse"/>
+			<xsd:complexType name="messageNode">
+				<xsd:sequence>
+					<xsd:element name="id" type="xsd:long"/>
+					<xsd:element name="input" type="xsd:boolean"/>
+					<xsd:element minOccurs="0" name="messageName" type="xsd:string"/>
+					<xsd:element minOccurs="0" name="qName" type="xsd:string"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="portTypeNode">
+				<xsd:sequence>
+					<xsd:element maxOccurs="unbounded" minOccurs="0" name="bindingNodes" nillable="true" type="tns:bindingNode"/>
+					<xsd:element name="id" type="xsd:long"/>
+					<xsd:element maxOccurs="unbounded" minOccurs="0" name="operations" nillable="true" type="tns:operationNode"/>
+					<xsd:element minOccurs="0" name="portTypeName" type="xsd:string"/>
+					<xsd:element minOccurs="0" name="qname" type="xsd:string"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="retrievedOperation">
+				<xsd:sequence>
+					<xsd:element minOccurs="0" name="matchedElement" type="xsd:string"/>
+					<xsd:element minOccurs="0" name="matchedElementId" type="xsd:string"/>
+					<xsd:element minOccurs="0" name="serviceURI" type="xsd:string"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="serviceNode">
+				<xsd:sequence>
+					<xsd:element minOccurs="0" name="documentation" type="xsd:string"/>
+					<xsd:element minOccurs="0" name="locationURI" type="xsd:string"/>
+					<xsd:element maxOccurs="unbounded" minOccurs="0" name="ports" nillable="true" type="tns:portNode"/>
+					<xsd:element minOccurs="0" name="qName" type="xsd:string"/>
+					<xsd:element minOccurs="0" name="serviceName" type="xsd:string"/>
+					<xsd:element minOccurs="0" name="servicePath" type="xsd:string"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="bindingNode">
+				<xsd:sequence>
+					<xsd:element minOccurs="0" name="bindingName" type="xsd:string"/>
+					<xsd:element name="id" type="xsd:long"/>
+					<xsd:element minOccurs="0" name="portNode" type="tns:portNode"/>
+					<xsd:element minOccurs="0" name="qName" type="xsd:string"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="complexDataElement">
+				<xsd:complexContent>
+					<xsd:extension base="tns:dataElement">
+						<xsd:sequence>
+							<xsd:element maxOccurs="unbounded" minOccurs="0" name="dataElements" nillable="true" type="tns:dataElement"/>
+						</xsd:sequence>
+					</xsd:extension>
+				</xsd:complexContent>
+			</xsd:complexType>
+			<xsd:complexType name="operationNode">
+				<xsd:sequence>
+					<xsd:element maxOccurs="unbounded" minOccurs="0" name="dataElements" nillable="true" type="tns:dataElement"/>
+					<xsd:element minOccurs="0" name="documentation" type="xsd:string"/>
+					<xsd:element name="id" type="xsd:long"/>
+					<xsd:element maxOccurs="unbounded" minOccurs="0" name="operationMessages" nillable="true" type="tns:messageNode"/>
+					<xsd:element minOccurs="0" name="operationName" type="xsd:string"/>
+					<xsd:element minOccurs="0" name="operationStyle" type="xsd:string"/>
+					<xsd:element minOccurs="0" name="qName" type="xsd:string"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="dataElement">
+				<xsd:sequence>
+					<xsd:element minOccurs="0" name="dataElementName" type="xsd:string"/>
+					<xsd:element minOccurs="0" name="dataType" type="xsd:string"/>
+					<xsd:element name="id" type="xsd:long"/>
+					<xsd:element name="input" type="xsd:boolean"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="portNode">
+				<xsd:sequence>
+					<xsd:element name="id" type="xsd:long"/>
+					<xsd:element minOccurs="0" name="portName" type="xsd:string"/>
+					<xsd:element minOccurs="0" name="qName" type="xsd:string"/>
+				</xsd:sequence>
+			</xsd:complexType>
+		</xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="retrieveOperationsByKeyword">
+    <wsdl:part element="tns:retrieveOperationsByKeyword" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="retrieveOperationsByKeywordResponse">
+    <wsdl:part element="tns:retrieveOperationsByKeywordResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="retrieveOperationEntitiesByKeywordResponse">
+    <wsdl:part element="tns:retrieveOperationEntitiesByKeywordResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="retrieveOperationEntitiesByKeyword">
+    <wsdl:part element="tns:retrieveOperationEntitiesByKeyword" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="IndexSupportedRetrieval">
+    <wsdl:operation name="retrieveOperationEntitiesByKeyword">
+      <wsdl:input message="tns:retrieveOperationEntitiesByKeyword" name="retrieveOperationEntitiesByKeyword">
+    </wsdl:input>
+      <wsdl:output message="tns:retrieveOperationEntitiesByKeywordResponse" name="retrieveOperationEntitiesByKeywordResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="retrieveOperationsByKeyword">
+      <wsdl:input message="tns:retrieveOperationsByKeyword" name="retrieveOperationsByKeyword">
+    </wsdl:input>
+      <wsdl:output message="tns:retrieveOperationsByKeywordResponse" name="retrieveOperationsByKeywordResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="IndexSupportedRetrievalServiceSoapBinding" type="tns:IndexSupportedRetrieval">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="retrieveOperationEntitiesByKeyword">
+      <soap:operation soapAction="urn:RetrieveOperationEntitiesByKeyword" style="document"/>
+      <wsdl:input name="retrieveOperationEntitiesByKeyword">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="retrieveOperationEntitiesByKeywordResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="retrieveOperationsByKeyword">
+      <soap:operation soapAction="urn:RetrieveOperationsByKeyword" style="document"/>
+      <wsdl:input name="retrieveOperationsByKeyword">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="retrieveOperationsByKeywordResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="IndexSupportedRetrievalService">
+    <wsdl:port binding="tns:IndexSupportedRetrievalServiceSoapBinding" name="IndexSupportedRetrievalPort">
+      <soap:address location="http://192.168.190.55:8080/telcomp-rep-web/services/IndexSupportedRetrievalPort"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

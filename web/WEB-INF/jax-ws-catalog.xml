@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="http://192.168.190.55:10084/telcomp-rep-web/services/IndexSupportedRetrievalPort?wsdl" uri="wsdl/192.168.190.55_10084/telcomp-rep-web/services/IndexSupportedRetrievalPort.wsdl"/>
+    <system systemId="http://192.168.190.55:8080/telcomp-retrieval/services/ComponentMatchmakerWSPort?wsdl" uri="wsdl/192.168.190.55_8080/telcomp-retrieval/services/ComponentMatchmakerWSPort.wsdl"/>
+    <system systemId="http://190.90.112.7:8080/telcomp-retrieval/services/ComponentMatchmakerWSPort?wsdl" uri="wsdl/190.90.112.7_8080/telcomp-retrieval/services/ComponentMatchmakerWSPort.wsdl"/>
+    <system systemId="http://192.168.190.145:8080/JSLEEorchestrator/JSLEEorchestrator?WSDL" uri="wsdl/192.168.190.145_8080/JSLEEorchestrator/JSLEEorchestrator.wsdl"/>
+    <system systemId="http://192.168.190.145:8080/JSLEEorchestrator/JSLEEorchestrator?xsd=1" uri="wsdl/192.168.190.145_8080/JSLEEorchestrator/JSLEEorchestrator.xsd_1.xsd"/>
+</catalog>

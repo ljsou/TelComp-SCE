@@ -1,0 +1,400 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions name="ComponentMatchmakerWSService" targetNamespace="http://ws.matchmaking.retrieval.telcomp/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://ws.matchmaking.retrieval.telcomp/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+<xs:schema elementFormDefault="unqualified" targetNamespace="http://ws.matchmaking.retrieval.telcomp/" version="1.0" xmlns:ns1="http://retrieval.rep.telcomp/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://ws.matchmaking.retrieval.telcomp/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<xs:import namespace="http://retrieval.rep.telcomp/"/>
+<xs:element name="atomicComponentMatching" type="tns:atomicComponentMatching"/>
+<xs:element name="atomicComponentMatchingResponse" type="tns:atomicComponentMatchingResponse"/>
+<xs:element name="linguisticSimilarityEstimation" type="tns:linguisticSimilarityEstimation"/>
+<xs:element name="linguisticSimilarityEstimationResponse" type="tns:linguisticSimilarityEstimationResponse"/>
+<xs:element name="retrieveComponentByKeyword" type="tns:retrieveComponentByKeyword"/>
+<xs:element name="retrieveComponentByKeywordResponse" type="tns:retrieveComponentByKeywordResponse"/>
+<xs:element name="retrieveComponentsByQuery" type="tns:retrieveComponentsByQuery"/>
+<xs:element name="retrieveComponentsByQueryResponse" type="tns:retrieveComponentsByQueryResponse"/>
+<xs:complexType name="retrieveComponentsByQuery">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="ns1:operation"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="retrieveComponentsByQueryResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:componentRankingElement"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="componentRankingElement">
+<xs:sequence>
+<xs:element name="relevance" type="xs:double"/>
+<xs:element minOccurs="0" name="retrievedAttribute" type="ns1:operation"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="atomicComponentMatching">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="ns1:operation"/>
+<xs:element minOccurs="0" name="arg1" type="ns1:operation"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="atomicComponentMatchingResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:componentRankingElement"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="linguisticSimilarityEstimation">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:string"/>
+<xs:element minOccurs="0" name="arg1" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="linguisticSimilarityEstimationResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:double"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="retrieveComponentByKeyword">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="retrieveComponentByKeywordResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:componentRankingElement"/>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>
+<xs:schema targetNamespace="http://retrieval.rep.telcomp/" version="1.0" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://retrieval.rep.telcomp/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<xs:element name="findComplexDataEntities" type="tns:findComplexDataEntities"/>
+<xs:element name="findComplexDataEntities1" type="tns:findComplexDataEntities1"/>
+<xs:element name="findComplexDataEntities1Response" type="tns:findComplexDataEntities1Response"/>
+<xs:element name="findComplexDataEntitiesResponse" type="tns:findComplexDataEntitiesResponse"/>
+<xs:element name="findDataByName" type="tns:findDataByName"/>
+<xs:element name="findDataByNameResponse" type="tns:findDataByNameResponse"/>
+<xs:element name="findDataEntities" type="tns:findDataEntities"/>
+<xs:element name="findDataEntities1" type="tns:findDataEntities1"/>
+<xs:element name="findDataEntities1Response" type="tns:findDataEntities1Response"/>
+<xs:element name="findDataEntitiesResponse" type="tns:findDataEntitiesResponse"/>
+<xs:element name="findOperation" type="tns:findOperation"/>
+<xs:element name="findOperationByName" type="tns:findOperationByName"/>
+<xs:element name="findOperationByNameResponse" type="tns:findOperationByNameResponse"/>
+<xs:element name="findOperationEntities" type="tns:findOperationEntities"/>
+<xs:element name="findOperationEntities1" type="tns:findOperationEntities1"/>
+<xs:element name="findOperationEntities1Response" type="tns:findOperationEntities1Response"/>
+<xs:element name="findOperationEntitiesResponse" type="tns:findOperationEntitiesResponse"/>
+<xs:element name="findOperationResponse" type="tns:findOperationResponse"/>
+<xs:element name="findOperationSet" type="tns:findOperationSet"/>
+<xs:element name="findOperationSetResponse" type="tns:findOperationSetResponse"/>
+<xs:element name="findService" type="tns:findService"/>
+<xs:element name="findServiceEntities" type="tns:findServiceEntities"/>
+<xs:element name="findServiceEntities1" type="tns:findServiceEntities1"/>
+<xs:element name="findServiceEntities1Response" type="tns:findServiceEntities1Response"/>
+<xs:element name="findServiceEntitiesResponse" type="tns:findServiceEntitiesResponse"/>
+<xs:element name="findServiceResponse" type="tns:findServiceResponse"/>
+<xs:element name="getServiceCount" type="tns:getServiceCount"/>
+<xs:element name="getServiceCountResponse" type="tns:getServiceCountResponse"/>
+<xs:element name="retrieveOperationEntitiesByKeyword" type="tns:retrieveOperationEntitiesByKeyword"/>
+<xs:element name="retrieveOperationEntitiesByKeywordResponse" type="tns:retrieveOperationEntitiesByKeywordResponse"/>
+<xs:element name="retrieveOperationsByKeyword" type="tns:retrieveOperationsByKeyword"/>
+<xs:element name="retrieveOperationsByKeywordResponse" type="tns:retrieveOperationsByKeywordResponse"/>
+<xs:complexType name="operation">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="dataElements" nillable="true" type="tns:data"/>
+<xs:element minOccurs="0" name="documentation" type="xs:string"/>
+<xs:element name="id" type="xs:long"/>
+<xs:element minOccurs="0" name="operationName" type="xs:string"/>
+<xs:element minOccurs="0" name="operationStyle" type="xs:string"/>
+<xs:element minOccurs="0" name="serviceLocationURI" type="xs:string"/>
+<xs:element minOccurs="0" name="qName" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="data">
+<xs:sequence>
+<xs:element name="complexDataElementId" type="xs:long"/>
+<xs:element minOccurs="0" name="dataElementName" type="xs:string"/>
+<xs:element minOccurs="0" name="dataType" type="xs:string"/>
+<xs:element name="id" type="xs:long"/>
+<xs:element name="operationId" type="xs:long"/>
+<xs:element name="_input" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="complexData">
+<xs:complexContent>
+<xs:extension base="tns:data">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="dataElements" nillable="true" type="tns:data"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="service">
+<xs:sequence>
+<xs:element minOccurs="0" name="documentation" type="xs:string"/>
+<xs:element minOccurs="0" name="locationURI" type="xs:string"/>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="operations" nillable="true" type="tns:operation"/>
+<xs:element minOccurs="0" name="serviceName" type="xs:string"/>
+<xs:element minOccurs="0" name="servicePath" type="xs:string"/>
+<xs:element minOccurs="0" name="qName" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="findComplexDataEntities1">
+<xs:sequence>
+<xs:element name="arg0" type="xs:int"/>
+<xs:element name="arg1" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="findService">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="findComplexDataEntitiesResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:complexData"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="findOperationResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:operation"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="findDataEntities1">
+<xs:sequence>
+<xs:element name="arg0" type="xs:int"/>
+<xs:element name="arg1" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="findServiceEntities1Response">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:service"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="retrieveOperationsByKeywordResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:retrievedOperation"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="retrievedOperation">
+<xs:sequence>
+<xs:element minOccurs="0" name="matchedElement" type="xs:string"/>
+<xs:element minOccurs="0" name="matchedElementId" type="xs:string"/>
+<xs:element minOccurs="0" name="serviceURI" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="findServiceEntities">
+<xs:sequence>
+<xs:element name="arg0" type="xs:int"/>
+<xs:element name="arg1" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="findOperationEntitiesResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:operation"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="retrieveOperationsByKeyword">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="findDataByNameResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:data"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="findOperationEntities">
+<xs:sequence/>
+</xs:complexType>
+<xs:complexType name="getServiceCount">
+<xs:sequence/>
+</xs:complexType>
+<xs:complexType name="findDataEntities">
+<xs:sequence/>
+</xs:complexType>
+<xs:complexType name="findDataEntitiesResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:data"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="findServiceEntities1">
+<xs:sequence/>
+</xs:complexType>
+<xs:complexType name="findServiceEntitiesResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:service"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="findOperationEntities1">
+<xs:sequence>
+<xs:element name="arg0" type="xs:int"/>
+<xs:element name="arg1" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getServiceCountResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="findDataEntities1Response">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:data"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="findOperationEntities1Response">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:operation"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="findDataByName">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="findOperationByName">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="findComplexDataEntities">
+<xs:sequence/>
+</xs:complexType>
+<xs:complexType name="findServiceResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:service"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="findComplexDataEntities1Response">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:complexData"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="findOperation">
+<xs:sequence>
+<xs:element name="arg0" type="xs:long"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="findOperationByNameResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:operation"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="findOperationSetResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:operation"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="findOperationSet">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="arg0" type="xs:long"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="retrieveOperationEntitiesByKeyword">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="retrieveOperationEntitiesByKeywordResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:operation"/>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="linguisticSimilarityEstimation">
+    <wsdl:part element="tns:linguisticSimilarityEstimation" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="retrieveComponentsByQuery">
+    <wsdl:part element="tns:retrieveComponentsByQuery" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="retrieveComponentsByQueryResponse">
+    <wsdl:part element="tns:retrieveComponentsByQueryResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="retrieveComponentByKeyword">
+    <wsdl:part element="tns:retrieveComponentByKeyword" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="retrieveComponentByKeywordResponse">
+    <wsdl:part element="tns:retrieveComponentByKeywordResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="atomicComponentMatching">
+    <wsdl:part element="tns:atomicComponentMatching" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="linguisticSimilarityEstimationResponse">
+    <wsdl:part element="tns:linguisticSimilarityEstimationResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="atomicComponentMatchingResponse">
+    <wsdl:part element="tns:atomicComponentMatchingResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="ComponentMatchmakerWS">
+    <wsdl:operation name="retrieveComponentsByQuery">
+      <wsdl:input message="tns:retrieveComponentsByQuery" name="retrieveComponentsByQuery">
+    </wsdl:input>
+      <wsdl:output message="tns:retrieveComponentsByQueryResponse" name="retrieveComponentsByQueryResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="atomicComponentMatching">
+      <wsdl:input message="tns:atomicComponentMatching" name="atomicComponentMatching">
+    </wsdl:input>
+      <wsdl:output message="tns:atomicComponentMatchingResponse" name="atomicComponentMatchingResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="linguisticSimilarityEstimation">
+      <wsdl:input message="tns:linguisticSimilarityEstimation" name="linguisticSimilarityEstimation">
+    </wsdl:input>
+      <wsdl:output message="tns:linguisticSimilarityEstimationResponse" name="linguisticSimilarityEstimationResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="retrieveComponentByKeyword">
+      <wsdl:input message="tns:retrieveComponentByKeyword" name="retrieveComponentByKeyword">
+    </wsdl:input>
+      <wsdl:output message="tns:retrieveComponentByKeywordResponse" name="retrieveComponentByKeywordResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ComponentMatchmakerWSServiceSoapBinding" type="tns:ComponentMatchmakerWS">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="atomicComponentMatching">
+      <soap:operation soapAction="urn:AtomicComponentMatching" style="document"/>
+      <wsdl:input name="atomicComponentMatching">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="atomicComponentMatchingResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="retrieveComponentsByQuery">
+      <soap:operation soapAction="urn:RetrieveComponentsByQuery" style="document"/>
+      <wsdl:input name="retrieveComponentsByQuery">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="retrieveComponentsByQueryResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="linguisticSimilarityEstimation">
+      <soap:operation soapAction="urn:LinguisticSimilarityEstimation" style="document"/>
+      <wsdl:input name="linguisticSimilarityEstimation">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="linguisticSimilarityEstimationResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="retrieveComponentByKeyword">
+      <soap:operation soapAction="urn:RetrieveComponentByKeyword" style="document"/>
+      <wsdl:input name="retrieveComponentByKeyword">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="retrieveComponentByKeywordResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ComponentMatchmakerWSService">
+    <wsdl:port binding="tns:ComponentMatchmakerWSServiceSoapBinding" name="ComponentMatchmakerWSPort">
+      <soap:address location="http://192.168.190.55:8080/telcomp-retrieval/services/ComponentMatchmakerWSPort"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
