@@ -5,6 +5,7 @@
 package telcomp.retrieval.control;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
@@ -72,7 +73,7 @@ public class PruebasManagedBean {
 //        }
     }
 
-    public UserDataAssociation createUserDataAssociation(){
+    public UserDataAssociation createUserDataAssociation() {
         System.out.println("user data association");
         UserDataAssociation uda = new UserDataAssociation();
         System.out.println("getUserDataQuery: " + this.userDataQuery);
@@ -82,19 +83,27 @@ public class PruebasManagedBean {
         this.userDataassociations.add(uda);
         return uda;
     }
-    
+
     public DataAssociation createAssociation() {
         System.out.println("entró!!");
         int l = getSelectedSource().length;
-        for (int i = 0; i < l; i++) {
-            for (Iterator<telcomp.retrieval.matchmaking.ws.Data> it = this.sourceDataElements.iterator(); it.hasNext();) {
-                telcomp.retrieval.matchmaking.ws.Data data = it.next();
-                if (getSelectedSource()[i].getDataElementName().equalsIgnoreCase(data.getDataElementName())) {
-                    //System.out.println("sourceDataElements.get(j): " + data.getDataElementName());
-                    this.selectedSources.add(data);
+        for (int i = 0; i < this.sourceDataElements.size(); i++) {
+            for (int j = 0; j < l; j++) {
+                if ((this.sourceDataElements.get(i).getDataElementName()).equalsIgnoreCase(getSelectedSource()[j].getDataElementName())) {
+                    this.selectedSources.add(getSelectedSource()[j]);
                 }
             }
         }
+
+//        for (int k = 0; k < l; k++) {
+//            for (Iterator<telcomp.retrieval.matchmaking.ws.Data> it = this.sourceDataElements.iterator(); it.hasNext();) {
+//                telcomp.retrieval.matchmaking.ws.Data data = it.next();
+//                if (getSelectedSource()[k].getDataElementName().equalsIgnoreCase(data.getDataElementName())) {
+//                    //System.out.println("sourceDataElements.get(j): " + data.getDataElementName());
+//                    this.selectedSources.add(data);
+//                }
+//            }
+//        }
 
         for (int i = 0; i < this.selectedSources.size(); i++) {
             this.association = new DataAssociation();
@@ -130,10 +139,10 @@ public class PruebasManagedBean {
             }
         }
         this.targetDataElements = inputData;
-       // System.out.println("target data: " + this.targetDataElements.size());
+        // System.out.println("target data: " + this.targetDataElements.size());
         return this.targetDataElements;
     }
-    
+
     public List<telcomp.retrieval.matchmaking.ws.Data> getUserDataOperationInputs() {
         List<telcomp.retrieval.matchmaking.ws.Data> inputData = new ArrayList<telcomp.retrieval.matchmaking.ws.Data>();
         for (int i = 0; i < this.targetUserData.getDataElements().size(); i++) {
@@ -143,7 +152,7 @@ public class PruebasManagedBean {
             }
         }
         this.targetUserDataElements = inputData;
-       // System.out.println("target data: " + this.targetDataElements.size());
+        // System.out.println("target data: " + this.targetDataElements.size());
         return this.targetUserDataElements;
     }
 
@@ -235,7 +244,7 @@ public class PruebasManagedBean {
     public void setTargetUserData(Operation targetUserData) {
         this.targetUserData = targetUserData;
     }
-    
+
     public telcomp.retrieval.matchmaking.ws.Data[] getSelectedSource() {
         System.out.println("//getSelectedSource: " + selectedSource);
         return selectedSource;
@@ -255,7 +264,7 @@ public class PruebasManagedBean {
         System.out.println("//setSelectedUserDataTarget --> " + selectedUserDataTarget);
         this.selectedUserDataTarget = selectedUserDataTarget;
     }
-    
+
     public String getSelectedTarget() {
         System.out.println("//getSelectedTarget " + this.selectedTarget);
         return this.selectedTarget;
@@ -309,7 +318,7 @@ public class PruebasManagedBean {
     public void setTargetUserDataElements(List<Data> targetUserDataElements) {
         this.targetUserDataElements = targetUserDataElements;
     }
-    
+
     public DataAssociation getAssociation() {
         return this.association;
     }
@@ -339,7 +348,7 @@ public class PruebasManagedBean {
 //        this.selectedTargets = new ArrayList<telcomp.retrieval.matchmaking.ws.Data>();
 //        this.association = new DataAssociation();
 //        this.associations = new ArrayList<DataAssociation>();
-        System.out.println("this.selectedUserDataTarget value before erase: "  + this.selectedUserDataTarget);
+        System.out.println("this.selectedUserDataTarget value before erase: " + this.selectedUserDataTarget);
         this.selectedSource = null;
         this.selectedTarget = "";
         this.selectedUserDataTarget = null;

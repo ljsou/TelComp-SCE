@@ -190,7 +190,7 @@
 
                 //editor.layer.eventChanged.subscribe(editor.onLayerChanged, editor, true);
             }
-            
+
             function coloringWireUserData() {
                 console.log("submited mapping Use Data!");
                 var userDataWireID = document.getElementById('userdata-clicked-wire').value;
@@ -353,7 +353,6 @@
         <div id="helpPanel">
             <div class="hd">Welcome to the WiringEditor demonstration</div>
             <div class="bd" style="text-align: left;">
-
                 <p>This example shows how to use the <i>ImageContainer</i> and <i>FormContainer</i> in a language definition.</p>
                 <br />
                 <p><b>Drag and drop modules from the Module list</b> on the left to the working layer in the middle.</p>
@@ -379,8 +378,11 @@
                 return false;" style="display: none;" />
                 <h:commandButton id="userDataTargetBtn" onclick="jsf.ajax.request(this, event, {execute: 'userDataTarget'});
                 return false;" style="display: none;" />
-
-                <p:overlayPanel id="userDataMappingPanel" widgetVar="overlayPanelUserDataMapping" for="userDataModalDialogButton" showEffect="drop" hideEffect="drop" dynamic="true" my="right top" at="right bottom" style="height:250px; padding: 40px 20px 0px 30px; margin: -20px; background: transparent;">   
+            <div style="width: 70%; height: 40%;">
+                
+            </div>
+                    
+                <p:overlayPanel id="userDataMappingPanel" widgetVar="overlayPanelUserDataMapping" for="userDataModalDialogButton" showEffect="drop" hideEffect="drop" dynamic="true" my="right top" at="right bottom" style="height:250px; padding: 40px 20px 0px 30px; margin: -20px; background:#333;background:rgba(0,0,0,0.75);border: 0;">   
                     <p:dataTable id="userDataMappingTable" value="#{pruebasManagedBean.userDataOutputs}" var="userDataOutputs" 
                                  style="width:420px; font-size: 12px;">
                         <f:facet name="header">  
@@ -434,7 +436,7 @@
 
                 <p:commandButton id="modalDialogButton" type="button" onclick="jsf.ajax.request(this, event, {render: 'dataMappingTable'});
                 return false;" style="display: none;"/>
-         
+
                 <h:inputHidden id="clicked-wire" value="null"/>
                 <h:inputHidden id="queryIdInput" value="#{pruebasManagedBean.queryId}" />
                 <h:inputHidden id="targetIdInput" value="#{pruebasManagedBean.targetId}" />
@@ -445,7 +447,7 @@
                 <h:commandButton id="initTargetDataBtn" onclick="jsf.ajax.request(this, event, {execute: 'targetIdInput'});
                 return false;" style="display: none;" />
 
-                <p:overlayPanel id="dataMappingPanel" widgetVar="overlayPanelMapping" for="modalDialogButton" showEffect="drop" hideEffect="drop" dynamic="true" my="right top" at="right bottom" style="height:250px; padding: 40px 20px 0px 30px; margin: -20px; background: transparent;">   
+                <p:overlayPanel id="dataMappingPanel" widgetVar="overlayPanelMapping" for="modalDialogButton" showEffect="drop" hideEffect="drop" dynamic="true" my="right top" at="right bottom" style="height:250px; padding: 40px 20px 0px 30px; margin: -20px; background:#333;background:rgba(0,0,0,0.75);border: 0;">   
                     <p:dataTable id="dataMappingTable" value="#{pruebasManagedBean.operationOutputs}" var="dataAssociation" 
                                  selectionMode="multiple" selection="#{pruebasManagedBean.selectedSource}" rowKey="#{dataAssociation.dataElementName}" 
                                  style="width:420px; font-size: 12px;">

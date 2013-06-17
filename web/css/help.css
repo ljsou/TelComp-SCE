@@ -1,0 +1,39 @@
+/* 
+    Document   : help
+    Created on : 13/06/2013, 06:20:32 PM
+    Author     : Javier
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+.project-information {
+    line-height: 5px;
+}
+
+h1 {
+    font-size: 40px;
+}
+
+.xsmall-font {
+    font-size: 8px;
+}
+.small-font {
+    font-size: 10px;
+}
+.medium-font {
+    font-size: 12px;
+}
+.normal-font {
+    font-size: 14px;
+}
+.big-font {
+    font-size: 16px;
+}
+.xbig-font {
+    font-size: 18px;
+}
+

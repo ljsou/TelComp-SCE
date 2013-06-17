@@ -91,7 +91,12 @@
             modal: true
         });
         this.helpPanel.setHeader("TelComp2.0 Project Help!");
-        this.helpPanel.setBody("Here is the instructions! \n Here is the instructions! \n Here is the instructions! \n Here is the instructions!."); 
+        this.helpPanel.setBody("\
+<h3>What is Pipes?</h3>\n\
+<p>TelComp2.0 Project is a online service that lets you remix popular service types from Web 2.0 (Facebook, Twitter, so on) and Telco (IM, Calls, etc) domains, \n\
+in order to create Services Telco2.0 by using a visual editor. </p>\
+You can generate your own Telco2.0 Services without ever having to write a line of code \n\
+<a href=\"http://localhost:8084/TelComp-SCE/faces/help.xhtml\"  target=\"_blank\">Learn how</a>");         
         this.helpPanel.render();
 
 

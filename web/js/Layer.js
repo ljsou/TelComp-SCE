@@ -288,59 +288,49 @@ WireIt.Layer.prototype = {
     getWiring: function() {
 
         var i;
-        var obj = {containers: [], wires: []};        
+        var j;
+        var obj = {components: [], data: [], control: []};
 
         for (i = 0; i < this.containers.length; i++) {
-            obj.containers.push(this.containers[i].getConfig());
+            obj.components.push(this.containers[i].getConfig());           
+        }
+
+        for (i = 0; i < this.wires.length; i++) {
+            var wire = this.wires[i];
+            if (wire.dataFlow === false) {
+                console.log("tamaño1: " + wire.sourceData.length);
+                var wireObj2 = {
+//                    src: {moduleId: WireIt.indexOf(wire.terminal1.container, this.containers), terminalId: wire.terminal1.options.name},
+//                    tgt: {moduleId: WireIt.indexOf(wire.terminal2.container, this.containers), terminalId: wire.terminal2.options.name}
+                    srcComponentId: WireIt.indexOf(wire.terminal1.container, this.containers),
+                    tgtComponentId: WireIt.indexOf(wire.terminal2.container, this.containers)
+                };
+                obj.control.push(wireObj2);
+            }
         }
 
         for (i = 0; i < this.wires.length; i++) {
             var wire = this.wires[i];
             var dataEl = [];
-//            if (wire.dataFlow === false) {
             if (wire.dataFlow === true) {
-                console.log("tamaño: " + wire.sourceData.length);
+                console.log("tamaño2: " + wire.sourceData.length);
                 for (j = 0; j < wire.sourceData.length; j++) {
                     var dataObj = {
                         //data: {wireId: WireIt.indexOf(wire, this.wires), dataFlow: wire.dataFlow}
                         srcValue: wire.sourceData[j],
                         tgtValue: wire.targetData[j]
                     };
-                    console.log(dataObj);
+                    //console.log(dataObj);
                     dataEl.push(dataObj);
                 }
 
                 var wireObj = {
-                    src: {moduleId: WireIt.indexOf(wire.terminal1.container, this.containers), terminalId: wire.terminal1.options.name},
-                    tgt: {moduleId: WireIt.indexOf(wire.terminal2.container, this.containers), terminalId: wire.terminal2.options.name},
-                    data: dataEl
+                    between: {srcComponentId: WireIt.indexOf(wire.terminal1.container, this.containers), tgtComponentId: WireIt.indexOf(wire.terminal2.container, this.containers)},
+                    dataElements: dataEl
                 };
-                obj.wires.push(wireObj);
-            } else {
-                var wireObj2 = {
-                    src: {moduleId: WireIt.indexOf(wire.terminal1.container, this.containers), terminalId: wire.terminal1.options.name},
-                    tgt: {moduleId: WireIt.indexOf(wire.terminal2.container, this.containers), terminalId: wire.terminal2.options.name}                    
-                };
-                obj.wires.push(wireObj2);
+                obj.data.push(wireObj);
             }
-
-//            }
         }
-
-//        for (i = 0; i < this.wires.length; i++) {
-//            var wire = this.wires[i];
-//            if (wire.dataFlow === true) {
-//                console.log("tamaño: " + wire.sourceData.length);
-//                for (j = 0; j < wire.sourceData.length; j++) {
-//                    var dataObj = {
-//                        //data: {wireId: WireIt.indexOf(wire, this.wires), dataFlow: wire.dataFlow}
-//                        dataElements: {srcValue: wire.sourceData[j], tgtValue: wire.targetData[j], wireId: WireIt.indexOf(wire, this.wires)}
-//                    };
-//                    console.log(dataObj);
-//                    obj.data.push(dataObj);
-//                }
-//            }
-//        }
 
         return obj;
     },
@@ -397,15 +387,13 @@ WireIt.Layer.prototype = {
         this.sourceDataElement.push(source);
         this.targetDataElement.push(target);
     },
-    
-    eraseDataElements: function(){
+    eraseDataElements: function() {
         console.log("elements erased...");
         var srs = [];
         var tgt = [];
         this.sourceDataElement = srs;
         this.targetDataElement = tgt;
-    },        
-            
+    },
     dataMapping: function(wid) {
         var n = this.wires.length;
         //console.log(wid + "--" + n);
@@ -418,7 +406,7 @@ WireIt.Layer.prototype = {
                 this.wires[i].redraw();
                 this.wires[i].dataFlow = true;
                 this.wires[i].sourceData = this.sourceDataElement;
-                this.wires[i].targetData = this.targetDataElement;                
+                this.wires[i].targetData = this.targetDataElement;
                 console.log("Data Mapping between " + this.wires[i].terminal1.container.options.title
                         + "(" + this.wires[i].terminal1.container.options.idcomp + ")"
                         + " and " + this.wires[i].terminal2.container.options.title
@@ -427,7 +415,6 @@ WireIt.Layer.prototype = {
             }
         }
     },
-            
     userDataMapping: function(wid) {
         var n = this.wires.length;
         //console.log(wid + "--" + n);
@@ -440,7 +427,7 @@ WireIt.Layer.prototype = {
                 this.wires[i].redraw();
                 this.wires[i].dataFlow = true;
                 this.wires[i].sourceData = this.sourceDataElement;
-                this.wires[i].targetData = this.targetDataElement;                
+                this.wires[i].targetData = this.targetDataElement;
                 console.log("User Data Mapping between " + this.wires[i].terminal1.container.options.title
                         + "(" + this.wires[i].terminal1.container.options.idcomp + ")"
                         + " and " + this.wires[i].terminal2.container.options.title
