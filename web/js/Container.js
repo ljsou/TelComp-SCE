@@ -254,9 +254,10 @@
             if (this.options.xtype === "WireIt.InOutContainer") {
                 document.getElementById('simSearch').value = new String(this.options.idcomp);
                 document.getElementById('simBtn').click();
+                document.getElementById("dvLoading").style.display = "block";
             } else {
                 console.log("this is not a InOutContainer");
-                alert("this is not a InOutContainer");
+                console.log("this is not a InOutContainer");
             }
             //loadSearchPanel(telcompLanguage);
             if (this.layer) {
