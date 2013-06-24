@@ -240,10 +240,10 @@
             <div class="logoUp">2.0</div>
             <!--            <img src="images/telcomp2.png" width="200px" height="50px"/>-->
             <div id="toolbar"></div>
-            <div class="topright">
-                <span>Hello there !</span> | 
-                <a href="../..">go to GIT</a>
-            </div>
+            <!--            <div class="topright">
+                            <span>Hello there !</span> | 
+                            <a href="../..">go to GIT</a>
+                        </div>-->
         </div>
 
         <div id="left">
@@ -252,11 +252,37 @@
                     <div style='position: relative;'>
                         <div id="layerMap"></div>
                     </div>
-                </li>	                                                                       
+                </li>	
+                <li>  
+                    <h:form id="componentInformation" prependId="false">
+                        <h:inputHidden id="componentInfo" value="#{pruebasManagedBean.componentId}" />                        
+                        <p:commandButton id="componentInfoBtn" onclick="jsf.ajax.request(this, event, {execute: 'componentInfo', render: 'componentInfoPanel'});
+                return false;" style="display: none;"/>                                                                                               
+                        <p:outputPanel id="componentInfoPanel" style="width: 100%;">  
+                            <br/>
+                            <h:outputLabel value="Component Information" style="margin-left: 2%; margin-top: 15px; font-weight: 600; font-size: 13px;"/>
+                            <br/>                                                
+                            <h:panelGrid  columns="2" style="width: 95%; margin-left: 2%; margin-top: 2%;">                              
+
+                                <h:outputLabel for="name" value="Name(ID):" style="font-size: 11px;"/>  
+                                <h:outputLabel id="name" value="#{pruebasManagedBean.component.operationName} (#{pruebasManagedBean.component.id})" style="height: 20px; padding: 1px 5px;  font-weight: 600; font-size: 11px; color: #666;"/>
+
+                                <h:outputLabel for="inputs" value="Inputs:" style="font-size: 11px;"/>  
+                                <p:dataList id="inputs" value="#{pruebasManagedBean.componentInputs}" var="componentInputs" type="ordered">  
+                                    <p style="padding: 0 0 1px 5px; font-size: 11px; background: #eee; margin: -1px; border-bottom: #fff solid 1px; color: #090;">- #{componentInputs.dataElementName} (#{componentInputs.dataType})</p> 
+                                </p:dataList>                                   
+                                <h:outputLabel for="outputs" value="Outputs:" style="font-size: 11px;"/>  
+                                <p:dataList id="outputs" value="#{pruebasManagedBean.componentOutputs}" var="componentOutputs" type="ordered">  
+                                    <p style="padding: 0 0 1px 5px; font-size: 11px; background: #eee; margin: -1px; border-bottom: #fff solid 1px; color: #0e90d2;">- #{componentOutputs.dataElementName} (#{componentOutputs.dataType})</p>
+                                </p:dataList>   
+                            </h:panelGrid>                            
+                        </p:outputPanel> 
+                    </h:form>
+                </li>
                 <li>                    
                     <div>
-                        <h2 style="width: 100px; margin: 15px 5px -3px 5px; font-weight: 600;">JSON Graph</h2>
-                        <p id="jsonResoult" style="display: block; overflow: scroll; margin: 5px; font-size: 11px;padding: 5px; width: 232px; height: 100%; border: #999 dotted 1px;"></p>
+                        <h2 style="width: 100px; margin: 15px 5px -3px 5px; font-weight: 600; color: #777;">JSON Graph</h2>
+                        <p id="jsonResoult" style="display: block; overflow: scroll; margin: 5px; font-size: 11px;padding: 5px; width: 232px; height: 200px; border: #999 dotted 1px;"></p>
                     </div>
                 </li>	
                 <li>
@@ -378,10 +404,10 @@
                 return false;" style="display: none;" />
                 <h:commandButton id="userDataTargetBtn" onclick="jsf.ajax.request(this, event, {execute: 'userDataTarget'});
                 return false;" style="display: none;" />
-            <div style="width: 70%; height: 40%;">
-                
-            </div>
-                    
+                <div style="width: 70%; height: 40%;">
+
+                </div>
+
                 <p:overlayPanel id="userDataMappingPanel" widgetVar="overlayPanelUserDataMapping" for="userDataModalDialogButton" showEffect="drop" hideEffect="drop" dynamic="true" my="right top" at="right bottom" style="height:250px; padding: 40px 20px 0px 30px; margin: -20px; background:#333;background:rgba(0,0,0,0.75);border: 0;">   
                     <p:dataTable id="userDataMappingTable" value="#{pruebasManagedBean.userDataOutputs}" var="userDataOutputs" 
                                  style="width:420px; font-size: 12px;">

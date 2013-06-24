@@ -700,7 +700,7 @@ YAHOO.lang.extend(WireIt.Wire, WireIt.CanvasElement, {
         console.log("clicked-wire dataFlow: " + this.dataFlow);
         console.log(this.terminal1.container.options.idcomp);
         console.log(this.terminal1.options.name);
-        if (this.terminal1.container.options.xtype === "WireIt.InOutContainer") {
+        if (this.terminal1.container.options.xtype === "WireIt.InOutContainer" && this.terminal2.container.options.xtype === "WireIt.InOutContainer") {
             console.log("entró al WireIt.InOutContainer");
             document.getElementById('queryIdInput').value = this.terminal1.container.options.idcomp;
             document.getElementById('initQueryDataBtn').click();
@@ -708,8 +708,8 @@ YAHOO.lang.extend(WireIt.Wire, WireIt.CanvasElement, {
             document.getElementById('initTargetDataBtn').click();
             document.getElementById('modalDialogButton').click();
             document.getElementById('clicked-wire').value = this.wireID;
-        } else {
-            console.log("is not a xtype: WireIt.FormContainer");
+        } else if (this.terminal1.container.options.xtype === "WireIt.FormContainer" && this.terminal2.container.options.xtype === "WireIt.InOutContainer") {
+            console.log("is a WireIt.FormContainer");
             document.getElementById('userDataQuery').value = this.terminal1.options.name;
             document.getElementById('userDataQueryBtn').click();
             document.getElementById('userDataTarget').value = this.terminal2.container.options.idcomp;
@@ -720,10 +720,13 @@ YAHOO.lang.extend(WireIt.Wire, WireIt.CanvasElement, {
             document.getElementById('initTargetDataBtn').click();
             document.getElementById('userDataModalDialogButton').click();
             document.getElementById('userdata-clicked-wire').value = this.wireID;
-            
+        } else if (this.terminal1.container.options.xtype === "WireIt.InOutContainer" && this.terminal2.container.options.xtype === "WireIt.ImageContainer") {
+            alert("Unable to start the Data Mapping between these elements because this edge corresponds to a Control Flow edge.");
+            console.log("es una arista entre un InOut y una imagen");
+        } else if (this.terminal1.container.options.xtype === "WireIt.ImageContainer" && this.terminal2.container.options.xtype === "WireIt.ImageContainer") {
+            console.log("es una arista de control");
+            alert("Unable to start the Data Mapping between these elements because this edge corresponds to a Control Flow edge.");
         }
-//        console.log("WireID: " + this.wireID);
-//        }
         this.eventMouseClick.fire(this, [x, y]);
     }
 

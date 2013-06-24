@@ -5,8 +5,6 @@
 package telcomp.retrieval.control;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -21,6 +19,8 @@ import telcomp.retrieval.matchmaking.ws.Operation;
 @SessionScoped
 public class PruebasManagedBean {
 
+    private String componentId;
+    private Operation component;
     private String queryId;
     private String userDataQuery;
     private String userDataTarget;
@@ -156,6 +156,34 @@ public class PruebasManagedBean {
         return this.targetUserDataElements;
     }
 
+    public List<telcomp.retrieval.matchmaking.ws.Data> getComponentInputs() {
+        List<telcomp.retrieval.matchmaking.ws.Data> inputData = new ArrayList<telcomp.retrieval.matchmaking.ws.Data>();
+        if (this.component != null) {
+            System.out.println("getComponentInputs: " + this.component.getDataElements().size());
+            for (int i = 0; i < this.component.getDataElements().size(); i++) {
+                telcomp.retrieval.matchmaking.ws.Data data = this.component.getDataElements().get(i);
+                if (data.isInput()) {
+                    inputData.add(data);
+                }
+            }
+        }
+        return inputData;
+    }
+
+    public List<telcomp.retrieval.matchmaking.ws.Data> getComponentOutputs() {
+        List<telcomp.retrieval.matchmaking.ws.Data> outputData = new ArrayList<telcomp.retrieval.matchmaking.ws.Data>();
+        if (this.component != null) {
+            System.out.println("getComponentOutputs: " + this.component.getDataElements().size());
+            for (int i = 0; i < this.component.getDataElements().size(); i++) {
+                telcomp.retrieval.matchmaking.ws.Data data = this.component.getDataElements().get(i);
+                if (!data.isInput()) {
+                    outputData.add(data);
+                }
+            }
+        }
+        return outputData;
+    }
+
     public String getUserDataQuery() {
         return this.userDataQuery;
     }
@@ -178,6 +206,24 @@ public class PruebasManagedBean {
 
     public void setUserDataOperationName(String userDataOperationName) {
         this.userDataOperationName = userDataOperationName;
+    }
+
+    public String getComponentId() {
+        System.out.println("this.componentId: " + this.componentId);
+        return componentId;
+    }
+
+    public void setComponentId(String componentId) {
+        this.componentId = componentId;
+        this.component = retrieveComponentById(Long.parseLong(this.componentId));
+    }
+
+    public Operation getComponent() {
+        return component;
+    }
+
+    public void setComponent(Operation component) {
+        this.component = component;
     }
 
     public OperationComodin getQueryUserDataOperation() {

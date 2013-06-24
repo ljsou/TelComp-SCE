@@ -185,6 +185,7 @@
 
             // Adds a handler for mousedown so we can notice the layer
             Event.addListener(this.el, "dblclick", this.onMouseDown, this, true);
+            Event.addListener(this.el, "click", this.onClick, this, true);
 
             if (this.options.ddHandle) {
                 // Create the drag/drop handle
@@ -264,6 +265,18 @@
                 }
                 this.setFocus();
                 this.layer.focusedContainer = this;
+            }
+        },
+        onClick: function() {
+            console.log("Click! en: " + this.options.title);
+            console.log("ID: " + this.options.idcomp);
+            //document.getElementById("here2").innerText = this.el.innerText;
+            if (this.options.xtype === "WireIt.InOutContainer") {
+                document.getElementById('componentInfo').value = new String(this.options.idcomp);
+                document.getElementById('componentInfoBtn').click();
+            } else {
+                console.log("this is not a InOutContainer");
+                alert("this is not a InOutContainer");
             }
         },
         /**
