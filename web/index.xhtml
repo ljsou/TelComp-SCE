@@ -199,23 +199,28 @@
                 console.log(wireID);
                 editor.layer.dataMapping(new String(wireID), changedData);
                 if (changedData === true) {
-                    changedData = false;
+                    console.log("coloringWire - changedData está en: " + changedData);
+                    console.log("estado: " + document.getElementById('change').checked);
+                    //document.getElementById('change').checked = true;
                 }
                 //editor.layer.eventChanged.subscribe(editor.onLayerChanged, editor, true);
             }
 
             function doClick() {
-                console.log("1: " + changedData);
-                document.getElementById('change').click();
-                console.log("2: " + changedData);
+                console.log("--1: " + changedData);
+                //document.getElementById('change').checked = false;
+                console.log("--2: " + changedData);
             }
 
             function changeEdgeType() {
                 if (changedData === false) {
                     changedData = true;
+                    console.log("changedData cambió a: " + changedData);
                     //alert("Are you sure? Now, this edge is both data and control. " + changedData);
                 } else {
                     changedData = false;
+                    document.getElementById('change').checked = false;
+                    console.log("changedData cambió a: " + changedData);
                     //alert("Now, this one is just a data flow edge. " + changedData);
                 }
             }
@@ -344,7 +349,8 @@
                                 <h:outputScript name="jsf.js" library="javax.faces" target="head"/>
                                 <h:outputLabel value="Enter your query..." style="color: #777; width: 200px; margin: 0px 5px 0px 8px;"/> 
                                 <h:inputText id="key" value="#{componentRetrievalManagedBean.keyword}" style=" width: 180px; margin: 0px 5px 0px 8px;"/>
-                                <p:commandButton id="keywordSearchBtn" style="font-size: smaller" icon="ui-icon-search" onclick="startLoading(); jsf.ajax.request(this, event, {execute: 'key', render: 'here'});
+                                <p:commandButton id="keywordSearchBtn" style="font-size: smaller" icon="ui-icon-search" onclick="startLoading();
+                jsf.ajax.request(this, event, {execute: 'key', render: 'here'});
                 return false;" ></p:commandButton>
 
                             </div>
@@ -569,8 +575,7 @@
                                          style="height: 30px; font-size: 13px;"/>  
                         <p:commandButton value="Cancel" icon="ui-icon-alert"  
                                          oncomplete="dataDialog2.hide()" action="#{pruebasManagedBean.eraseAll()}"
-                                         onclick="overlayPanelMapping.show();
-                doClick();"
+                                         onclick="overlayPanelMapping.show();"
                                          style="height: 30px; font-size: 13px;"/>  
                     </f:facet> 
                 </p:dialog>    

@@ -436,7 +436,8 @@ public class PruebasManagedBean {
     }
 
     public void addMessage() {
-        String summary = checked ? "Now, this edge will be both data and control." : "Now, this one will be just a data flow edge. ";
+        //String summary = checked ? "Now, this edge will be both data and control." : "Now, this one will be just a data flow edge. ";
+        String summary = checked ? "Edge type changed!" : "Edge type changed!";
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(summary));
     }
 }
