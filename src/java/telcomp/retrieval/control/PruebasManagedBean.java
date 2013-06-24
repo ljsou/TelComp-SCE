@@ -6,8 +6,10 @@ package telcomp.retrieval.control;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import telcomp.retrieval.matchmaking.ws.Data;
 import telcomp.retrieval.matchmaking.ws.Operation;
 
@@ -41,6 +43,7 @@ public class PruebasManagedBean {
     private List<DataAssociation> associations;
     private List<UserDataAssociation> userDataassociations;
     private String userDataOperationName;
+    private boolean checked;
 
     public PruebasManagedBean() {
         System.out.println("constructor");
@@ -422,5 +425,18 @@ public class PruebasManagedBean {
         telcomp.retrieval.matchmaking.ws.ComponentMatchmakerWSService service = new telcomp.retrieval.matchmaking.ws.ComponentMatchmakerWSService();
         telcomp.retrieval.matchmaking.ws.ComponentMatchmakerWS port = service.getComponentMatchmakerWSPort();
         return port.retrieveComponentById(arg0);
+    }
+
+    public void setChecked(boolean checked) {
+        this.checked = checked;
+    }
+
+    public boolean isChecked() {
+        return checked;
+    }
+
+    public void addMessage() {
+        String summary = checked ? "Now, this edge will be both data and control." : "Now, this one will be just a data flow edge. ";
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(summary));
     }
 }

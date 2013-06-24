@@ -12,6 +12,7 @@
 WireIt.Wire = function(terminal1, terminal2, parentEl, options) {
 
     this.dataFlow = false;
+    this.dataFlowControl = false;
     this.sourceData = [];
     this.targetData = [];
     /**
@@ -109,6 +110,7 @@ YAHOO.lang.extend(WireIt.Wire, WireIt.CanvasElement, {
          */
         this.options = {};
         this.dataFlow = false;
+        this.dataFlowControl = false;
         this.sourceData = [];
         this.targetData = [];
         this.wireID = "";
@@ -147,6 +149,7 @@ YAHOO.lang.extend(WireIt.Wire, WireIt.CanvasElement, {
 
         this.wireID = "";
         this.dataFlow = false;
+        this.dataFlowControl = false;
         this.sourceData = [];
         this.targetData = [];
     },

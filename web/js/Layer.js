@@ -292,12 +292,12 @@ WireIt.Layer.prototype = {
         var obj = {components: [], data: [], control: []};
 
         for (i = 0; i < this.containers.length; i++) {
-            obj.components.push(this.containers[i].getConfig());           
+            obj.components.push(this.containers[i].getConfig());
         }
 
         for (i = 0; i < this.wires.length; i++) {
             var wire = this.wires[i];
-            if (wire.dataFlow === false) {
+            if (wire.dataFlowControl === true || wire.dataFlow === false) {
                 console.log("tamaño1: " + wire.sourceData.length);
                 var wireObj2 = {
 //                    src: {moduleId: WireIt.indexOf(wire.terminal1.container, this.containers), terminalId: wire.terminal1.options.name},
@@ -394,17 +394,24 @@ WireIt.Layer.prototype = {
         this.sourceDataElement = srs;
         this.targetDataElement = tgt;
     },
-    dataMapping: function(wid) {
+    dataMapping: function(wid, dataFlowControl) {
         var n = this.wires.length;
         //console.log(wid + "--" + n);
         for (var i = 0; i < n; i++) {
             //console.log("dataFlow: " + this.wires[i].dataFlow);
             //console.log(this.wires[i].wireID + "==" + wid);
             if (this.wires[i].wireID === '' + wid) {
-                this.wires[i].options.color = 'rgb(102, 255, 153)';
-                this.wires[i].options.bordercolor = 'rgb(0, 102, 0)';
-                this.wires[i].redraw();
                 this.wires[i].dataFlow = true;
+                this.wires[i].dataFlowControl = dataFlowControl;
+                if (!dataFlowControl) {
+                    this.wires[i].options.color = 'rgb(102, 255, 153)';
+                    this.wires[i].options.bordercolor = 'rgb(0, 102, 0)';
+                    this.wires[i].redraw();
+                } else if (dataFlowControl) {
+                    this.wires[i].options.color = 'rgb(50, 205, 50)';
+                    this.wires[i].options.bordercolor = 'rgb(0, 102, 0)';
+                    this.wires[i].redraw();
+                }
                 this.wires[i].sourceData = this.sourceDataElement;
                 this.wires[i].targetData = this.targetDataElement;
                 console.log("Data Mapping between " + this.wires[i].terminal1.container.options.title

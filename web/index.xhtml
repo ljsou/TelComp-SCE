@@ -115,6 +115,21 @@
             div.WireIt-Container.WiringEditor-module-comment { width: 200px; }
             div.WireIt-Container.WiringEditor-module-comment div.body { background-color: #EEEE66; }
             div.WireIt-Container.WiringEditor-module-comment div.body textarea { background-color: transparent; font-weight: bold; border: 0; }
+
+            #dvLoading {
+                display: none;
+                background:url(http://loadinggif.com/images/image-selection/34.gif) no-repeat center center;
+                height: 25px;
+                width: 25px;
+                position: fixed;
+                right: 65px;
+                top: 207px;
+                top: 163px;
+                margin: -25px 0 0 -25px;
+                z-index: 1000;
+                /*                border: #090 solid 1px;*/
+            } 
+
         </style>
 
 
@@ -124,6 +139,7 @@
             inputEx.spacerUrl = "/inputex/images/space.gif";
             var telcompLanguage;
             var editor;
+            var changedData = false;
 
             function initializeHome() {
                 YAHOO.util.Event.onDOMReady(function() {
@@ -156,6 +172,7 @@
                     editor.renderPropertiesForm();
                     editor.load();
                     editor.accordionView.openPanel(1);
+                    stopLoading();
                 } else if (location === 'here2') {
                     console.log("Entro a here2...");
                     editor.leftEl2 = YAHOO.util.Dom.get(location);
@@ -164,6 +181,7 @@
                     editor.renderPropertiesForm();
                     editor.load();
                     editor.accordionView.openPanel(2);
+                    stopLoading();
                 } else if (location === 'control-structures') {
                     console.log("Entro a control-structures...");
                     editor.leftEl2 = YAHOO.util.Dom.get(location);
@@ -178,17 +196,28 @@
             function coloringWire() {
                 console.log("submited mapping!");
                 var wireID = document.getElementById('clicked-wire').value;
-
-//                var srcDataElement = document.getElementById('srcDataElement').value;
-//                var tgtDataElement = document.getElementById('tgtDataElement').value;
-//
-//                console.log("sourceDataElement: " + srcDataElement);
-//                console.log("targetDataElement " + tgtDataElement);
-
                 console.log(wireID);
-                editor.layer.dataMapping(new String(wireID));
-
+                editor.layer.dataMapping(new String(wireID), changedData);
+                if (changedData === true) {
+                    changedData = false;
+                }
                 //editor.layer.eventChanged.subscribe(editor.onLayerChanged, editor, true);
+            }
+
+            function doClick() {
+                console.log("1: " + changedData);
+                document.getElementById('change').click();
+                console.log("2: " + changedData);
+            }
+
+            function changeEdgeType() {
+                if (changedData === false) {
+                    changedData = true;
+                    //alert("Are you sure? Now, this edge is both data and control. " + changedData);
+                } else {
+                    changedData = false;
+                    //alert("Now, this one is just a data flow edge. " + changedData);
+                }
             }
 
             function coloringWireUserData() {
@@ -229,12 +258,19 @@
                 setTimeout('stopDowload()', 3500);
             }
 
+            function startLoading() {
+                document.getElementById("dvLoading").style.display = "block";
+            }
 
+            function stopLoading() {
+                document.getElementById("dvLoading").style.display = "none";
+            }
 
 
         </script>
     </h:head>
     <h:body styleClass="yui-skin-sam" style="background: #f5f5f5;" onload="initializeHome();">
+        <div id="dvLoading"></div>
         <div id="top" >
             <div class="logo">TelComp</div>
             <div class="logoUp">2.0</div>
@@ -308,7 +344,7 @@
                                 <h:outputScript name="jsf.js" library="javax.faces" target="head"/>
                                 <h:outputLabel value="Enter your query..." style="color: #777; width: 200px; margin: 0px 5px 0px 8px;"/> 
                                 <h:inputText id="key" value="#{componentRetrievalManagedBean.keyword}" style=" width: 180px; margin: 0px 5px 0px 8px;"/>
-                                <p:commandButton id="keywordSearchBtn" style="font-size: smaller" icon="ui-icon-search" onclick="jsf.ajax.request(this, event, {execute: 'key', render: 'here'});
+                                <p:commandButton id="keywordSearchBtn" style="font-size: smaller" icon="ui-icon-search" onclick="startLoading(); jsf.ajax.request(this, event, {execute: 'key', render: 'here'});
                 return false;" ></p:commandButton>
 
                             </div>
@@ -433,7 +469,7 @@
                     </p:dataTable>
                 </p:overlayPanel>  
 
-                <p:dialog header="Selected Values" modal="true" showEffect="fade" hideEffect="fade" widgetVar="dlg">  
+                <p:dialog header="Selected Values" modal="true" showEffect="fade" hideEffect="fade" widgetVar="dlg" resizable="false">  
                     <p:outputPanel id="userdata">  
                         <p:dataList value="#{pruebasManagedBean.selectedUserDataTarget}" var="userData">  
                             #{pruebasManagedBean.userDataQuery} - #{userData} 
@@ -459,7 +495,7 @@
             </h:form>
 
             <h:form id="form2" prependId="false">
-
+                <p:growl id="msg" /> 
                 <p:commandButton id="modalDialogButton" type="button" onclick="jsf.ajax.request(this, event, {render: 'dataMappingTable'});
                 return false;" style="display: none;"/>
 
@@ -497,11 +533,16 @@
                                              action="#{pruebasManagedBean.createAssociation()}"
                                              update=":form2:display"/>
                         </f:facet> 
-                    </p:dataTable>
+                    </p:dataTable>                    
+                    <p:selectBooleanButton id="change" value="#{pruebasManagedBean.checked}" offLabel="" onLabel="" offIcon="ui-icon-check" onIcon="ui-icon-close" style="float: left; margin: 5px 5px 15px 0px; width: 30px; height: 20px;">  
+                        <p:ajax update="msg" listener="#{pruebasManagedBean.addMessage()}" oncomplete="changeEdgeType();"/>  
+                    </p:selectBooleanButton> 
+                    <h:outputText value="Keep this as a Data Flow Edge." style="color: #aaa; font-weight: 600; font-size: 11px; float: left; margin: 5px 5px 15px 0px; width: 250px; text-align: left;"/>   
+                    <h:outputText value="When this button is pressed, the edge is considered both data and control." style="color: #aaa; font-size: 11px; float: left; margin: 15px 5px 5px -255px; width: 380px; text-align: left;"/>   
                 </p:overlayPanel>
 
                 <p:dialog header="Defined data mapping" widgetVar="dataDialog2"  
-                          width="400" showEffect="explode" hideEffect="explode" modal="true">
+                          width="400" showEffect="explode" hideEffect="explode" modal="true" resizable="false">
                     <!--                    <p:ajax event="close" listener="{pruebasManagedBean.setSelectedTargets()}"/> -->
                     <p:dataTable id="display" value="#{pruebasManagedBean.associations}" var="dataAssociationTest" 
                                  style="width:350px; font-size: 15px;">;                                                
@@ -523,11 +564,13 @@
                         <p:commandButton value="I Agree" icon="ui-icon-circle-check"  
                                          oncomplete="dataDialog2.hide()" action="#{pruebasManagedBean.eraseAll()}" 
                                          onclick="overlayPanelMapping.hide();
-                coloringWire();"
+                coloringWire();
+                doClick();"
                                          style="height: 30px; font-size: 13px;"/>  
                         <p:commandButton value="Cancel" icon="ui-icon-alert"  
                                          oncomplete="dataDialog2.hide()" action="#{pruebasManagedBean.eraseAll()}"
-                                         onclick="overlayPanelMapping.show();"
+                                         onclick="overlayPanelMapping.show();
+                doClick();"
                                          style="height: 30px; font-size: 13px;"/>  
                     </f:facet> 
                 </p:dialog>    
