@@ -197,19 +197,7 @@
                 console.log("submited mapping!");
                 var wireID = document.getElementById('clicked-wire').value;
                 console.log(wireID);
-                editor.layer.dataMapping(new String(wireID), changedData);
-                if (changedData === true) {
-                    console.log("coloringWire - changedData está en: " + changedData);
-                    console.log("estado: " + document.getElementById('change').checked);
-                    //document.getElementById('change').checked = true;
-                }
-                //editor.layer.eventChanged.subscribe(editor.onLayerChanged, editor, true);
-            }
-
-            function doClick() {
-                console.log("--1: " + changedData);
-                //document.getElementById('change').checked = false;
-                console.log("--2: " + changedData);
+                editor.layer.dataMapping(new String(wireID), changedData);  
             }
 
             function changeEdgeType() {
@@ -219,37 +207,28 @@
                     //alert("Are you sure? Now, this edge is both data and control. " + changedData);
                 } else {
                     changedData = false;
-                    document.getElementById('change').checked = false;
                     console.log("changedData cambió a: " + changedData);
                     //alert("Now, this one is just a data flow edge. " + changedData);
                 }
             }
 
             function coloringWireUserData() {
-                console.log("submited mapping Use Data!");
+                //console.log("submited mapping Use Data!");
                 var userDataWireID = document.getElementById('userdata-clicked-wire').value;
-
-//                var srcDataElement = document.getElementById('srcDataElement').value;
-//                var tgtDataElement = document.getElementById('tgtDataElement').value;
-//
-//                console.log("sourceDataElement: " + srcDataElement);
-//                console.log("targetDataElement " + tgtDataElement);
-
-                console.log(userDataWireID);
+                //console.log(userDataWireID);
                 editor.layer.userDataMapping(new String(userDataWireID));
 
-                //editor.layer.eventChanged.subscribe(editor.onLayerChanged, editor, true);
             }
 
             function setDataElements(source, target) {
-                console.log("setDataElements()...");
+                //console.log("setDataElements()...");
                 editor.layer.addData(new String(source), new String(target));
             }
 
             function getJsonGraph() {
-                console.log("getJsonGraph");
+                //console.log("getJsonGraph");
                 var j = document.getElementById('json-graph').value;
-                console.log("Valor de j" + j);
+                //console.log("Valor de j" + j);
                 //console.log(JSON.stringify({fileDownloadController.jsonContent}));
                 //{fileDownloadController.setJsonContentOnFile()};
             }
@@ -570,8 +549,7 @@
                         <p:commandButton value="I Agree" icon="ui-icon-circle-check"  
                                          oncomplete="dataDialog2.hide()" action="#{pruebasManagedBean.eraseAll()}" 
                                          onclick="overlayPanelMapping.hide();
-                coloringWire();
-                doClick();"
+                coloringWire();"
                                          style="height: 30px; font-size: 13px;"/>  
                         <p:commandButton value="Cancel" icon="ui-icon-alert"  
                                          oncomplete="dataDialog2.hide()" action="#{pruebasManagedBean.eraseAll()}"
