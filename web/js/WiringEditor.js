@@ -96,7 +96,7 @@
 <p>TelComp2.0 Project is a online service that lets you remix popular service types from Web 2.0 (Facebook, Twitter, so on) and Telco (IM, Calls, etc) domains, \n\
 in order to create Services Telco2.0 by using a visual editor. </p>\
 You can generate your own Telco2.0 Services without ever having to write a line of code \n\
-<a href=\"http://localhost:8084/TelComp-SCE/faces/help.xhtml\"  target=\"_blank\">Learn how</a>");         
+<a href=\"http://localhost:8084/TelComp-SCE/faces/help.xhtml\"  target=\"_blank\">Learn how</a>");
         this.helpPanel.render();
 
 
@@ -720,9 +720,9 @@ You can generate your own Telco2.0 Services without ever having to write a line 
 //            console.log(JSON.stringify(this.layer.getWiring()));
             //this.alert(JSON.stringify((this.layer.getWiring())));
 //            var json = JSON.stringify(this.layer.getWiring());
-//            document.getElementById('json-graph').value = JSON.stringify(this.layer.getWiring());
-//            document.getElementById('downloadLink').click();
-              document.getElementById('jsonResoult').innerHTML = JSON.stringify(this.layer.getWiring());
+            document.getElementById('json-graph').value = JSON.stringify(this.layer.getWiring());
+            document.getElementById('json-graph-Btn').click();
+            document.getElementById('jsonResoult').innerHTML = JSON.stringify(this.layer.getWiring());
             //this.alert("Composition exported in json extension: " + "\n" + JSON.stringify(this.layer.getWiring()));
         },
         /**

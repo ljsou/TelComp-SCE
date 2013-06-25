@@ -44,6 +44,7 @@ public class PruebasManagedBean {
     private List<UserDataAssociation> userDataassociations;
     private String userDataOperationName;
     private boolean checked;
+    private String jsonGraph;
 
     public PruebasManagedBean() {
         System.out.println("constructor");
@@ -439,5 +440,28 @@ public class PruebasManagedBean {
         //String summary = checked ? "Now, this edge will be both data and control." : "Now, this one will be just a data flow edge. ";
         String summary = checked ? "Edge type changed!" : "Edge type changed!";
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(summary));
+    }
+    
+    public String getJsonGraph() {
+        //System.out.println("ok! " + jsonGraph);
+        return jsonGraph;
+    }
+
+    public void setJsonGraph(String jsonGraph) {
+        //System.out.println("ok!! " + this.jsonGraph);
+        this.jsonGraph = jsonGraph;
+    }
+
+    private static void setJsonGraphToJSEEOrchestrate(java.lang.String arg0) {
+        System.out.println("setJsonGraph! " + arg0);
+//        webservice.JSLEEorchestrator_Service jslees = new JSLEEorchestrator_Service();
+//        jslees.getJSLEEorchestratorPort().orchestrateService(arg0, true);
+    }
+
+    public void sendJson() {
+        System.out.println("+-json: " + this.jsonGraph);
+
+        //setJsonGraphToJSEEOrchestrate(" {\"containers\":[{\"idcomp\":195,\"title\":\"getCurrencyValue\"},{\"idcomp\":1547,\"title\":\"GetCurrencies\"}],\"wires\":[{\"src\":{\"moduleId\":1},\"tgt\":{\"moduleId\":0}}]}");
+        //setJsonGraphToJSEEOrchestrate(this.jsonGraph);
     }
 }

@@ -118,7 +118,8 @@
 
             #dvLoading {
                 display: none;
-                background:url(http://loadinggif.com/images/image-selection/34.gif) no-repeat center center;
+                /*background:url(http://loadinggif.com/images/image-selection/34.gif) no-repeat center center;*/
+                background:url(images/loading.gif) no-repeat center center;
                 height: 25px;
                 width: 25px;
                 position: fixed;
@@ -196,7 +197,7 @@
                 console.log("submited mapping!");
                 var wireID = document.getElementById('clicked-wire').value;
                 console.log(wireID);
-                editor.layer.dataMapping(new String(wireID), changedData);  
+                editor.layer.dataMapping(new String(wireID), changedData);
             }
 
             function changeEdgeType() {
@@ -222,14 +223,6 @@
             function setDataElements(source, target) {
                 //console.log("setDataElements()...");
                 editor.layer.addData(new String(source), new String(target));
-            }
-
-            function getJsonGraph() {
-                //console.log("getJsonGraph");
-                var j = document.getElementById('json-graph').value;
-                //console.log("Valor de j" + j);
-                //console.log(JSON.stringify({fileDownloadController.jsonContent}));
-                //{fileDownloadController.setJsonContentOnFile()};
             }
 
             function stopDowload() {
@@ -300,8 +293,12 @@
                 </li>
                 <li>                    
                     <div>
-                        <h2 style="width: 100px; margin: 15px 5px -3px 5px; font-weight: 600; color: #777;">JSON Graph</h2>
-                        <p id="jsonResoult" style="display: block; overflow: scroll; margin: 5px; font-size: 11px;padding: 5px; width: 232px; height: 200px; border: #999 dotted 1px;"></p>
+                        <h:form prependId="false">
+                            <h:inputHidden id="json-graph" value="#{pruebasManagedBean.jsonGraph}"/>
+                            <p:commandButton id="json-graph-Btn" actionListener="#{pruebasManagedBean.sendJson()}" style="display: none;"></p:commandButton>
+                            <h2 style="width: 100px; margin: 15px 5px -3px 5px; font-weight: 600; color: #777;">JSON Graph</h2>
+                            <p id="jsonResoult" style="display: block; overflow: scroll; margin: 5px; font-size: 11px;padding: 5px; width: 232px; height: 200px; border: #999 dotted 1px;"></p>
+                        </h:form>
                     </div>
                 </li>	
                 <li>
