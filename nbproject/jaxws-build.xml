@@ -42,5 +42,21 @@
         <delete dir="${build.generated.sources.dir}/jax-ws/telcomp/retrieval/matchmaking/ws"/>
         <delete dir="${build.generated.dir}/jax-wsCache/ComponentMatchmakerWSPort"/>
     </target>
-    <target name="wsimport-client-generate" depends="wsimport-client-ComponentMatchmakerWSPort"/>
+    <target name="wsimport-client-JSLEEorchestrator" depends="wsimport-init">
+        <mkdir dir="${build.generated.dir}/jax-wsCache/JSLEEorchestrator"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/JSLEEorchestrator" destdir="${build.generated.dir}/jax-wsCache/JSLEEorchestrator" wsdl="${basedir}/${conf-dir}xml-resources/web-service-references/JSLEEorchestrator/wsdl/192.168.190.92_8080/JSLEEorchestrator/JSLEEorchestrator.wsdl" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" wsdlLocation="http://192.168.190.92:8080/JSLEEorchestrator/JSLEEorchestrator?wsdl" xnocompile="true" xendorsed="true" package="webservice">
+            <depends file="${basedir}/${conf-dir}xml-resources/web-service-references/JSLEEorchestrator/wsdl/192.168.190.92_8080/JSLEEorchestrator/JSLEEorchestrator.wsdl"/>
+            <produces dir="${build.generated.dir}/jax-wsCache/JSLEEorchestrator"/>
+        </wsimport>
+        <copy todir="${build.generated.sources.dir}/jax-ws">
+            <fileset dir="${build.generated.dir}/jax-wsCache/JSLEEorchestrator">
+                <include name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="wsimport-client-clean-JSLEEorchestrator" depends="-init-project">
+        <delete dir="${build.generated.sources.dir}/jax-ws/webservice"/>
+        <delete dir="${build.generated.dir}/jax-wsCache/JSLEEorchestrator"/>
+    </target>
+    <target name="wsimport-client-generate" depends="wsimport-client-ComponentMatchmakerWSPort, wsimport-client-JSLEEorchestrator"/>
 </project>
