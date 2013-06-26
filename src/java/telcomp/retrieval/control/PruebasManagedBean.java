@@ -442,7 +442,7 @@ public class PruebasManagedBean {
         String summary = checked ? "Edge type changed!" : "Edge type changed!";
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(summary));
     }
-    
+
     public String getJsonGraph() {
         //System.out.println("ok! " + jsonGraph);
         return jsonGraph;
@@ -460,9 +460,13 @@ public class PruebasManagedBean {
     }
 
     public void sendJson() {
-        System.out.println("+-json: " + this.jsonGraph);
+        try {
+            System.out.println("+-json: " + this.jsonGraph);
+            //setJsonGraphToJSEEOrchestrate(" {\"containers\":[{\"idcomp\":195,\"title\":\"getCurrencyValue\"},{\"idcomp\":1547,\"title\":\"GetCurrencies\"}],\"wires\":[{\"src\":{\"moduleId\":1},\"tgt\":{\"moduleId\":0}}]}");
+            setJsonGraphToJSEEOrchestrate(this.jsonGraph);
+        } catch (Exception e) {
+            System.out.println("trigger exception...");
+        }
 
-        //setJsonGraphToJSEEOrchestrate(" {\"containers\":[{\"idcomp\":195,\"title\":\"getCurrencyValue\"},{\"idcomp\":1547,\"title\":\"GetCurrencies\"}],\"wires\":[{\"src\":{\"moduleId\":1},\"tgt\":{\"moduleId\":0}}]}");
-        setJsonGraphToJSEEOrchestrate(this.jsonGraph);
     }
 }
