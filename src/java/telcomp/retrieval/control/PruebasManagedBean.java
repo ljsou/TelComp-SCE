@@ -453,17 +453,19 @@ public class PruebasManagedBean {
         this.jsonGraph = jsonGraph;
     }
 
-    private static void setJsonGraphToJSEEOrchestrate(java.lang.String arg0) {
+    private static boolean setJsonGraphToJSEEOrchestrate(java.lang.String arg0) {
         System.out.println("setJsonGraph! " + arg0);
         webservice.JSLEEorchestrator_Service jslees = new JSLEEorchestrator_Service();
-        jslees.getJSLEEorchestratorPort().orchestrateService(arg0, "Service1", true);
+        return jslees.getJSLEEorchestratorPort().orchestrateService(arg0, "Service1", true);
     }
 
     public void sendJson() {
         try {
             System.out.println("+-json: " + this.jsonGraph);
             //setJsonGraphToJSEEOrchestrate(" {\"containers\":[{\"idcomp\":195,\"title\":\"getCurrencyValue\"},{\"idcomp\":1547,\"title\":\"GetCurrencies\"}],\"wires\":[{\"src\":{\"moduleId\":1},\"tgt\":{\"moduleId\":0}}]}");
-            setJsonGraphToJSEEOrchestrate(this.jsonGraph);
+            boolean result = setJsonGraphToJSEEOrchestrate(this.jsonGraph);
+            System.out.println(result);
+                    
         } catch (Exception e) {
             System.out.println("trigger exception...");
         }
