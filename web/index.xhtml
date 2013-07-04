@@ -393,18 +393,18 @@
 
         </div>
 
-        <div id="helpPanel">
-            <div class="hd">Welcome to the WiringEditor demonstration</div>
-            <div class="bd" style="text-align: left;">
-                <p>This example shows how to use the <i>ImageContainer</i> and <i>FormContainer</i> in a language definition.</p>
-                <br />
-                <p><b>Drag and drop modules from the Module list</b> on the left to the working layer in the middle.</p>
-                <br />
-                <p><a href="demo.js" target="_new">Click here to view the language definition for this editor.</a></p>
-                <br />
-                <p>Close this dialog to test the WiringEditor</p>
-            </div>
-        </div>
+        <!--        <div id="helpPanel">
+                    <div class="hd">Welcome to the WiringEditor demonstration</div>
+                    <div class="bd" style="text-align: left;">
+                        <p>This example shows how to use the <i>ImageContainer</i> and <i>FormContainer</i> in a language definition.</p>
+                        <br />
+                        <p><b>Drag and drop modules from the Module list</b> on the left to the working layer in the middle.</p>
+                        <br />
+                        <p><a href="demo.js" target="_new">Click here to view the language definition for this editor.</a></p>
+                        <br />
+                        <p>Close this dialog to test the WiringEditor</p>
+                    </div>
+                </div>-->
         <div >
             <h:form id="form" prependId="false">
 
@@ -553,7 +553,19 @@
                                          style="height: 30px; font-size: 13px;"/>  
                     </f:facet> 
                 </p:dialog>    
+            </h:form>
+            <h:form id="newComposition" prependId="false">
 
+                <h:commandButton id="new-btn" value="Submit"  style="height: 30px; font-size: 13px; display: none;"
+                                 onclick="newDlg.show();
+                return false;"/>
+                <p:dialog header="New Composition" modal="true" showEffect="fade" hideEffect="fade" widgetVar="newDlg" resizable="false">  
+                    <p:outputPanel id="newCompositionPanel">  
+                        <h:inputText id="newText" value="#{pruebasManagedBean.complexComponentName}"></h:inputText>
+                        <h:commandButton value="Save" actionListener="#{pruebasManagedBean.verCC()}" onclick="newDlg.hide(); return false;"
+                                         style="height: 30px; font-size: 13px;"/>  
+                    </p:outputPanel> 
+                </p:dialog>
             </h:form>
         </div>
 

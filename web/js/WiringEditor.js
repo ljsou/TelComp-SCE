@@ -600,7 +600,8 @@ You can generate your own Telco2.0 Services without ever having to write a line 
          * @method onNew
          */
         onNew: function() {
-
+            document.getElementById('new-btn').click();
+            console.log("New");
             if (!this.isSaved()) {
                 if (!confirm("Warning: Your Composition is not saved yet! Press ok to continue anyway.")) {
                     return;

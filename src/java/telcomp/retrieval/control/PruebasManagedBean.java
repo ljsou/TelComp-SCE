@@ -46,6 +46,7 @@ public class PruebasManagedBean {
     private String userDataOperationName;
     private boolean checked;
     private String jsonGraph;
+    private String complexComponentName;
 
     public PruebasManagedBean() {
         System.out.println("constructor");
@@ -62,6 +63,7 @@ public class PruebasManagedBean {
         this.query = new Operation();
         this.target = new Operation();
         this.targetUserData = new Operation();
+        this.complexComponentName = "";
 
 //        for (int i = 0; i < 3; i++) {
 //            Data data = new Data();
@@ -189,6 +191,18 @@ public class PruebasManagedBean {
         return outputData;
     }
 
+    public String getComplexComponentName() {
+        return complexComponentName;
+    }
+
+    public void setComplexComponentName(String complexComponentName) {
+        this.complexComponentName = complexComponentName;
+    }
+
+    public void verCC(){
+        System.out.println("Complex Component:  " + this.complexComponentName);
+    }
+    
     public String getUserDataQuery() {
         return this.userDataQuery;
     }
@@ -465,7 +479,7 @@ public class PruebasManagedBean {
             //setJsonGraphToJSEEOrchestrate(" {\"containers\":[{\"idcomp\":195,\"title\":\"getCurrencyValue\"},{\"idcomp\":1547,\"title\":\"GetCurrencies\"}],\"wires\":[{\"src\":{\"moduleId\":1},\"tgt\":{\"moduleId\":0}}]}");
             boolean result = setJsonGraphToJSEEOrchestrate(this.jsonGraph);
             System.out.println(result);
-                    
+
         } catch (Exception e) {
             System.out.println("trigger exception...");
         }
