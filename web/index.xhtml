@@ -555,22 +555,19 @@
                 </p:dialog>    
             </h:form>
             <h:form id="newComposition" prependId="false">
-
                 <h:commandButton id="new-btn" value="Submit"  style="height: 30px; font-size: 13px; display: none;"
                                  onclick="newDlg.show();
                 return false;"/>
                 <p:dialog header="New Composition" modal="true" showEffect="fade" hideEffect="fade" widgetVar="newDlg" resizable="false">  
                     <p:outputPanel id="newCompositionPanel">  
-                        <h:outputLabel value="Type a name for your composition:" style="float: left; font-size: 12px; margin-top: 10px; height: 15px;"/>
+                        <h:outputLabel value="Type a name for your composition:" style="float: left; font-size: 12px; margin-top: 10px;"/>
                         <br />
-                        <h:inputText id="newText" value="#{pruebasManagedBean.complexComponentName}" style="width: 250px;"></h:inputText>
-                        <h:commandButton value="Save" actionListener="#{pruebasManagedBean.verCC()}" onclick="newDlg.hide(); return false;"
-                                         style="height: 22px; font-size: 13px; margin-left: 5px;"/>  
+                        <h:inputText id="newText" value="#{pruebasManagedBean.complexComponentName}" style="float: left; width: 250px; margin-top: 8px;"></h:inputText>
+                        <p:commandButton icon="ui-icon-disk" onclick="jsf.ajax.request(this, event, {execute: 'newText'}); newDlg.hide(); return false;" style="height: 24px; float: right; margin-left: 5px; margin-top: 5px;"/>
                     </p:outputPanel> 
                 </p:dialog>
             </h:form>
         </div>
-
     </h:body>
 </html>
 

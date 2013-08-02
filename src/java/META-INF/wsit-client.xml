@@ -7,4 +7,5 @@
  >
     <import location="IndexSupportedRetrievalPort.xml" namespace="http://retrieval.rep.telcomp/"/>
     <import location="ComponentMatchmakerWSPort.xml" namespace="http://ws.matchmaking.retrieval.telcomp/"/>
+    <import location="JSLEEorchestrator.xml" namespace="http://webservice/"/>
 </definitions>

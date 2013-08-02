@@ -63,7 +63,7 @@ public class PruebasManagedBean {
         this.query = new Operation();
         this.target = new Operation();
         this.targetUserData = new Operation();
-        this.complexComponentName = "";
+        
 
 //        for (int i = 0; i < 3; i++) {
 //            Data data = new Data();
@@ -192,10 +192,12 @@ public class PruebasManagedBean {
     }
 
     public String getComplexComponentName() {
-        return complexComponentName;
+         System.out.println("-Name: " +  this.complexComponentName);
+        return this.complexComponentName;
     }
 
     public void setComplexComponentName(String complexComponentName) {
+        System.out.println("--Name: " +  complexComponentName);
         this.complexComponentName = complexComponentName;
     }
 
@@ -453,7 +455,7 @@ public class PruebasManagedBean {
 
     public void addMessage() {
         //String summary = checked ? "Now, this edge will be both data and control." : "Now, this one will be just a data flow edge. ";
-        String summary = checked ? "Edge type changed!" : "Edge type changed!";
+        String summary = checked ? "Edge type changed!" : "Edge type changed!!";
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(summary));
     }
 
@@ -467,17 +469,18 @@ public class PruebasManagedBean {
         this.jsonGraph = jsonGraph;
     }
 
-    private static boolean setJsonGraphToJSEEOrchestrate(java.lang.String arg0) {
+    private static boolean setJsonGraphToJSEEOrchestrate(java.lang.String arg0, String name) {
         System.out.println("setJsonGraph! " + arg0);
         webservice.JSLEEorchestrator_Service jslees = new JSLEEorchestrator_Service();
-        return jslees.getJSLEEorchestratorPort().orchestrateService(arg0, "Service1", true);
+        return jslees.getJSLEEorchestratorPort().orchestrateService(arg0, name, true);
     }
 
     public void sendJson() {
         try {
+            System.out.println("Nombre de la composición: " + this.complexComponentName);
             System.out.println("+-json: " + this.jsonGraph);
             //setJsonGraphToJSEEOrchestrate(" {\"containers\":[{\"idcomp\":195,\"title\":\"getCurrencyValue\"},{\"idcomp\":1547,\"title\":\"GetCurrencies\"}],\"wires\":[{\"src\":{\"moduleId\":1},\"tgt\":{\"moduleId\":0}}]}");
-            boolean result = setJsonGraphToJSEEOrchestrate(this.jsonGraph);
+            boolean result = setJsonGraphToJSEEOrchestrate(this.jsonGraph, this.complexComponentName);
             System.out.println(result);
 
         } catch (Exception e) {
