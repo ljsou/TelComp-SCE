@@ -561,9 +561,11 @@
                 return false;"/>
                 <p:dialog header="New Composition" modal="true" showEffect="fade" hideEffect="fade" widgetVar="newDlg" resizable="false">  
                     <p:outputPanel id="newCompositionPanel">  
-                        <h:inputText id="newText" value="#{pruebasManagedBean.complexComponentName}"></h:inputText>
+                        <h:outputLabel value="Type a name for your composition:" style="float: left; font-size: 12px; margin-top: 10px; height: 15px;"/>
+                        <br />
+                        <h:inputText id="newText" value="#{pruebasManagedBean.complexComponentName}" style="width: 250px;"></h:inputText>
                         <h:commandButton value="Save" actionListener="#{pruebasManagedBean.verCC()}" onclick="newDlg.hide(); return false;"
-                                         style="height: 30px; font-size: 13px;"/>  
+                                         style="height: 22px; font-size: 13px; margin-left: 5px;"/>  
                     </p:outputPanel> 
                 </p:dialog>
             </h:form>
