@@ -20,7 +20,7 @@ import webservice.JSLEEorchestrator_Service;
  */
 @ManagedBean
 @SessionScoped
-public class PruebasManagedBean {
+public class ComponentInteractionManagedBean {
 
     private String componentId;
     private Operation component;
@@ -48,7 +48,7 @@ public class PruebasManagedBean {
     private String jsonGraph;
     private String complexComponentName;
 
-    public PruebasManagedBean() {
+    public ComponentInteractionManagedBean() {
         System.out.println("constructor");
         this.sourceDataElements = new ArrayList<telcomp.retrieval.matchmaking.ws.Data>();
         this.targetDataElements = new ArrayList<telcomp.retrieval.matchmaking.ws.Data>();

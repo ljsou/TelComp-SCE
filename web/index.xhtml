@@ -267,7 +267,7 @@
                 </li>	
                 <li>  
                     <h:form id="componentInformation" prependId="false">
-                        <h:inputHidden id="componentInfo" value="#{pruebasManagedBean.componentId}" />                        
+                        <h:inputHidden id="componentInfo" value="#{componentInteractionManagedBean.componentId}" />                        
                         <p:commandButton id="componentInfoBtn" onclick="jsf.ajax.request(this, event, {execute: 'componentInfo', render: 'componentInfoPanel'});
                 return false;" style="display: none;"/>                                                                                               
                         <p:outputPanel id="componentInfoPanel" style="width: 100%;">  
@@ -277,14 +277,14 @@
                             <h:panelGrid  columns="2" style="width: 95%; margin-left: 2%; margin-top: 2%;">                              
 
                                 <h:outputLabel for="name" value="Name(ID):" style="font-size: 11px;"/>  
-                                <h:outputLabel id="name" value="#{pruebasManagedBean.component.operationName} (#{pruebasManagedBean.component.id})" style="height: 20px; padding: 1px 5px;  font-weight: 600; font-size: 11px; color: #666;"/>
+                                <h:outputLabel id="name" value="#{componentInteractionManagedBean.component.operationName} (#{componentInteractionManagedBean.component.id})" style="height: 20px; padding: 1px 5px;  font-weight: 600; font-size: 11px; color: #666;"/>
 
                                 <h:outputLabel for="inputs" value="Inputs:" style="font-size: 11px;"/>  
-                                <p:dataList id="inputs" value="#{pruebasManagedBean.componentInputs}" var="componentInputs" type="ordered">  
+                                <p:dataList id="inputs" value="#{componentInteractionManagedBean.componentInputs}" var="componentInputs" type="ordered">  
                                     <p style="padding: 0 0 1px 5px; font-size: 11px; background: #eee; margin: -1px; border-bottom: #fff solid 1px; color: #090;">- #{componentInputs.dataElementName} (#{componentInputs.dataType})</p> 
                                 </p:dataList>                                   
                                 <h:outputLabel for="outputs" value="Outputs:" style="font-size: 11px;"/>  
-                                <p:dataList id="outputs" value="#{pruebasManagedBean.componentOutputs}" var="componentOutputs" type="ordered">  
+                                <p:dataList id="outputs" value="#{componentInteractionManagedBean.componentOutputs}" var="componentOutputs" type="ordered">  
                                     <p style="padding: 0 0 1px 5px; font-size: 11px; background: #eee; margin: -1px; border-bottom: #fff solid 1px; color: #0e90d2;">- #{componentOutputs.dataElementName} (#{componentOutputs.dataType})</p>
                                 </p:dataList>   
                             </h:panelGrid>                            
@@ -294,8 +294,8 @@
                 <li>                    
                     <div>
                         <h:form prependId="false">
-                            <h:inputHidden id="json-graph" value="#{pruebasManagedBean.jsonGraph}"/>
-                            <p:commandButton id="json-graph-Btn" actionListener="#{pruebasManagedBean.sendJson()}" style="display: none;"></p:commandButton>
+                            <h:inputHidden id="json-graph" value="#{componentInteractionManagedBean.jsonGraph}"/>
+                            <p:commandButton id="json-graph-Btn" actionListener="#{componentInteractionManagedBean.sendJson()}" style="display: none;"></p:commandButton>
                             <h2 style="width: 100px; margin: 15px 5px -3px 5px; font-weight: 600; color: #777;">JSON Graph</h2>
                             <p id="jsonResoult" style="display: block; overflow: scroll; margin: 5px; font-size: 11px;padding: 5px; width: 232px; height: 200px; border: #999 dotted 1px;"></p>
                         </h:form>
@@ -411,9 +411,9 @@
                 <p:commandButton id="userDataModalDialogButton" type="button" onclick="jsf.ajax.request(this, event, {render: 'userDataMappingTable'});
                 return false;" style="display: none;"/>
                 <h:inputHidden id="userdata-clicked-wire" value="null"/>
-                <h:inputHidden id="operationName" value="#{pruebasManagedBean.userDataOperationName}" />
-                <h:inputHidden id="userDataQuery" value="#{pruebasManagedBean.userDataQuery}" />              
-                <h:inputHidden id="userDataTarget" value="#{pruebasManagedBean.userDataTarget}" />
+                <h:inputHidden id="operationName" value="#{componentInteractionManagedBean.userDataOperationName}" />
+                <h:inputHidden id="userDataQuery" value="#{componentInteractionManagedBean.userDataQuery}" />              
+                <h:inputHidden id="userDataTarget" value="#{componentInteractionManagedBean.userDataTarget}" />
 
                 <h:commandButton id="operationNameBtn" onclick="jsf.ajax.request(this, event, {execute: 'operationName'});
                 return false;" style="display: none;" />
@@ -426,20 +426,20 @@
                 </div>
 
                 <p:overlayPanel id="userDataMappingPanel" widgetVar="overlayPanelUserDataMapping" for="userDataModalDialogButton" showEffect="drop" hideEffect="drop" dynamic="true" my="right top" at="right bottom" style="height:250px; padding: 40px 20px 0px 30px; margin: -20px; background:#333;background:rgba(0,0,0,0.75);border: 0;">   
-                    <p:dataTable id="userDataMappingTable" value="#{pruebasManagedBean.userDataOutputs}" var="userDataOutputs" 
+                    <p:dataTable id="userDataMappingTable" value="#{componentInteractionManagedBean.userDataOutputs}" var="userDataOutputs" 
                                  style="width:420px; font-size: 12px;">
                         <f:facet name="header">  
                             Data Mapping 2
                         </f:facet>
-                        <p:column headerText="#{pruebasManagedBean.userDataOperationName}" style="width:300px;">  
+                        <p:column headerText="#{componentInteractionManagedBean.userDataOperationName}" style="width:300px;">  
                             #{userDataOutputs.dataElementName} 
                             (#{userDataOutputs.dataType})
                         </p:column> 
 
-                        <p:column headerText="#{pruebasManagedBean.target.operationName}" style="width:300px;">  
-                            <p:selectOneMenu value="#{pruebasManagedBean.selectedUserDataTarget}" effect="fade" >  
+                        <p:column headerText="#{componentInteractionManagedBean.target.operationName}" style="width:300px;">  
+                            <p:selectOneMenu value="#{componentInteractionManagedBean.selectedUserDataTarget}" effect="fade" >  
                                 <f:selectItem itemLabel="Select One" itemValue="" />  
-                                <f:selectItems value="#{pruebasManagedBean.userDataOperationInputs}" var="userDataElementTarget" itemLabel="#{userDataElementTarget.dataElementName} (#{userDataElementTarget.dataType})" itemValue="#{userDataElementTarget.dataElementName}"/>  
+                                <f:selectItems value="#{componentInteractionManagedBean.userDataOperationInputs}" var="userDataElementTarget" itemLabel="#{userDataElementTarget.dataElementName} (#{userDataElementTarget.dataType})" itemValue="#{userDataElementTarget.dataElementName}"/>  
                             </p:selectOneMenu>   
                         </p:column> 
                         <f:facet name="footer">  
@@ -452,10 +452,10 @@
 
                 <p:dialog header="Selected Values" modal="true" showEffect="fade" hideEffect="fade" widgetVar="dlg" resizable="false">  
                     <p:outputPanel id="userdata">  
-                        <p:dataList value="#{pruebasManagedBean.selectedUserDataTarget}" var="userData">  
-                            #{pruebasManagedBean.userDataQuery} - #{userData} 
+                        <p:dataList value="#{componentInteractionManagedBean.selectedUserDataTarget}" var="userData">  
+                            #{componentInteractionManagedBean.userDataQuery} - #{userData} 
                             <script>
-            var source = "#{pruebasManagedBean.userDataQuery}";
+            var source = "#{componentInteractionManagedBean.userDataQuery}";
             var target = "#{userData}";
             console.log(source);
             console.log(target);
@@ -464,12 +464,12 @@
                         </p:dataList>  
                     </p:outputPanel> 
                     <p:commandButton value="I Agree!" icon="ui-icon-circle-check"  
-                                     oncomplete="dlg.hide()" action="#{pruebasManagedBean.eraseAll()}" 
+                                     oncomplete="dlg.hide()" action="#{componentInteractionManagedBean.eraseAll()}" 
                                      onclick="overlayPanelUserDataMapping.hide();
                 coloringWireUserData();"
                                      style="height: 30px; font-size: 13px;"/>  
                     <p:commandButton value="Cancel" icon="ui-icon-alert"  
-                                     oncomplete="dlg.hide()" action="#{pruebasManagedBean.eraseAll()}"
+                                     oncomplete="dlg.hide()" action="#{componentInteractionManagedBean.eraseAll()}"
                                      onclick="overlayPanelUserDataMapping.show();"
                                      style="height: 30px; font-size: 13px;"/>  
                 </p:dialog>
@@ -481,8 +481,8 @@
                 return false;" style="display: none;"/>
 
                 <h:inputHidden id="clicked-wire" value="null"/>
-                <h:inputHidden id="queryIdInput" value="#{pruebasManagedBean.queryId}" />
-                <h:inputHidden id="targetIdInput" value="#{pruebasManagedBean.targetId}" />
+                <h:inputHidden id="queryIdInput" value="#{componentInteractionManagedBean.queryId}" />
+                <h:inputHidden id="targetIdInput" value="#{componentInteractionManagedBean.targetId}" />
 
 
                 <h:commandButton id="initQueryDataBtn" onclick="jsf.ajax.request(this, event, {execute: 'queryIdInput'});
@@ -491,32 +491,32 @@
                 return false;" style="display: none;" />
 
                 <p:overlayPanel id="dataMappingPanel" widgetVar="overlayPanelMapping" for="modalDialogButton" showEffect="drop" hideEffect="drop" dynamic="true" my="right top" at="right bottom" style="height:250px; padding: 40px 20px 0px 30px; margin: -20px; background:#333;background:rgba(0,0,0,0.75);border: 0;">   
-                    <p:dataTable id="dataMappingTable" value="#{pruebasManagedBean.operationOutputs}" var="dataAssociation" 
-                                 selectionMode="multiple" selection="#{pruebasManagedBean.selectedSource}" rowKey="#{dataAssociation.dataElementName}" 
+                    <p:dataTable id="dataMappingTable" value="#{componentInteractionManagedBean.operationOutputs}" var="dataAssociation" 
+                                 selectionMode="multiple" selection="#{componentInteractionManagedBean.selectedSource}" rowKey="#{dataAssociation.dataElementName}" 
                                  style="width:420px; font-size: 12px;">
                         <f:facet name="header">  
                             Data Mapping 
                         </f:facet>
-                        <p:column headerText="#{pruebasManagedBean.query.operationName}" style="width:300px;">  
+                        <p:column headerText="#{componentInteractionManagedBean.query.operationName}" style="width:300px;">  
                             #{dataAssociation.dataElementName} 
                             (#{dataAssociation.dataElementName})
                         </p:column> 
 
-                        <p:column headerText="#{pruebasManagedBean.target.operationName}" style="width:300px;">  
-                            <p:selectOneMenu value="#{pruebasManagedBean.selectedTarget}" effect="fade" >  
+                        <p:column headerText="#{componentInteractionManagedBean.target.operationName}" style="width:300px;">  
+                            <p:selectOneMenu value="#{componentInteractionManagedBean.selectedTarget}" effect="fade" >  
                                 <f:selectItem itemLabel="Select One" itemValue="" />  
-                                <f:selectItems value="#{pruebasManagedBean.operationInputs}" var="dataElementTarget" itemLabel="#{dataElementTarget.dataElementName} (#{dataElementTarget.dataType})" itemValue="#{dataElementTarget.dataElementName}"/>  
+                                <f:selectItems value="#{componentInteractionManagedBean.operationInputs}" var="dataElementTarget" itemLabel="#{dataElementTarget.dataElementName} (#{dataElementTarget.dataType})" itemValue="#{dataElementTarget.dataElementName}"/>  
                             </p:selectOneMenu>   
                         </p:column> 
                         <f:facet name="footer">  
                             <p:commandButton value="Submit" icon="ui-icon-circle-triangle-e" style="height: 30px; font-size: 13px;"
                                              onclick="dataDialog2.show();"
-                                             action="#{pruebasManagedBean.createAssociation()}"
+                                             action="#{componentInteractionManagedBean.createAssociation()}"
                                              update=":form2:display"/>
                         </f:facet> 
                     </p:dataTable>                    
-                    <p:selectBooleanButton id="change" value="#{pruebasManagedBean.checked}" offLabel="" onLabel="" offIcon="ui-icon-check" onIcon="ui-icon-close" style="float: left; margin: 5px 5px 15px 0px; width: 30px; height: 20px;">  
-                        <p:ajax update="msg" listener="#{pruebasManagedBean.addMessage()}" oncomplete="changeEdgeType();"/>  
+                    <p:selectBooleanButton id="change" value="#{componentInteractionManagedBean.checked}" offLabel="" onLabel="" offIcon="ui-icon-check" onIcon="ui-icon-close" style="float: left; margin: 5px 5px 15px 0px; width: 30px; height: 20px;">  
+                        <p:ajax update="msg" listener="#{componentInteractionManagedBean.addMessage()}" oncomplete="changeEdgeType();"/>  
                     </p:selectBooleanButton> 
                     <h:outputText value="Keep this as a Data Flow Edge." style="color: #aaa; font-weight: 600; font-size: 11px; float: left; margin: 5px 5px 15px 0px; width: 250px; text-align: left;"/>   
                     <h:outputText value="When this button is pressed, the edge is considered both data and control." style="color: #aaa; font-size: 11px; float: left; margin: 15px 5px 5px -255px; width: 380px; text-align: left;"/>   
@@ -524,8 +524,8 @@
 
                 <p:dialog header="Defined data mapping" widgetVar="dataDialog2"  
                           width="400" showEffect="explode" hideEffect="explode" modal="true" resizable="false">
-                    <!--                    <p:ajax event="close" listener="{pruebasManagedBean.setSelectedTargets()}"/> -->
-                    <p:dataTable id="display" value="#{pruebasManagedBean.associations}" var="dataAssociationTest" 
+                    <!--                    <p:ajax event="close" listener="{componentInteractionManagedBean.setSelectedTargets()}"/> -->
+                    <p:dataTable id="display" value="#{componentInteractionManagedBean.associations}" var="dataAssociationTest" 
                                  style="width:350px; font-size: 15px;">;                                                
                         <p:column headerText="Source" style="width:300px;">  
                             #{dataAssociationTest.sourceData.dataElementName} 
@@ -543,12 +543,12 @@
                     </p:dataTable>
                     <f:facet name="footer">  
                         <p:commandButton value="I Agree" icon="ui-icon-circle-check"  
-                                         oncomplete="dataDialog2.hide()" action="#{pruebasManagedBean.eraseAll()}" 
+                                         oncomplete="dataDialog2.hide()" action="#{componentInteractionManagedBean.eraseAll()}" 
                                          onclick="overlayPanelMapping.hide();
                 coloringWire();"
                                          style="height: 30px; font-size: 13px;"/>  
                         <p:commandButton value="Cancel" icon="ui-icon-alert"  
-                                         oncomplete="dataDialog2.hide()" action="#{pruebasManagedBean.eraseAll()}"
+                                         oncomplete="dataDialog2.hide()" action="#{componentInteractionManagedBean.eraseAll()}"
                                          onclick="overlayPanelMapping.show();"
                                          style="height: 30px; font-size: 13px;"/>  
                     </f:facet> 
@@ -562,7 +562,7 @@
                     <p:outputPanel id="newCompositionPanel">  
                         <h:outputLabel value="Type a name for your composition:" style="float: left; font-size: 12px; margin-top: 10px;"/>
                         <br />
-                        <h:inputText id="newText" value="#{pruebasManagedBean.complexComponentName}" style="float: left; width: 250px; margin-top: 8px;"></h:inputText>
+                        <h:inputText id="newText" value="#{componentInteractionManagedBean.complexComponentName}" style="float: left; width: 250px; margin-top: 8px;"></h:inputText>
                         <p:commandButton icon="ui-icon-disk" onclick="jsf.ajax.request(this, event, {execute: 'newText'}); newDlg.hide(); return false;" style="height: 24px; float: right; margin-left: 5px; margin-top: 5px;"/>
                     </p:outputPanel> 
                 </p:dialog>
