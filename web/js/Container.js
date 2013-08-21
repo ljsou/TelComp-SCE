@@ -277,7 +277,7 @@
                 document.getElementById('componentInfoBtn').click();
             } else {
                 console.log("this is not a InOutContainer");
-                alert("this is not a InOutContainer");
+                //alert("this is not a InOutContainer");
             }
         },
         /**

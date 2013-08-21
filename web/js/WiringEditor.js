@@ -721,9 +721,10 @@ You can generate your own Telco2.0 Services without ever having to write a line 
 //            console.log(JSON.stringify(this.layer.getWiring()));
             //this.alert(JSON.stringify((this.layer.getWiring())));
 //            var json = JSON.stringify(this.layer.getWiring());
-            document.getElementById('json-graph').value = JSON.stringify(this.layer.getWiring());
+            var wiring = this.layer.getWiring();
+            document.getElementById('json-graph').value = JSON.stringify(wiring);
             document.getElementById('json-graph-Btn').click();
-            document.getElementById('jsonResoult').innerHTML = JSON.stringify(this.layer.getWiring());
+            document.getElementById('jsonResoult').innerHTML = JSON.stringify(wiring);
             //this.alert("Composition exported in json extension: " + "\n" + JSON.stringify(this.layer.getWiring()));
         },
         /**
