@@ -358,20 +358,20 @@
 //            console.log("Evento! " + JSON.stringify(event));
             var wire = args[0];
             if (this.options.xtype === "WireIt.InOutContainer") {
-//                console.log("is a WireIt.InOutContainer");
+                console.log("is a WireIt.InOutContainer");
                 // add the wire to the list if it isn't in
                 if (WireIt.indexOf(wire, this.wires) === -1) {
                     this.wires.push(wire);
                     this.eventAddWire.fire(wire);
                     wire.wireID = wire.wireID + this.options.title;
-                    console.log("idComp: " + this.options.idcomp);
+//                    console.log("idComp: " + this.options.idcomp);
                     console.log("WireID: " + wire.wireID);
                     if ((wire.terminal1.container.options.title === this.options.title)) {
-                        console.log("terminal1 " + wire.terminal1.container.options.title + "(" + wire.terminal1.container.options.idcomp + ")");
+                        console.log("Terminal1 (InOutContainer)" + wire.terminal1.container.options.title + "(" + wire.terminal1.container.options.idcomp + ")");
                         document.getElementById('queryIdInput').value = wire.terminal1.container.options.idcomp;
                         document.getElementById('initQueryDataBtn').click();
                     } else if (wire.terminal2.container.options.title === this.options.title) {
-                        console.log("terminal2 " + wire.terminal2.container.options.title + "(" + wire.terminal2.container.options.idcomp + ")");
+                        console.log("Terminal2 (InOutContainer)" + wire.terminal2.container.options.title + "(" + wire.terminal2.container.options.idcomp + ")");
                         document.getElementById('targetIdInput').value = wire.terminal2.container.options.idcomp;
                         document.getElementById('initTargetDataBtn').click();
                     }
@@ -382,16 +382,16 @@
                     this.wires.push(wire);
                     this.eventAddWire.fire(wire);
                     wire.wireID = wire.wireID + this.options.title;
-                    console.log("idComp: " + this.options.idcomp);
+//                    console.log("idComp: " + this.options.idcomp);
                     console.log("WireID: " + wire.wireID);
                     if ((wire.terminal1.container.options.title === this.options.title)) {
-                        console.log("terminal1 " + wire.terminal1.container.options.title + "(" + wire.terminal1.container.options.idcomp + ")");
+                        console.log("Terminal1 (FormContainer)" + wire.terminal1.container.options.title + "(" + wire.terminal1.container.options.idcomp + ")");
                         document.getElementById('operationName').value = wire.terminal1.container.options.title;
                         document.getElementById('operationNameBtn').click();
                         document.getElementById('userDataQuery').value = wire.terminal1.options.name;
                         document.getElementById('userDataQueryBtn').click();
                     } else if (wire.terminal2.container.options.title === this.options.title) {
-                        console.log("terminal2 " + wire.terminal2.container.options.title + "(" + wire.terminal2.container.options.idcomp + ")");
+                        console.log("Terminal2 (FormContainer)" + wire.terminal2.container.options.title + "(" + wire.terminal2.container.options.idcomp + ")");
                         document.getElementById('userDataTarget').value = wire.terminal2.container.options.idcomp;
                         document.getElementById('userDataTargetBtn').click();
                     }
