@@ -357,14 +357,36 @@
         onAddWire: function(event, args) {
 //            console.log("Evento! " + JSON.stringify(event));
             var wire = args[0];
+            var i;
+            var add = true;
             if (this.options.xtype === "WireIt.InOutContainer") {
                 console.log("is a WireIt.InOutContainer");
                 // add the wire to the list if it isn't in
                 if (WireIt.indexOf(wire, this.wires) === -1) {
                     this.wires.push(wire);
                     this.eventAddWire.fire(wire);
-                    wire.wireID = wire.wireID + this.options.title;
-//                    console.log("idComp: " + this.options.idcomp);
+                    var wireName = wire.wireID + this.options.title;
+
+                    /**
+                     * El código desde aquí hasta la línea 388 tiene el objetivo de evluar si existen aristas con el mismo "wireID", 
+                     * ya que el wireID está conformado por los nombres de los contenedores que une; así, como pueden existir 
+                     * diversas aristas entre dos módulos, como es el caso de los FormContainer y InOutContainer, era necesario diferenciar
+                     * tales wires.
+                     */
+                    for (i = 0; i < this.wires.length; i++) {
+                        if (this.wires[i].wireID === wireName) {
+//                            console.log("conincide " + add);
+                            var ind = this.wires.length - i;
+                            wire.wireID = wire.wireID + this.options.title + "_" + ind;
+                            add = false;
+                            break;
+                        }
+                    }
+                    if (add) {
+//                        console.log("add wireName");
+                        wire.wireID = wire.wireID + this.options.title;
+                    }
+
                     console.log("WireID: " + wire.wireID);
                     if ((wire.terminal1.container.options.title === this.options.title)) {
                         console.log("Terminal1 (InOutContainer)" + wire.terminal1.container.options.title + "(" + wire.terminal1.container.options.idcomp + ")");
