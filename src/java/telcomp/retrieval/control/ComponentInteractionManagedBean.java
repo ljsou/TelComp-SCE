@@ -469,7 +469,7 @@ public class ComponentInteractionManagedBean {
         this.jsonGraph = jsonGraph;
     }
 
-    private static boolean setJsonGraphToJSEEOrchestrate(java.lang.String arg0, String name) {
+    private static String setJsonGraphToJSEEOrchestrate(java.lang.String arg0, String name) {
         System.out.println("setJsonGraph! " + arg0);
         webservice.JSLEEorchestrator_Service jslees = new JSLEEorchestrator_Service();
         return jslees.getJSLEEorchestratorPort().orchestrateService(arg0, name, true);
@@ -480,7 +480,7 @@ public class ComponentInteractionManagedBean {
             System.out.println("Nombre de la composición: " + this.complexComponentName);
             System.out.println("+-json: " + this.jsonGraph);
             //setJsonGraphToJSEEOrchestrate(" {\"containers\":[{\"idcomp\":195,\"title\":\"getCurrencyValue\"},{\"idcomp\":1547,\"title\":\"GetCurrencies\"}],\"wires\":[{\"src\":{\"moduleId\":1},\"tgt\":{\"moduleId\":0}}]}");
-            boolean result = setJsonGraphToJSEEOrchestrate(this.jsonGraph, this.complexComponentName);
+            String result = setJsonGraphToJSEEOrchestrate(this.jsonGraph, this.complexComponentName);
             System.out.println(result);
 
         } catch (Exception e) {

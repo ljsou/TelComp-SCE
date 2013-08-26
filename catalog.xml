@@ -5,4 +5,6 @@
     <system systemId="http://190.90.112.7:8080/telcomp-retrieval/services/ComponentMatchmakerWSPort?wsdl" uri="src/conf/xml-resources/web-service-references/ComponentMatchmakerWSPort/wsdl/190.90.112.7_8080/telcomp-retrieval/services/ComponentMatchmakerWSPort.wsdl"/>
     <system systemId="http://192.168.190.92:8080/JSLEEorchestrator/JSLEEorchestrator?wsdl" uri="src/conf/xml-resources/web-service-references/JSLEEorchestrator/wsdl/192.168.190.92_8080/JSLEEorchestrator/JSLEEorchestrator.wsdl"/>
     <system systemId="http://192.168.190.92:8080/JSLEEorchestrator/JSLEEorchestrator?xsd=1" uri="src/conf/xml-resources/web-service-references/JSLEEorchestrator/wsdl/192.168.190.92_8080/JSLEEorchestrator/JSLEEorchestrator.xsd_1.xsd"/>
+    <system systemId="http://192.168.200.15:8080/JSLEEorchestrator/JSLEEorchestrator?wsdl" uri="src/conf/xml-resources/web-service-references/JSLEEorchestrator/wsdl/192.168.200.15_8080/JSLEEorchestrator/JSLEEorchestrator.wsdl"/>
+    <system systemId="http://192.168.200.15:8080/JSLEEorchestrator/JSLEEorchestrator?xsd=1" uri="src/conf/xml-resources/web-service-references/JSLEEorchestrator/wsdl/192.168.200.15_8080/JSLEEorchestrator/JSLEEorchestrator.xsd_1.xsd"/>
 </catalog>

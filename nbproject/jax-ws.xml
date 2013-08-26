@@ -18,7 +18,7 @@
         </wsimport-option>
         <wsimport-option>
           <wsimport-option-name>wsdlLocation</wsimport-option-name>
-          <wsimport-option-value>http://192.168.190.55:8080/telcomp-retrieval/services/ComponentMatchmakerWSPort?wsdl</wsimport-option-value>
+          <wsimport-option-value>http://localhost:8080/telcomp-retrieval/services/ComponentMatchmakerWSPort?wsdl</wsimport-option-value>
         </wsimport-option>
         <wsimport-option>
           <wsimport-option-name>xnocompile</wsimport-option-name>
@@ -35,9 +35,9 @@
       </wsimport-options>
     </client>
     <client name="JSLEEorchestrator">
-      <wsdl-url>http://192.168.190.92:8080/JSLEEorchestrator/JSLEEorchestrator?wsdl</wsdl-url>
-      <local-wsdl-file>192.168.190.92_8080/JSLEEorchestrator/JSLEEorchestrator.wsdl</local-wsdl-file>
-      <package-name forceReplace="true">webservice</package-name>
+      <wsdl-url>http://192.168.200.15:8080/JSLEEorchestrator/JSLEEorchestrator?wsdl</wsdl-url>
+      <local-wsdl-file>192.168.200.15_8080/JSLEEorchestrator/JSLEEorchestrator.wsdl</local-wsdl-file>
+      <package-name>webservice</package-name>
       <catalog-file>catalog.xml</catalog-file>
       <wsimport-options>
         <wsimport-option>
@@ -50,7 +50,7 @@
         </wsimport-option>
         <wsimport-option>
           <wsimport-option-name>wsdlLocation</wsimport-option-name>
-          <wsimport-option-value>http://192.168.190.92:8080/JSLEEorchestrator/JSLEEorchestrator?wsdl</wsimport-option-value>
+          <wsimport-option-value>http://192.168.200.15:8080/JSLEEorchestrator/JSLEEorchestrator?wsdl</wsimport-option-value>
         </wsimport-option>
         <wsimport-option>
           <wsimport-option-name>xnocompile</wsimport-option-name>
@@ -59,10 +59,6 @@
         <wsimport-option>
           <wsimport-option-name>xendorsed</wsimport-option-name>
           <wsimport-option-value>true</wsimport-option-value>
-        </wsimport-option>
-        <wsimport-option>
-          <wsimport-option-name>package</wsimport-option-name>
-          <wsimport-option-value>webservice</wsimport-option-value>
         </wsimport-option>
       </wsimport-options>
     </client>

@@ -7,4 +7,6 @@
     <system systemId="http://192.168.190.145:8080/JSLEEorchestrator/JSLEEorchestrator?xsd=1" uri="wsdl/192.168.190.145_8080/JSLEEorchestrator/JSLEEorchestrator.xsd_1.xsd"/>
     <system systemId="http://192.168.190.92:8080/JSLEEorchestrator/JSLEEorchestrator?wsdl" uri="wsdl/192.168.190.92_8080/JSLEEorchestrator/JSLEEorchestrator.wsdl"/>
     <system systemId="http://192.168.190.92:8080/JSLEEorchestrator/JSLEEorchestrator?xsd=1" uri="wsdl/192.168.190.92_8080/JSLEEorchestrator/JSLEEorchestrator.xsd_1.xsd"/>
+    <system systemId="http://192.168.200.15:8080/JSLEEorchestrator/JSLEEorchestrator?wsdl" uri="wsdl/192.168.200.15_8080/JSLEEorchestrator/JSLEEorchestrator.wsdl"/>
+    <system systemId="http://192.168.200.15:8080/JSLEEorchestrator/JSLEEorchestrator?xsd=1" uri="wsdl/192.168.200.15_8080/JSLEEorchestrator/JSLEEorchestrator.xsd_1.xsd"/>
 </catalog>
