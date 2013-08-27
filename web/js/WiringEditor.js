@@ -180,7 +180,7 @@ You can generate your own Telco2.0 Services without ever having to write a line 
                         label: "Search",
                         typeInvite: "Enter a query..."
                     }
-                },
+                }
                 //{"type": "text", inputParams: {"name": "description", label: "Description", cols: 30, rows: 4} }
             ];
 

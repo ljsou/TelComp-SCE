@@ -366,24 +366,28 @@
                     this.wires.push(wire);
                     this.eventAddWire.fire(wire);
                     var wireName = wire.wireID + this.options.title;
-
                     /**
-                     * El código desde aquí hasta la línea 388 tiene el objetivo de evluar si existen aristas con el mismo "wireID", 
+                     * El código desde aquí hasta la línea 392 tiene el objetivo de evluar si existen aristas con el mismo "wireID", 
                      * ya que el wireID está conformado por los nombres de los contenedores que une; así, como pueden existir 
                      * diversas aristas entre dos módulos, como es el caso de los FormContainer y InOutContainer, era necesario diferenciar
                      * tales wires.
+                     * 
+                     * this.wires.length solo consideraba los wires conectados al presente InOutContainer provenientes del FormContainer. Entonces, cuando existían dos o más
+                     * InOutContainers contectados con un FormContainer mediante diversos wires, estos mantenían el mismo ID, ya que no se tenía en cuenta la totalidad de 
+                     * los wires en el canvas, si no, aquellos que comportía la pareja (InOutContainers-FormContainer). 
+                     * 
+                     * Por lo tanto, es necesario adicionar this.layer.wires.length, el cual contiene todos los wires del canvas.
+                     * 
                      */
-                    for (i = 0; i < this.wires.length; i++) {
-                        if (this.wires[i].wireID === wireName) {
-//                            console.log("conincide " + add);
-                            var ind = this.wires.length - i;
+                    for (i = 0; i < this.layer.wires.length; i++) {
+                        if (this.layer.wires[i].wireID === wireName) {
+                            var ind = this.layer.wires.length - i;
                             wire.wireID = wire.wireID + this.options.title + "_" + ind;
                             add = false;
                             break;
                         }
                     }
                     if (add) {
-//                        console.log("add wireName");
                         wire.wireID = wire.wireID + this.options.title;
                     }
 

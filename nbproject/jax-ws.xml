@@ -18,7 +18,7 @@
         </wsimport-option>
         <wsimport-option>
           <wsimport-option-name>wsdlLocation</wsimport-option-name>
-          <wsimport-option-value>http://localhost:8080/telcomp-retrieval/services/ComponentMatchmakerWSPort?wsdl</wsimport-option-value>
+          <wsimport-option-value>http://190.90.112.7:8080/telcomp-retrieval/services/ComponentMatchmakerWSPort?wsdl</wsimport-option-value>
         </wsimport-option>
         <wsimport-option>
           <wsimport-option-name>xnocompile</wsimport-option-name>
