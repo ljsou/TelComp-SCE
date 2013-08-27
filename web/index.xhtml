@@ -579,13 +579,14 @@
             </h:form>
 
             <h:form id="rsp" prependId="false">
-                <p:commandButton id="response-btn" onclick="imgDlg.show();
-                return false;" style="display: none;"></p:commandButton>
+                <p:commandButton id="response-btn" onclick="imgDlg.show();" update=":rsp:fresponse,:rsp:fresponseImg" style="display: none;"></p:commandButton>
                 <p:dialog header="System Response" modal="true" showEffect="fade" hideEffect="fade" widgetVar="imgDlg" resizable="false" dynamic="true">                  
                     <br />
-                    <p:outputLabel value="#{componentInteractionManagedBean.response}" />
+                    <p:commandLink id="fresponse" value="#{componentInteractionManagedBean.viewResponse()}" />
                     <br />
-                    <img id="frame-response" src="#{componentInteractionManagedBean.response}" alt="aquí debería ir algo"></img>
+                    <br />
+                    <p:graphicImage id="fresponseImg" value="#{componentInteractionManagedBean.viewResponse()}" alt="aquí debería ir algo"></p:graphicImage>
+                    <br />
                     <br />
                     <p:commandButton value="Ok" onclick="imgDlg.hide();
                 setResponse();" actionListener="#{componentInteractionManagedBean.eraseResponse()}" />
