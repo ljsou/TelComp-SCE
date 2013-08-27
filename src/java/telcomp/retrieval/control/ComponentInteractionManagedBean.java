@@ -47,6 +47,7 @@ public class ComponentInteractionManagedBean {
     private boolean checked;
     private String jsonGraph;
     private String complexComponentName;
+    private String response; 
 
     public ComponentInteractionManagedBean() {
         System.out.println("constructor");
@@ -475,17 +476,37 @@ public class ComponentInteractionManagedBean {
         return jslees.getJSLEEorchestratorPort().orchestrateService(arg0, name, true);
     }
 
-    public void sendJson() {
+    public String sendJson() {
         try {
             System.out.println("Nombre de la composición: " + this.complexComponentName);
             System.out.println("+-json: " + this.jsonGraph);
+            System.out.println("respuesta inicial: " + this.getResponse());
             //setJsonGraphToJSEEOrchestrate(" {\"containers\":[{\"idcomp\":195,\"title\":\"getCurrencyValue\"},{\"idcomp\":1547,\"title\":\"GetCurrencies\"}],\"wires\":[{\"src\":{\"moduleId\":1},\"tgt\":{\"moduleId\":0}}]}");
             String result = setJsonGraphToJSEEOrchestrate(this.jsonGraph, this.complexComponentName);
-            System.out.println(result);
-
+            this.setResponse(result);
+            System.out.println("Cat response: " + this.getResponse());
         } catch (Exception e) {
             System.out.println("trigger exception...");
         }
+        return this.getResponse();
+    }
+    
+    public String viewResponse(){
+        System.out.println("viewResponse: " + this.response);
+        return this.response;
+    }
+    
+    public void eraseResponse(){
+        System.out.println("delete...");
+        this.response = null;
+    }
 
+    public String getResponse() {
+        System.out.println("getResponse: " + this.response);
+        return this.response;
+    }
+
+    public void setResponse(String response) {
+        this.response = response;
     }
 }

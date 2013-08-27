@@ -496,7 +496,7 @@ You can generate your own Telco2.0 Services without ever having to write a line 
             loadButton.on("click", this.onExport, this, true);
 
             var saveButton = new widget.Button({
-                label: "Save",
+                label: "Run",
                 id: "WiringEditor-saveButton",
                 container: toolbar
             });
@@ -647,8 +647,10 @@ You can generate your own Telco2.0 Services without ever having to write a line 
          * @method onSave
          */
         onSave: function() {
+            document.getElementById('response-btn').click();
+            
             //this.saveModule();
-            document.getElementById('downloadFile').click();
+            //document.getElementById('downloadFile').click();
         },
         /**
          * @method renderLoadPanel
@@ -724,7 +726,7 @@ You can generate your own Telco2.0 Services without ever having to write a line 
             var wiring = this.layer.getWiring();
             document.getElementById('json-graph').value = JSON.stringify(wiring);
             document.getElementById('json-graph-Btn').click();
-            document.getElementById('jsonResoult').innerHTML = JSON.stringify(wiring);
+            document.getElementById('jsonResult').innerHTML = JSON.stringify(wiring);
             //this.alert("Composition exported in json extension: " + "\n" + JSON.stringify(this.layer.getWiring()));
         },
         /**

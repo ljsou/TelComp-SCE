@@ -242,6 +242,14 @@
                 document.getElementById("dvLoading").style.display = "none";
             }
 
+            function setResponse() {
+                //var resp = document.getElementById("frame-response").getAttribute("src");
+                //var resp = "#{componentInteractionManagedBean.sendJson()}";
+                console.log("Respuesta:" + "#{componentInteractionManagedBean.response}");
+//                document.getElementById("frame-response").setAttribute("src", resp);
+//                alert(resp);
+            }
+
 
         </script>
     </h:head>
@@ -295,9 +303,9 @@
                     <div>
                         <h:form prependId="false">
                             <h:inputHidden id="json-graph" value="#{componentInteractionManagedBean.jsonGraph}"/>
-                            <p:commandButton id="json-graph-Btn" actionListener="#{componentInteractionManagedBean.sendJson()}" style="display: none;"></p:commandButton>
+                            <p:commandButton id="json-graph-Btn" actionListener="#{componentInteractionManagedBean.sendJson()}" onclick="setResponse()" style="display: none;"></p:commandButton>
                             <h2 style="width: 100px; margin: 15px 5px -3px 5px; font-weight: 600; color: #777;">JSON Graph</h2>
-                            <p id="jsonResoult" style="display: block; overflow: scroll; margin: 5px; font-size: 11px;padding: 5px; width: 232px; height: 200px; border: #999 dotted 1px;"></p>
+                            <p id="jsonResult" style="display: block; overflow: scroll; margin: 5px; font-size: 11px;padding: 5px; width: 232px; height: 200px; border: #999 dotted 1px;"></p>
                         </h:form>
                     </div>
                 </li>	
@@ -563,10 +571,27 @@
                         <h:outputLabel value="Type a name for your composition:" style="float: left; font-size: 12px; margin-top: 10px;"/>
                         <br />
                         <h:inputText id="newText" value="#{componentInteractionManagedBean.complexComponentName}" style="float: left; width: 250px; margin-top: 8px;"></h:inputText>
-                        <p:commandButton icon="ui-icon-disk" onclick="jsf.ajax.request(this, event, {execute: 'newText'}); newDlg.hide(); return false;" style="height: 24px; float: right; margin-left: 5px; margin-top: 5px;"/>
+                        <p:commandButton icon="ui-icon-disk" onclick="jsf.ajax.request(this, event, {execute: 'newText'});
+                newDlg.hide();
+                return false;" style="height: 24px; float: right; margin-left: 5px; margin-top: 5px;"/>
                     </p:outputPanel> 
                 </p:dialog>
             </h:form>
+
+            <h:form id="rsp" prependId="false">
+                <p:commandButton id="response-btn" onclick="imgDlg.show();
+                return false;" style="display: none;"></p:commandButton>
+                <p:dialog header="System Response" modal="true" showEffect="fade" hideEffect="fade" widgetVar="imgDlg" resizable="false" dynamic="true">                  
+                    <br />
+                    <p:outputLabel value="#{componentInteractionManagedBean.response}" />
+                    <br />
+                    <img id="frame-response" src="#{componentInteractionManagedBean.response}" alt="aquí debería ir algo"></img>
+                    <br />
+                    <p:commandButton value="Ok" onclick="imgDlg.hide();
+                setResponse();" actionListener="#{componentInteractionManagedBean.eraseResponse()}" />
+                </p:dialog>
+            </h:form>
+
         </div>
     </h:body>
 </html>
