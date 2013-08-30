@@ -18,7 +18,7 @@
         </wsimport-option>
         <wsimport-option>
           <wsimport-option-name>wsdlLocation</wsimport-option-name>
-          <wsimport-option-value>http://localhost:8080/telcomp-retrieval/services/ComponentMatchmakerWSPort?wsdl</wsimport-option-value>
+          <wsimport-option-value>http://192.168.200.10:8080/telcomp-retrieval/services/ComponentMatchmakerWSPort?wsdl</wsimport-option-value>
         </wsimport-option>
         <wsimport-option>
           <wsimport-option-name>xnocompile</wsimport-option-name>
@@ -50,7 +50,7 @@
         </wsimport-option>
         <wsimport-option>
           <wsimport-option-name>wsdlLocation</wsimport-option-name>
-          <wsimport-option-value>http://localhost:8084/JSLEEorchestrator/JSLEEorchestrator?wsdl</wsimport-option-value>
+          <wsimport-option-value>http://192.168.200.15:8080/JSLEEorchestrator/JSLEEorchestrator?wsdl</wsimport-option-value>
         </wsimport-option>
         <wsimport-option>
           <wsimport-option-name>xnocompile</wsimport-option-name>

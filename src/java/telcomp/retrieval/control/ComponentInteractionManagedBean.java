@@ -457,7 +457,9 @@ public class ComponentInteractionManagedBean {
     
     public void addMessage() {
         //String summary = checked ? "Now, this edge will be both data and control." : "Now, this one will be just a data flow edge. ";
-        String summary = checked ? "Edge type changed!" : "Edge type changed!!";
+        System.out.println("message!");
+        //String summary = checked ? "Edge type changed!" : "Edge type changed!!";
+        String summary = "Now, this is both a data and control flow edge";
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(summary));
     }
     
