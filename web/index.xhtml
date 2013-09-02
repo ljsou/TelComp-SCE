@@ -567,14 +567,14 @@
                 <p:commandButton id="response-btn" onclick="imgDlg.show();" update=":rsp:fresponse,:rsp:fresponseImg" style="display: none;"></p:commandButton>
                 <p:dialog header="System Response" modal="true" showEffect="fade" hideEffect="fade" widgetVar="imgDlg" resizable="false" dynamic="true">                  
                     <br />
-                    <p:commandLink id="fresponse" value="#{componentInteractionManagedBean.viewResponse()}" />
+                    <p:commandLink id="fresponse" value="#{componentInteractionManagedBean.viewResponse()}" style="display: none;"/>
                     <br />
                     <br />
                     <p:graphicImage id="fresponseImg" value="#{componentInteractionManagedBean.viewResponse()}" alt="aquí debería ir algo"></p:graphicImage>
                     <br />
                     <br />
                     <p:commandButton value="Ok" onclick="imgDlg.hide();
-                setResponse();" actionListener="#{componentInteractionManagedBean.eraseResponse()}" />
+                setResponse();"/>
                 </p:dialog>
             </h:form>
 
