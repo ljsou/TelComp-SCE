@@ -201,12 +201,11 @@ public class ComponentInteractionManagedBean {
 
     public void setComplexComponentName(String complexComponentName) {
         System.out.println("set Name: " + complexComponentName);
-        if(!removeService(complexComponentName)){
+        if (!removeService(complexComponentName)) {
             this.complexComponentName = complexComponentName;
         } else {
             System.out.println("The service " + complexComponentName + " was removed");
         }
-        
     }
 
     public void verCC() {
@@ -508,6 +507,17 @@ public class ComponentInteractionManagedBean {
             System.out.println("trigger exception..." + e);
         }
         return this.response;
+    }
+
+    public void runComplexComponent() {
+        if (this.complexComponentName != null) {
+            System.out.println("CC Name for Run: " + this.complexComponentName);
+            if (!removeService(this.complexComponentName)) {
+                System.out.println("The service " + this.complexComponentName + " is ready for running");
+            } else {
+                System.out.println("The service " + this.complexComponentName + " was removed");
+            }
+        }
     }
 
     public String viewResponse() {

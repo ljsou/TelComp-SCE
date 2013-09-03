@@ -497,12 +497,12 @@ You can generate your own Telco2.0 Services without ever having to write a line 
             });
             deployButton.on("click", this.onDeploy, this, true);
 
-            var saveButton = new widget.Button({
-                label: "Save",
+            var runButton = new widget.Button({
+                label: "Run",
                 id: "WiringEditor-saveButton",
                 container: toolbar
             });
-            saveButton.on("click", this.onSave, this, true);
+            runButton.on("click", this.onRun, this, true);
 
             var deleteButton = new widget.Button({
                 label: "Delete",
@@ -517,13 +517,7 @@ You can generate your own Telco2.0 Services without ever having to write a line 
 //                container: toolbar
 //            });
 //            helpButton.on("click", this.onHelp, this, true);
-
-            var runButton = new widget.Button({
-                label: "Run",
-                id: "WiringEditor-runButton",
-                container: toolbar
-            });
-            runButton.on("click", this.onRun, this, true);
+   
         },
         /**
          * @method renderSavedStatus
@@ -610,7 +604,7 @@ You can generate your own Telco2.0 Services without ever having to write a line 
          */
         onNew: function() {
 
-            document.getElementById('new-btn').click();    
+            document.getElementById('new-btn').click();
             console.log(this.options.languageName);
 //            if (!confirm("Warning: The name already exists! Please, change the name.")) {
 //                document.getElementById('new-btn').click();
@@ -627,19 +621,6 @@ You can generate your own Telco2.0 Services without ever having to write a line 
         onDelete: function() {
             console.log("onDelete");
             if (confirm("Are you sure you want to delete this wiring ?")) {
-//                var value = this.getValue();
-//                this.adapter.deleteWiring({
-//                    name: value.name,
-//                    language: this.options.languageName
-//                }, {
-//                    success: function(result) {
-//                        this.alert("Deleted!");
-//                    },
-//                    failure: function(errorStr) {
-//                        this.alert("Unable to delete wiring: " + errorStr);
-//                    },
-//                    scope: this
-//                });
                 this.preventLayerChangedEvent = true;
                 this.layer.clear();
                 this.propertiesForm.clear(false); // false to tell inputEx to NOT send the updatedEvt
@@ -649,26 +630,26 @@ You can generate your own Telco2.0 Services without ever having to write a line 
             }
         },
         /**
-         * @method onSave
+         * @method onRun
          */
-        onSave: function() {
-            console.log("onSave");
+        onRun: function() {
+            console.log("onRun");
             this.saveModule();
-            var value = this.getValue();
-            if (value.name === "") {
-                this.markSaved();
-                document.getElementById('save-btn').click();
+            if (this.languageName === "") {
+                document.getElementById('run-btn').click();
+                this.saveModule();
+                document.getElementById('response-btn').click();
             }
         },
         /**
          * @method onRun
          */
-        onRun: function() {
-            console.log("onRun");
-            //document.getElementById('response-btn').click();                                    
-            //this.saveModule();
-            //document.getElementById('downloadFile').click();
-        },
+//        onRun: function() {
+//            console.log("onRun");
+//            //document.getElementById('response-btn').click();                                    
+//            //this.saveModule();
+//            //document.getElementById('downloadFile').click();
+//        },
         /**
          * @method renderLoadPanel
          */
@@ -737,6 +718,7 @@ You can generate your own Telco2.0 Services without ever having to write a line 
          * @method Deploy
          */
         onDeploy: function() {
+            console.log(this.options.languageName);
             var wiring = this.layer.getWiring();
             document.getElementById('json-graph').value = JSON.stringify(wiring);       //Set the Json graph.
             document.getElementById('json-graph-Btn').click();                          //Send the Json Graph to the Adaptation and Deployment modules.
