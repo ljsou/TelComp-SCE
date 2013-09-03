@@ -490,12 +490,12 @@ You can generate your own Telco2.0 Services without ever having to write a line 
             });
             newButton.on("click", this.onNew, this, true);
 
-            var loadButton = new widget.Button({
-                label: "Export",
+            var deployButton = new widget.Button({
+                label: "Deploy",
                 id: "WiringEditor-loadButton",
                 container: toolbar
             });
-            loadButton.on("click", this.onExport, this, true);
+            deployButton.on("click", this.onDeploy, this, true);
 
             var saveButton = new widget.Button({
                 label: "Save",
@@ -734,17 +734,13 @@ You can generate your own Telco2.0 Services without ever having to write a line 
 
         },
         /**
-         * @method Export
+         * @method Deploy
          */
-        onExport: function() {
-//            console.log(JSON.stringify(this.layer.getWiring()));
-            //this.alert(JSON.stringify((this.layer.getWiring())));
-//            var json = JSON.stringify(this.layer.getWiring());
+        onDeploy: function() {
             var wiring = this.layer.getWiring();
-            document.getElementById('json-graph').value = JSON.stringify(wiring);
-            document.getElementById('json-graph-Btn').click();
-            document.getElementById('jsonResult').innerHTML = JSON.stringify(wiring);
-            //this.alert("Composition exported in json extension: " + "\n" + JSON.stringify(this.layer.getWiring()));
+            document.getElementById('json-graph').value = JSON.stringify(wiring);       //Set the Json graph.
+            document.getElementById('json-graph-Btn').click();                          //Send the Json Graph to the Adaptation and Deployment modules.
+            document.getElementById('jsonResult').innerHTML = JSON.stringify(wiring);   //To view the Json graph on the panel.
         },
         /**
          * @method load

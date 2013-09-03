@@ -497,15 +497,15 @@ public class ComponentInteractionManagedBean {
 
     public String sendJson() {
         try {
-            System.out.println("Nombre de la composición: " + this.complexComponentName);
-            System.out.println("+-json: " + this.jsonGraph);
-            System.out.println("respuesta inicial: " + this.getResponse());
+            System.out.println("Complex Component Name: " + this.complexComponentName);
+            System.out.println("Json: " + this.jsonGraph);
+            System.out.println("Reply from Adaptation and Deployment modules: " + this.getResponse());
             //setJsonGraphToJSEEOrchestrate(" {\"containers\":[{\"idcomp\":195,\"title\":\"getCurrencyValue\"},{\"idcomp\":1547,\"title\":\"GetCurrencies\"}],\"wires\":[{\"src\":{\"moduleId\":1},\"tgt\":{\"moduleId\":0}}]}");
             String result = setJsonGraphToJSEEOrchestrate(this.jsonGraph, this.complexComponentName);
             this.setResponse(result);
-            System.out.println("Cat response: " + this.response);
+            System.out.println("Reply from Adaptation and Deployment modules (Cat): " + this.response);
         } catch (Exception e) {
-            System.out.println("trigger exception...");
+            System.out.println("trigger exception..." + e);
         }
         return this.response;
     }
