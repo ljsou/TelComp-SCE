@@ -253,6 +253,11 @@
                 //                alert(resp);
             }
 
+            function setName() {
+                var compositionName = document.getElementById("newText").value;                            
+                editor.options.languageName = compositionName;
+            }
+
 
         </script>
     </h:head>
@@ -524,7 +529,7 @@
                             #{dataAssociationTest.sourceData.dataElementName} 
                             <script>
             var source = "#{dataAssociationTest.sourceData.dataElementName}";
-            var target = "#{dataAssociationTest.targetData.dataElementName}";            
+            var target = "#{dataAssociationTest.targetData.dataElementName}";
             console.log(source);
             console.log(target);
             setDataElements(source, target);
@@ -558,12 +563,14 @@
                         <h:inputText id="newText" value="#{componentInteractionManagedBean.complexComponentName}" style="float: left; width: 250px; margin-top: 8px;"></h:inputText>
                         <p:commandButton icon="ui-icon-disk" onclick="jsf.ajax.request(this, event, {execute: 'newText'});
                 newDlg.hide();
+                setName();
                 return false;" style="height: 24px; float: right; margin-left: 5px; margin-top: 5px;"/>
                     </p:outputPanel> 
                 </p:dialog>
             </h:form>
 
             <h:form id="rsp" prependId="false">
+                <p:commandButton id="save-btn" onclick="" style="display: none;"></p:commandButton>
                 <p:commandButton id="response-btn" onclick="imgDlg.show();" update=":rsp:fresponse,:rsp:fresponseImg" style="display: none;"></p:commandButton>
                 <p:dialog header="System Response" modal="true" showEffect="fade" hideEffect="fade" widgetVar="imgDlg" resizable="false" dynamic="true">                  
                     <br />
