@@ -169,19 +169,17 @@ You can generate your own Telco2.0 Services without ever having to write a line 
 
             this.adapter = options.adapter || WireIt.WiringEditor.adapters.JsonRpc;
 
-            this.options.languageName = options.languageName || 'anonymousLanguage';
+            this.options.languageName = options.languageName || '';
 
             this.options.propertiesFields = options.propertiesFields || [
                 {
                     "type": "string",
-                    "name": "javier",
                     inputParams: {
                         "name": "name",
                         label: "Search",
                         typeInvite: "Enter a query..."
                     }
-                }
-                //{"type": "text", inputParams: {"name": "description", label: "Description", cols: 30, rows: 4} }
+                }                
             ];
 
             this.options.layoutOptions = options.layoutOptions || {
@@ -267,7 +265,7 @@ You can generate your own Telco2.0 Services without ever having to write a line 
 
             this.options.languageNames = this.options.languageNames || new Array();
 
-            this.options.languageName = options.languageName || 'anonymousLanguage';
+            this.options.languageName = options.languageName || '';
 
             this.options.propertiesFields = options.propertiesFields || [
                 {
@@ -413,9 +411,7 @@ You can generate your own Telco2.0 Services without ever having to write a line 
             var ddProxy = new WireIt.ModuleProxy(div, this);
             ddProxy._module = module;
 
-            this.leftEl.appendChild(div);
-            //this.leftEl2.appendChild(div);
-
+            this.leftEl.appendChild(div);            
         },
         /**
          * Add a module definition to the left list
@@ -510,14 +506,6 @@ You can generate your own Telco2.0 Services without ever having to write a line 
                 container: toolbar
             });
             deleteButton.on("click", this.onDelete, this, true);
-
-//            var helpButton = new widget.Button({
-//                label: "Help",
-//                id: "WiringEditor-helpButton",
-//                container: toolbar
-//            });
-//            helpButton.on("click", this.onHelp, this, true);
-   
         },
         /**
          * @method renderSavedStatus
@@ -527,9 +515,7 @@ You can generate your own Telco2.0 Services without ever having to write a line 
             this.savedStatusEl = WireIt.cn('div', {
                 className: 'savedStatus',
                 title: 'Not saved'
-            }, {
-                display: 'none'
-            }, "Not saved");
+            }, {display: 'none'}, "*");
             top.appendChild(this.savedStatusEl);
         },
         /**
@@ -563,20 +549,8 @@ You can generate your own Telco2.0 Services without ever having to write a line 
          * @method saveModuleSuccess
          */
         saveModuleSuccess: function(o) {
-
             this.markSaved();
-
             this.alert("Saved !");
-
-            // TODO:
-            /*var name = this.tempSavedWiring.name;	
-             if(this.modulesByName.hasOwnProperty(name) ) {
-             //already exists
-             }
-             else {
-             //new one
-             }*/
-
         },
         /**
          * saveModule failure callback
@@ -603,9 +577,8 @@ You can generate your own Telco2.0 Services without ever having to write a line 
          * @method onNew
          */
         onNew: function() {
-
             document.getElementById('new-btn').click();
-            console.log(this.options.languageName);
+            this.markSaved();
 //            if (!confirm("Warning: The name already exists! Please, change the name.")) {
 //                document.getElementById('new-btn').click();
 //
@@ -621,12 +594,28 @@ You can generate your own Telco2.0 Services without ever having to write a line 
         onDelete: function() {
             console.log("onDelete");
             if (confirm("Are you sure you want to delete this wiring ?")) {
+                this.options.languageName = "";
                 this.preventLayerChangedEvent = true;
                 this.layer.clear();
                 this.propertiesForm.clear(false); // false to tell inputEx to NOT send the updatedEvt
-                this.markSaved();
+                this.markUnsaved();
                 this.preventLayerChangedEvent = false;
                 this.alert("Deleted!");
+            }
+        },
+        /**
+         * @method Deploy
+         */
+        onDeploy: function() {
+            console.log(this.options.languageName);
+            if (this.options.languageName === "") {
+                this.alert("Please choose a name");
+                return;
+            } else {
+                var wiring = this.layer.getWiring();
+                document.getElementById('json-graph').value = JSON.stringify(wiring);       //Set the Json graph.
+                document.getElementById('json-graph-Btn').click();                          //Send the Json Graph to the Adaptation and Deployment modules.
+                document.getElementById('jsonResult').innerHTML = JSON.stringify(wiring);   //To view the Json graph on the panel.
             }
         },
         /**
@@ -634,22 +623,14 @@ You can generate your own Telco2.0 Services without ever having to write a line 
          */
         onRun: function() {
             console.log("onRun");
-            this.saveModule();
-            if (this.languageName === "") {
+            if (this.options.languageName === "") {
+                this.alert("Please choose a name");
+                return;
+            } else {
                 document.getElementById('run-btn').click();
-                this.saveModule();
                 document.getElementById('response-btn').click();
             }
-        },
-        /**
-         * @method onRun
-         */
-//        onRun: function() {
-//            console.log("onRun");
-//            //document.getElementById('response-btn').click();                                    
-//            //this.saveModule();
-//            //document.getElementById('downloadFile').click();
-//        },
+        },       
         /**
          * @method renderLoadPanel
          */
@@ -713,16 +694,6 @@ You can generate your own Telco2.0 Services without ever having to write a line 
                 this.loadPipe(Event.getTarget(e).innerHTML);
             }, this, true);
 
-        },
-        /**
-         * @method Deploy
-         */
-        onDeploy: function() {
-            console.log(this.options.languageName);
-            var wiring = this.layer.getWiring();
-            document.getElementById('json-graph').value = JSON.stringify(wiring);       //Set the Json graph.
-            document.getElementById('json-graph-Btn').click();                          //Send the Json Graph to the Adaptation and Deployment modules.
-            document.getElementById('jsonResult').innerHTML = JSON.stringify(wiring);   //To view the Json graph on the panel.
         },
         /**
          * @method load
@@ -880,16 +851,42 @@ You can generate your own Telco2.0 Services without ever having to write a line 
         },
         onLayerChanged: function() {
             if (!this.preventLayerChangedEvent) {
-                this.markUnsaved();
+                console.log("...onLayerChanged...");
+                var top = Dom.get('top');
+                if (this.options.languageName === "") {
+                    console.log("markUnsaved === \"\"");
+                    this.savedStatusEl.style.display = 'none';
+                    this.savedStatusEl = WireIt.cn('div', {
+                        className: 'noSavedStatus',
+                        title: 'Not saved'
+                    }, {
+                        display: ''
+                    }, "Not saved");
+                } else {
+                    console.log("onLayerChagnged-" + this.options.languageName);
+                    this.savedStatusEl.style.display = 'none';
+                    this.savedStatusEl = WireIt.cn('div', {
+                        className: 'savedStatus',
+                        title: 'Saved'
+                    }, {
+                        display: ''
+                    }, "You are composing the " + this.options.languageName + " service");
+                    console.log("markSaved");
+                }
+                top.appendChild(this.savedStatusEl);
             }
         },
         markSaved: function() {
             this.savedStatusEl.style.display = 'none';
         },
         markUnsaved: function() {
-            this.savedStatusEl.style.display = '';
+            this.savedStatusEl.style.display = 'none';
+            if (!confirm("Warning: Your Composition is not saved yet! Press ok to continue anyway.")) {
+                return;
+            }
         },
         isSaved: function() {
+            console.log("isSaved");
             return (this.savedStatusEl.style.display === 'none');
         },
         /**

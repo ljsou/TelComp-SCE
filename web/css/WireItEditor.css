@@ -75,12 +75,24 @@ body {
 }
 
 /**
+ * NoSavedStatus
+ */
+div.noSavedStatus {
+    color:red;
+    font-size:12pt;
+    left:600px;
+    position:absolute;
+    top:14px;
+    font-weight:bold;
+}
+
+/**
  * savedStatus
  */
 div.savedStatus {
-    color:red;
+    color:orange;
     font-size:10pt;
-    left:650px;
+    left:600px;
     position:absolute;
     top:14px;
     font-weight:bold;

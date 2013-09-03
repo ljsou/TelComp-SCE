@@ -146,7 +146,7 @@
 
             this.options.title = options.title; // no default
             console.log("this.options.title");
-            console.log(this.options.title.options);
+            console.log(this.options.title);
 
 //      console.log(options.idcomp);
             this.options.idcomp = (typeof options.idcomp === "undefined") ? false : options.idcomp;
