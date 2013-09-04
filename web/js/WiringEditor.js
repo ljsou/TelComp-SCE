@@ -84,6 +84,14 @@
          * @property helpPanel
          * @type {YAHOO.widget.Panel}
          */
+
+        this.hPanel = new widget.Panel('hPanel', {
+            fixedcenter: true,
+            draggable: true,
+            visible: false,
+            modal: true
+        });
+
         this.helpPanel = new widget.Panel('helpPanel', {
             fixedcenter: true,
             draggable: true,
@@ -179,7 +187,7 @@ You can generate your own Telco2.0 Services without ever having to write a line 
                         label: "Search",
                         typeInvite: "Enter a query..."
                     }
-                }                
+                }
             ];
 
             this.options.layoutOptions = options.layoutOptions || {
@@ -411,7 +419,7 @@ You can generate your own Telco2.0 Services without ever having to write a line 
             var ddProxy = new WireIt.ModuleProxy(div, this);
             ddProxy._module = module;
 
-            this.leftEl.appendChild(div);            
+            this.leftEl.appendChild(div);
         },
         /**
          * Add a module definition to the left list
@@ -488,14 +496,14 @@ You can generate your own Telco2.0 Services without ever having to write a line 
 
             var deployButton = new widget.Button({
                 label: "Deploy",
-                id: "WiringEditor-loadButton",
+                id: "WiringEditor-saveButton",
                 container: toolbar
             });
             deployButton.on("click", this.onDeploy, this, true);
 
             var runButton = new widget.Button({
                 label: "Run",
-                id: "WiringEditor-saveButton",
+                id: "WiringEditor-loadButton",
                 container: toolbar
             });
             runButton.on("click", this.onRun, this, true);
@@ -567,13 +575,6 @@ You can generate your own Telco2.0 Services without ever having to write a line 
             this.alertPanel.show();
         },
         /**
-         * Create a help panel
-         * @method onHelp
-         */
-        onHelp: function() {
-            this.helpPanel.show();
-        },
-        /**
          * @method onNew
          */
         onNew: function() {
@@ -630,7 +631,7 @@ You can generate your own Telco2.0 Services without ever having to write a line 
                 document.getElementById('run-btn').click();
                 document.getElementById('response-btn').click();
             }
-        },       
+        },
         /**
          * @method renderLoadPanel
          */
