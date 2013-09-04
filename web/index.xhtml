@@ -6,6 +6,9 @@
       xmlns:p="http://primefaces.org/ui">
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta http-equiv='cache-control' content='no-cache'/>
+        <meta http-equiv='expires' content='0'/>
+        <meta http-equiv='pragma' content='no-cache'/>
         <title>TelCompSCE</title>
         <!-- YUI -->
         <link rel="stylesheet" type="text/css" href="lib/yui/reset-fonts-grids/reset-fonts-grids.css" />
@@ -140,19 +143,15 @@
             var telcompLanguage;
             var editor;
             var changedData = false;
+            var compositionName = "";
 
             function initializeHome() {
                 YAHOO.util.Event.onDOMReady(function() {
-
+            #{componentInteractionManagedBean.eraseAll()};
+                    console.log("delete");
                     telcompLanguage = #{componentRetrievalManagedBean.jsVarKw}
                     editor = new WireIt.WiringEditor(telcompLanguage);
                     loadSearchPanel(controlStructures, 'control-structures');
-                    //var editor2 = new WireIt.WiringEditor(contactFormFields); 	
-                    // Open the infos panel
-
-                    //editor.accordionView.openPanel(6);
-
-
                 });
             }
 
@@ -160,6 +159,7 @@
                 console.log("Entra a loadSearchPanel" + language.toString());
                 editor.modulesByName = {};
                 editor.setAjaxOptions(language);
+                editor.options.propertiesFields.inputParams.name = compositionName; //Esto es necesario ya que la variable language no define el atributo "name"
                 editor.el = YAHOO.util.Dom.get(editor.options.parentEl);
                 editor.helpPanel.render();
                 editor.layout.render();
@@ -198,6 +198,11 @@
                 var wireID = document.getElementById('clicked-wire').value;
                 console.log(wireID);
                 editor.layer.dataMapping(new String(wireID), changedData);
+            }
+
+            function setChangeElement() {
+                console.log("change is false!");
+                changedData = false;
             }
 
             function changeEdgeType() {
@@ -246,8 +251,16 @@
                 //var resp = document.getElementById("frame-response").getAttribute("src");
                 //var resp = "#{componentInteractionManagedBean.sendJson()}";
                 console.log("Respuesta:" + "#{componentInteractionManagedBean.response}");
-//                document.getElementById("frame-response").setAttribute("src", resp);
-//                alert(resp);
+                //                document.getElementById("frame-response").setAttribute("src", resp);
+                //                alert(resp);
+            }
+
+            function setName() {
+                compositionName = document.getElementById("newText").value;
+                console.log("compositionName: " + compositionName);
+                console.log("Name: " + editor.options.propertiesFields.inputParams.name);
+                editor.options.propertiesFields.inputParams.name = compositionName;
+                console.log("New name: " + editor.options.propertiesFields.inputParams.name);
             }
 
 
@@ -256,7 +269,7 @@
     <h:body styleClass="yui-skin-sam" style="background: #f5f5f5;" onload="initializeHome();">
         <div id="dvLoading"></div>
         <div id="top" >
-            <div class="logo">TelComp</div>
+            <div class="logo"><a href="help.xhtml" style="text-decoration:none;">TelComp</a></div>
             <div class="logoUp">2.0</div>
             <!--            <img src="images/telcomp2.png" width="200px" height="50px"/>-->
             <div id="toolbar"></div>
@@ -400,19 +413,6 @@
         <div id="center" style="font-size: 20px;">
 
         </div>
-
-        <!--        <div id="helpPanel">
-                    <div class="hd">Welcome to the WiringEditor demonstration</div>
-                    <div class="bd" style="text-align: left;">
-                        <p>This example shows how to use the <i>ImageContainer</i> and <i>FormContainer</i> in a language definition.</p>
-                        <br />
-                        <p><b>Drag and drop modules from the Module list</b> on the left to the working layer in the middle.</p>
-                        <br />
-                        <p><a href="demo.js" target="_new">Click here to view the language definition for this editor.</a></p>
-                        <br />
-                        <p>Close this dialog to test the WiringEditor</p>
-                    </div>
-                </div>-->
         <div >
             <h:form id="form" prependId="false">
 
@@ -429,9 +429,7 @@
                 return false;" style="display: none;" />
                 <h:commandButton id="userDataTargetBtn" onclick="jsf.ajax.request(this, event, {execute: 'userDataTarget'});
                 return false;" style="display: none;" />
-                <div style="width: 70%; height: 40%;">
-
-                </div>
+                <div style="width: 70%; height: 40%;"></div>
 
                 <p:overlayPanel id="userDataMappingPanel" widgetVar="overlayPanelUserDataMapping" for="userDataModalDialogButton" showEffect="drop" hideEffect="drop" dynamic="true" my="right top" at="right bottom" style="height:250px; padding: 40px 20px 0px 30px; margin: -20px; background:#333;background:rgba(0,0,0,0.75);border: 0;">   
                     <p:dataTable id="userDataMappingTable" value="#{componentInteractionManagedBean.userDataOutputs}" var="userDataOutputs" 
@@ -486,6 +484,7 @@
             <h:form id="form2" prependId="false">
                 <p:growl id="msg" /> 
                 <p:commandButton id="modalDialogButton" type="button" onclick="jsf.ajax.request(this, event, {render: 'dataMappingTable'});
+                setChangeElement();
                 return false;" style="display: none;"/>
 
                 <h:inputHidden id="clicked-wire" value="null"/>
@@ -523,16 +522,12 @@
                                              update=":form2:display"/>
                         </f:facet> 
                     </p:dataTable>                    
-                    <p:selectBooleanButton id="change" value="#{componentInteractionManagedBean.checked}" offLabel="" onLabel="" offIcon="ui-icon-check" onIcon="ui-icon-close" style="float: left; margin: 5px 5px 15px 0px; width: 30px; height: 20px;">  
-                        <p:ajax update="msg" listener="#{componentInteractionManagedBean.addMessage()}" oncomplete="changeEdgeType();"/>  
-                    </p:selectBooleanButton> 
-                    <h:outputText value="Keep this as a Data Flow Edge." style="color: #aaa; font-weight: 600; font-size: 11px; float: left; margin: 5px 5px 15px 0px; width: 250px; text-align: left;"/>   
-                    <h:outputText value="When this button is pressed, the edge is considered both data and control." style="color: #aaa; font-size: 11px; float: left; margin: 15px 5px 5px -255px; width: 380px; text-align: left;"/>   
+                    <p:commandButton id="change" value="Change" onclick="changeEdgeType();" actionListener="#{componentInteractionManagedBean.addMessage()}" update="msg" style="float: left; font-size: 11px; padding: 0px -3px 0pc -3px; margin: 5px 5px 15px 0px; width: 59px; height: 27px;" />                        
+                    <h:outputText value="When this button is pressed, the edge is considered both data and control.Otherwise, this will be a data only edge." style="color: #aaa; font-weight: 600; font-size: 11px; float: left; margin: 7px 5px 15px 0px; width: 360px; text-align: left;"/>                       
                 </p:overlayPanel>
 
                 <p:dialog header="Defined data mapping" widgetVar="dataDialog2"  
-                          width="400" showEffect="explode" hideEffect="explode" modal="true" resizable="false">
-                    <!--                    <p:ajax event="close" listener="{componentInteractionManagedBean.setSelectedTargets()}"/> -->
+                          width="400" showEffect="explode" hideEffect="explode" modal="true" resizable="false">                    
                     <p:dataTable id="display" value="#{componentInteractionManagedBean.associations}" var="dataAssociationTest" 
                                  style="width:350px; font-size: 15px;">;                                                
                         <p:column headerText="Source" style="width:300px;">  
@@ -573,21 +568,31 @@
                         <h:inputText id="newText" value="#{componentInteractionManagedBean.complexComponentName}" style="float: left; width: 250px; margin-top: 8px;"></h:inputText>
                         <p:commandButton icon="ui-icon-disk" onclick="jsf.ajax.request(this, event, {execute: 'newText'});
                 newDlg.hide();
+                setName();
                 return false;" style="height: 24px; float: right; margin-left: 5px; margin-top: 5px;"/>
                     </p:outputPanel> 
                 </p:dialog>
             </h:form>
 
             <h:form id="rsp" prependId="false">
+<<<<<<< HEAD
                 <p:commandButton id="response-btn" onclick="imgDlg.show();" update=":rsp:fresponse, :rsp:fresponseImg" style="display: none;"></p:commandButton>
                 <p:dialog header="System Response" modal="true" showEffect="fade" hideEffect="fade" widgetVar="imgDlg" resizable="false" dynamic="true">                                      
                     <p:commandLink id="fresponse" value="#{componentInteractionManagedBean.viewResponse()}" style="display: none;"/>                    
+=======
+                <p:commandButton id="run-btn" onclick="#{componentInteractionManagedBean.runComplexComponent()}" style="display: none;"></p:commandButton>
+                <p:commandButton id="response-btn" onclick="imgDlg.show();" update=":rsp:fresponse,:rsp:fresponseImg" style="display: none;"></p:commandButton>
+                <p:dialog header="System Response" modal="true" showEffect="fade" hideEffect="fade" widgetVar="imgDlg" resizable="false" dynamic="true">                  
+                    <br />
+                    <p:commandLink id="fresponse" value="#{componentInteractionManagedBean.viewResponse()}" style="display: none;"/>
+                    <br />
+>>>>>>> developing
                     <br />
                     <p:graphicImage id="fresponseImg" value="#{componentInteractionManagedBean.viewResponse()}" alt="aquí debería ir algo"></p:graphicImage>
                     <br />
                     <br />
                     <p:commandButton value="Ok" onclick="imgDlg.hide();
-                setResponse();" actionListener="#{componentInteractionManagedBean.eraseResponse()}" />
+                setResponse();"/>
                 </p:dialog>
             </h:form>
 

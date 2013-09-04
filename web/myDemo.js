@@ -4,7 +4,7 @@
  */
 var controlStructures = {
     // Set a unique name for the language
-    languageName: "telcompLanguage",
+    languageName: "",
     modules: [
         {
             "name": "User_Data",

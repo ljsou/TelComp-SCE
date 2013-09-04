@@ -13,6 +13,7 @@ import javax.faces.context.FacesContext;
 import org.primefaces.context.RequestContext;
 import telcomp.retrieval.matchmaking.ws.Data;
 import telcomp.retrieval.matchmaking.ws.Operation;
+import webservice.DeleteService;
 import webservice.JSLEEorchestrator_Service;
 
 /**
@@ -22,7 +23,7 @@ import webservice.JSLEEorchestrator_Service;
 @ManagedBean
 @SessionScoped
 public class ComponentInteractionManagedBean {
-    
+
     private String componentId;
     private Operation component;
     private String queryId;
@@ -48,8 +49,8 @@ public class ComponentInteractionManagedBean {
     private boolean checked;
     private String jsonGraph;
     private String complexComponentName;
-    private String response;    
-    
+    private String response;
+
     public ComponentInteractionManagedBean() {
         System.out.println("constructor");
         this.sourceDataElements = new ArrayList<telcomp.retrieval.matchmaking.ws.Data>();
@@ -81,7 +82,7 @@ public class ComponentInteractionManagedBean {
 //            targetDataElements.add(data);
 //        }
     }
-    
+
     public UserDataAssociation createUserDataAssociation() {
         System.out.println("user data association");
         UserDataAssociation uda = new UserDataAssociation();
@@ -92,7 +93,7 @@ public class ComponentInteractionManagedBean {
         this.userDataassociations.add(uda);
         return uda;
     }
-    
+
     public DataAssociation createAssociation() {
         System.out.println("entró!!");
         int l = getSelectedSource().length;
@@ -122,7 +123,7 @@ public class ComponentInteractionManagedBean {
         }
         return this.association;
     }
-    
+
     public List<telcomp.retrieval.matchmaking.ws.Data> getOperationOutputs() {
         List<telcomp.retrieval.matchmaking.ws.Data> outputData = new ArrayList<telcomp.retrieval.matchmaking.ws.Data>();
         if (this.query != null) {
@@ -136,9 +137,9 @@ public class ComponentInteractionManagedBean {
             //System.out.println("source data: " + this.sourceDataElements.size());
         }
         return this.sourceDataElements;
-        
+
     }
-    
+
     public List<telcomp.retrieval.matchmaking.ws.Data> getOperationInputs() {
         List<telcomp.retrieval.matchmaking.ws.Data> inputData = new ArrayList<telcomp.retrieval.matchmaking.ws.Data>();
         for (int i = 0; i < this.target.getDataElements().size(); i++) {
@@ -151,7 +152,7 @@ public class ComponentInteractionManagedBean {
         // System.out.println("target data: " + this.targetDataElements.size());
         return this.targetDataElements;
     }
-    
+
     public List<telcomp.retrieval.matchmaking.ws.Data> getUserDataOperationInputs() {
         List<telcomp.retrieval.matchmaking.ws.Data> inputData = new ArrayList<telcomp.retrieval.matchmaking.ws.Data>();
         for (int i = 0; i < this.targetUserData.getDataElements().size(); i++) {
@@ -164,7 +165,7 @@ public class ComponentInteractionManagedBean {
         // System.out.println("target data: " + this.targetDataElements.size());
         return this.targetUserDataElements;
     }
-    
+
     public List<telcomp.retrieval.matchmaking.ws.Data> getComponentInputs() {
         List<telcomp.retrieval.matchmaking.ws.Data> inputData = new ArrayList<telcomp.retrieval.matchmaking.ws.Data>();
         if (this.component != null) {
@@ -178,7 +179,7 @@ public class ComponentInteractionManagedBean {
         }
         return inputData;
     }
-    
+
     public List<telcomp.retrieval.matchmaking.ws.Data> getComponentOutputs() {
         List<telcomp.retrieval.matchmaking.ws.Data> outputData = new ArrayList<telcomp.retrieval.matchmaking.ws.Data>();
         if (this.component != null) {
@@ -192,153 +193,157 @@ public class ComponentInteractionManagedBean {
         }
         return outputData;
     }
-    
+
     public String getComplexComponentName() {
-        System.out.println("-Name: " + this.complexComponentName);
+        System.out.println("get Name: " + this.complexComponentName);
         return this.complexComponentName;
     }
-    
+
     public void setComplexComponentName(String complexComponentName) {
-        System.out.println("--Name: " + complexComponentName);
-        this.complexComponentName = complexComponentName;
+        System.out.println("set Name: " + complexComponentName);
+        if (!removeService(complexComponentName)) {
+            this.complexComponentName = complexComponentName;
+        } else {
+            System.out.println("The service " + complexComponentName + " was removed");
+        }
     }
-    
+
     public void verCC() {
         System.out.println("Complex Component:  " + this.complexComponentName);
     }
-    
+
     public String getUserDataQuery() {
         return this.userDataQuery;
     }
-    
+
     public void setUserDataQuery(String userDataQuery) {
         this.userDataQuery = userDataQuery;
         //DataComodin dataComodin = new DataComodin();
         telcomp.retrieval.matchmaking.ws.Data dataComodin = new telcomp.retrieval.matchmaking.ws.Data();
         dataComodin.setDataElementName(this.userDataQuery);
         dataComodin.setDataType("String");
-        
+
         this.queryUserDataOperation = new OperationComodin();
         this.queryUserDataOperation.setOperationName(this.userDataOperationName);
         this.queryUserDataOperation.addDataElement(dataComodin);
     }
-    
+
     public String getUserDataOperationName() {
         return userDataOperationName;
     }
-    
+
     public void setUserDataOperationName(String userDataOperationName) {
         this.userDataOperationName = userDataOperationName;
     }
-    
+
     public String getComponentId() {
         System.out.println("this.componentId: " + this.componentId);
         return componentId;
     }
-    
+
     public void setComponentId(String componentId) {
         this.componentId = componentId;
         this.component = retrieveComponentById(Long.parseLong(this.componentId));
     }
-    
+
     public Operation getComponent() {
         return component;
     }
-    
+
     public void setComponent(Operation component) {
         this.component = component;
     }
-    
+
     public OperationComodin getQueryUserDataOperation() {
         return queryUserDataOperation;
     }
-    
+
     public void setQueryUserDataOperation(OperationComodin queryUserDataOperation) {
         this.queryUserDataOperation = queryUserDataOperation;
     }
-    
+
     public List<telcomp.retrieval.matchmaking.ws.Data> getUserDataOutputs() {
         return this.queryUserDataOperation.getDataElements();
     }
-    
+
     public String getQueryId() {
         return queryId;
     }
-    
+
     public void setQueryId(String queryId) {
         this.queryId = queryId;
         this.query = retrieveComponentById(Long.parseLong(this.queryId));
         //System.out.println("+Query: " + this.query.getOperationName());
     }
-    
+
     public String getTargetId() {
         return targetId;
     }
-    
+
     public void setTargetId(String targetId) {
         this.targetId = targetId;
         this.target = retrieveComponentById(Long.parseLong(this.targetId));
         //System.out.println("+Target: " + target.getOperationName());
     }
-    
+
     public Operation getQuery() {
         return query;
     }
-    
+
     public void setQuery(Operation query) {
         this.query = query;
     }
-    
+
     public Operation getTarget() {
         return target;
     }
-    
+
     public void setTarget(Operation target) {
         this.target = target;
     }
-    
+
     public String getUserDataTarget() {
         return userDataTarget;
     }
-    
+
     public void setUserDataTarget(String userDataTarget) {
         this.userDataTarget = userDataTarget;
         this.targetUserData = retrieveComponentById(Long.parseLong(this.userDataTarget));
     }
-    
+
     public Operation getTargetUserData() {
         return targetUserData;
     }
-    
+
     public void setTargetUserData(Operation targetUserData) {
         this.targetUserData = targetUserData;
     }
-    
+
     public telcomp.retrieval.matchmaking.ws.Data[] getSelectedSource() {
         System.out.println("//getSelectedSource: " + selectedSource);
         return selectedSource;
     }
-    
+
     public void setSelectedSource(telcomp.retrieval.matchmaking.ws.Data[] selectedSource) {
         this.selectedSource = selectedSource;
         System.out.println("//setSelectedSource: " + this.selectedSource);
     }
-    
+
     public String getSelectedUserDataTarget() {
         System.out.println("//getSelectedUserDataTarget " + this.selectedUserDataTarget);
         return this.selectedUserDataTarget;
     }
-    
+
     public void setSelectedUserDataTarget(String selectedUserDataTarget) {
         System.out.println("//setSelectedUserDataTarget --> " + selectedUserDataTarget);
         this.selectedUserDataTarget = selectedUserDataTarget;
     }
-    
+
     public String getSelectedTarget() {
         System.out.println("//getSelectedTarget " + this.selectedTarget);
         return this.selectedTarget;
     }
-    
+
     public void setSelectedTarget(String selectedTarget) {
         System.out.println("//setSelectedTarget --> " + selectedTarget);
         this.selectedTarget = selectedTarget;
@@ -355,63 +360,63 @@ public class ComponentInteractionManagedBean {
             System.out.println("setSelectedTargets: " + this.selectedTargets.size());
         }
     }
-    
+
     public List<Data> getSelectedTargets() {
         return selectedTargets;
     }
-    
+
     public void setSelectedTargets(List<Data> selectedTargets) {
         this.selectedTargets = selectedTargets;
     }
-    
+
     public List<telcomp.retrieval.matchmaking.ws.Data> getSourceDataElements() {
         return sourceDataElements;
     }
-    
+
     public void setSourceDataElements(List<telcomp.retrieval.matchmaking.ws.Data> sourceDataElements) {
         this.sourceDataElements = sourceDataElements;
     }
-    
+
     public List<telcomp.retrieval.matchmaking.ws.Data> getTargetDataElements() {
         return targetDataElements;
     }
-    
+
     public void setTargetDataElements(List<telcomp.retrieval.matchmaking.ws.Data> targetDataElements) {
         this.targetDataElements = targetDataElements;
     }
-    
+
     public List<Data> getTargetUserDataElements() {
         return targetUserDataElements;
     }
-    
+
     public void setTargetUserDataElements(List<Data> targetUserDataElements) {
         this.targetUserDataElements = targetUserDataElements;
     }
-    
+
     public DataAssociation getAssociation() {
         return this.association;
     }
-    
+
     public void setAssociation(DataAssociation dataAssociation) {
         this.association = dataAssociation;
     }
-    
+
     public List<DataAssociation> getAssociations() {
         return associations;
     }
-    
+
     public void setAssociations(List<DataAssociation> associations) {
         this.associations = associations;
     }
-    
+
     public List<UserDataAssociation> getUserDataassociations() {
         return userDataassociations;
     }
-    
+
     public void setUserDataassociations(List<UserDataAssociation> userDataassociations) {
         this.userDataassociations = userDataassociations;
     }
-    
+
     public void eraseAll() {
 //        this.selectedSources = new ArrayList<telcomp.retrieval.matchmaking.ws.Data>();
 //        this.selectedTargets = new ArrayList<telcomp.retrieval.matchmaking.ws.Data>();
@@ -430,85 +435,109 @@ public class ComponentInteractionManagedBean {
         this.association = new DataAssociation();
         this.associations = new ArrayList<DataAssociation>();
         this.queryUserDataOperation = new OperationComodin();
-        
+
     }
-    
+
     public List<telcomp.retrieval.matchmaking.ws.Data> getSelectedSources() {
         return this.selectedSources;
     }
-    
+
     public void setSelectedSources(List<telcomp.retrieval.matchmaking.ws.Data> selectedSources) {
         this.selectedSources = selectedSources;
     }
-    
+
     private static Operation retrieveComponentById(long arg0) {
         telcomp.retrieval.matchmaking.ws.ComponentMatchmakerWSService service = new telcomp.retrieval.matchmaking.ws.ComponentMatchmakerWSService();
         telcomp.retrieval.matchmaking.ws.ComponentMatchmakerWS port = service.getComponentMatchmakerWSPort();
         return port.retrieveComponentById(arg0);
     }
-    
+
     public void setChecked(boolean checked) {
         this.checked = checked;
     }
-    
+
     public boolean isChecked() {
         return checked;
     }
-    
+
     public void addMessage() {
         //String summary = checked ? "Now, this edge will be both data and control." : "Now, this one will be just a data flow edge. ";
-        String summary = checked ? "Edge type changed!" : "Edge type changed!!";
+        System.out.println("message!");
+        //String summary = checked ? "Edge type changed!" : "Edge type changed!!";
+        String summary = "Now, this is both a data and control flow edge";
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(summary));
     }
-    
+
     public String getJsonGraph() {
         //System.out.println("ok! " + jsonGraph);
         return jsonGraph;
     }
-    
+
     public void setJsonGraph(String jsonGraph) {
         //System.out.println("ok!! " + this.jsonGraph);
         this.jsonGraph = jsonGraph;
     }
-    
+
+    private static boolean deleteServiceOnJSLEE(java.lang.String arg0) {
+        System.out.println("Service Name: " + arg0);
+        webservice.JSLEEorchestrator_Service deleteService = new JSLEEorchestrator_Service();
+        return deleteService.getJSLEEorchestratorPort().deleteService(arg0);
+    }
+
     private static String setJsonGraphToJSEEOrchestrate(java.lang.String arg0, String name) {
         System.out.println("setJsonGraph! " + arg0);
         webservice.JSLEEorchestrator_Service jslees = new JSLEEorchestrator_Service();
         return jslees.getJSLEEorchestratorPort().orchestrateService(arg0, name, true);
     }
-    
+
+    public boolean removeService(String serviceName) {
+        System.out.println("Removing service: " + serviceName);
+        return deleteServiceOnJSLEE(serviceName);
+    }
+   
     public String sendJson() {
         try {
-            System.out.println("Nombre de la composición: " + this.complexComponentName);
-            System.out.println("+-json: " + this.jsonGraph);
-            System.out.println("respuesta inicial: " + this.getResponse());
+            System.out.println("Complex Component Name: " + this.complexComponentName);
+            System.out.println("Json: " + this.jsonGraph);
+            System.out.println("Reply from Adaptation and Deployment modules: " + this.getResponse());
             //setJsonGraphToJSEEOrchestrate(" {\"containers\":[{\"idcomp\":195,\"title\":\"getCurrencyValue\"},{\"idcomp\":1547,\"title\":\"GetCurrencies\"}],\"wires\":[{\"src\":{\"moduleId\":1},\"tgt\":{\"moduleId\":0}}]}");
             String result = setJsonGraphToJSEEOrchestrate(this.jsonGraph, this.complexComponentName);
             this.setResponse(result);
-            System.out.println("Cat response: " + this.response);
+            System.out.println("Reply from Adaptation and Deployment modules (Cat): " + this.response);
         } catch (Exception e) {
-            System.out.println("trigger exception...");
+            System.out.println("trigger exception..." + e);
         }
         return this.response;
     }
-    
+
+    public void runComplexComponent() {
+        if (this.complexComponentName != null) {
+            System.out.println("CC Name for Run: " + this.complexComponentName);
+            if (!removeService(this.complexComponentName)) {
+                System.out.println("The service " + this.complexComponentName + " is ready for running");
+            } else {
+                System.out.println("The service " + this.complexComponentName + " was removed");
+            }
+        }
+    }
+
     public String viewResponse() {
         System.out.println("viewResponse: " + this.getResponse());
         return this.response;
     }
-    
+
     public void eraseResponse() {
         System.out.println("delete...");
         this.response = null;
     }
-    
+
     public String getResponse() {
 //        RequestContext context = RequestContext.getCurrentInstance();
 //        context.update(":rsp:fresponse");
         System.out.println("getResponse: " + this.response);
         return this.response;
     }
-    
+
     public void setResponse(String response) {
         this.response = response;
     }

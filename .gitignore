@@ -5,5 +5,10 @@
 /nbproject/jaxws-build.xml
 /nbproject/project.properties
 /nbproject/project.xml
+<<<<<<< HEAD
 build/
 dist/
+=======
+/build/
+/dist/
+>>>>>>> developing

@@ -84,6 +84,14 @@
          * @property helpPanel
          * @type {YAHOO.widget.Panel}
          */
+
+        this.hPanel = new widget.Panel('hPanel', {
+            fixedcenter: true,
+            draggable: true,
+            visible: false,
+            modal: true
+        });
+
         this.helpPanel = new widget.Panel('helpPanel', {
             fixedcenter: true,
             draggable: true,
@@ -165,24 +173,19 @@ You can generate your own Telco2.0 Services without ever having to write a line 
             for (var i = 0; i < this.modules.length; i++) {
                 var m = this.modules[i];
                 this.modulesByName[m.name] = m;
-                console.log("Var m.name: '%s'", m.name);
             }
 
             this.adapter = options.adapter || WireIt.WiringEditor.adapters.JsonRpc;
 
-            this.options.languageName = options.languageName || 'anonymousLanguage';
-
-            this.options.propertiesFields = options.propertiesFields || [
-                {
-                    "type": "string",
-                    inputParams: {
-                        "name": "name",
-                        label: "Search",
-                        typeInvite: "Enter a query..."
-                    }
-                }
-                //{"type": "text", inputParams: {"name": "description", label: "Description", cols: 30, rows: 4} }
-            ];
+            this.options.propertiesFields = options.propertiesFields ||
+                    {
+                        "type": "string",
+                        inputParams: {
+                            "name": "-",
+                            label: "Search",
+                            typeInvite: "Enter a query..."
+                        }
+                    };
 
             this.options.layoutOptions = options.layoutOptions || {
                 units: [
@@ -265,19 +268,14 @@ You can generate your own Telco2.0 Services without ever having to write a line 
 
             this.adapter = options.adapter || WireIt.WiringEditor.adapters.JsonRpc;
 
-            this.options.languageName = options.languageName || 'anonymousLanguage';
-
-            this.options.propertiesFields = options.propertiesFields || [
-                {
-                    "type": "string",
-                    inputParams: {
-                        "name": "name",
-                        label: "Search",
-                        typeInvite: "Enter a query..."
-                    }
-                },
-                //{"type": "text", inputParams: {"name": "description", label: "Description", cols: 30, rows: 4} }
-            ];
+            this.options.propertiesFields = options.propertiesFields || {
+                "type": "string",
+                inputParams: {
+                    "name": "+",
+                    label: "Search",
+                    typeInvite: "Enter a query..."
+                }
+            };
 
             this.options.layoutOptions = options.layoutOptions || {
                 units: [
@@ -412,8 +410,6 @@ You can generate your own Telco2.0 Services without ever having to write a line 
             ddProxy._module = module;
 
             this.leftEl.appendChild(div);
-            //this.leftEl2.appendChild(div);
-
         },
         /**
          * Add a module definition to the left list
@@ -488,19 +484,19 @@ You can generate your own Telco2.0 Services without ever having to write a line 
             });
             newButton.on("click", this.onNew, this, true);
 
-            var loadButton = new widget.Button({
-                label: "Export",
-                id: "WiringEditor-loadButton",
-                container: toolbar
-            });
-            loadButton.on("click", this.onExport, this, true);
-
-            var saveButton = new widget.Button({
-                label: "Run",
+            var deployButton = new widget.Button({
+                label: "Deploy",
                 id: "WiringEditor-saveButton",
                 container: toolbar
             });
-            saveButton.on("click", this.onSave, this, true);
+            deployButton.on("click", this.onDeploy, this, true);
+
+            var runButton = new widget.Button({
+                label: "Run",
+                id: "WiringEditor-loadButton",
+                container: toolbar
+            });
+            runButton.on("click", this.onRun, this, true);
 
             var deleteButton = new widget.Button({
                 label: "Delete",
@@ -508,13 +504,6 @@ You can generate your own Telco2.0 Services without ever having to write a line 
                 container: toolbar
             });
             deleteButton.on("click", this.onDelete, this, true);
-
-            var helpButton = new widget.Button({
-                label: "Help",
-                id: "WiringEditor-helpButton",
-                container: toolbar
-            });
-            helpButton.on("click", this.onHelp, this, true);
         },
         /**
          * @method renderSavedStatus
@@ -524,9 +513,7 @@ You can generate your own Telco2.0 Services without ever having to write a line 
             this.savedStatusEl = WireIt.cn('div', {
                 className: 'savedStatus',
                 title: 'Not saved'
-            }, {
-                display: 'none'
-            }, "*");
+            }, {display: 'none'}, "");
             top.appendChild(this.savedStatusEl);
         },
         /**
@@ -560,20 +547,8 @@ You can generate your own Telco2.0 Services without ever having to write a line 
          * @method saveModuleSuccess
          */
         saveModuleSuccess: function(o) {
-
             this.markSaved();
-
             this.alert("Saved !");
-
-            // TODO:
-            /*var name = this.tempSavedWiring.name;	
-             if(this.modulesByName.hasOwnProperty(name) ) {
-             //already exists
-             }
-             else {
-             //new one
-             }*/
-
         },
         /**
          * saveModule failure callback
@@ -590,67 +565,59 @@ You can generate your own Telco2.0 Services without ever having to write a line 
             this.alertPanel.show();
         },
         /**
-         * Create a help panel
-         * @method onHelp
-         */
-        onHelp: function() {
-            this.helpPanel.show();
-        },
-        /**
          * @method onNew
          */
         onNew: function() {
-            document.getElementById('new-btn').click();
-            console.log("New");
+
             if (!this.isSaved()) {
-                if (!confirm("Warning: Your Composition is not saved yet! Press ok to continue anyway.")) {
+                if (!confirm("Warning: Your work is not saved yet ! Press ok to continue anyway.")) {
                     return;
                 }
             }
-
+            document.getElementById('new-btn').click();
             this.preventLayerChangedEvent = true;
-
             this.layer.clear();
-
             this.propertiesForm.clear(false); // false to tell inputEx to NOT send the updatedEvt
-
             this.markSaved();
-
             this.preventLayerChangedEvent = false;
         },
         /**
          * @method onDelete
          */
         onDelete: function() {
+            console.log("onDelete");
             if (confirm("Are you sure you want to delete this wiring ?")) {
                 this.onNew();
-                this.alert("Deleted!");
-
-                var value = this.getValue();
-                this.adapter.deleteWiring({
-                    name: value.name,
-                    language: this.options.languageName
-                }, {
-                    success: function(result) {
-                        this.onNew();
-                        this.alert("Deleted !");
-                    },
-                    failure: function(errorStr) {
-                        this.alert("Unable to delete wiring: " + errorStr);
-                    },
-                    scope: this
-                });
-
             }
         },
         /**
-         * @method onSave
+         * @method Deploy
          */
-        onSave: function() {
-            document.getElementById('response-btn').click();
-            
-            //this.saveModule();
-            //document.getElementById('downloadFile').click();
+        onDeploy: function() {
+            console.log(this.options.propertiesFields.inputParams.name);
+            var name = this.options.propertiesFields.inputParams.name;
+            if (name === "") {
+                this.alert("Please choose a name");
+                return;
+            } else {
+                var wiring = this.layer.getWiring();
+                document.getElementById('json-graph').value = JSON.stringify(wiring);       //Set the Json graph.
+                document.getElementById('json-graph-Btn').click();                          //Send the Json Graph to the Adaptation and Deployment modules.
+                document.getElementById('jsonResult').innerHTML = JSON.stringify(wiring);   //To view the Json graph on the panel.
+            }
+        },
+        /**
+         * @method onRun
+         */
+        onRun: function() {
+            console.log("onRun");
+            if (this.options.propertiesFields.inputParams.name === "") {
+                this.alert("Please choose a name");
+                return;
+            } else {
+                document.getElementById('run-btn').click();
+                document.getElementById('response-btn').click();
+            }
         },
         /**
          * @method renderLoadPanel
@@ -715,19 +682,6 @@ You can generate your own Telco2.0 Services without ever having to write a line 
                 this.loadPipe(Event.getTarget(e).innerHTML);
             }, this, true);
 
-        },
-        /**
-         * @method Export
-         */
-        onExport: function() {
-//            console.log(JSON.stringify(this.layer.getWiring()));
-            //this.alert(JSON.stringify((this.layer.getWiring())));
-//            var json = JSON.stringify(this.layer.getWiring());
-            var wiring = this.layer.getWiring();
-            document.getElementById('json-graph').value = JSON.stringify(wiring);
-            document.getElementById('json-graph-Btn').click();
-            document.getElementById('jsonResult').innerHTML = JSON.stringify(wiring);
-            //this.alert("Composition exported in json extension: " + "\n" + JSON.stringify(this.layer.getWiring()));
         },
         /**
          * @method load
@@ -885,15 +839,66 @@ You can generate your own Telco2.0 Services without ever having to write a line 
         },
         onLayerChanged: function() {
             if (!this.preventLayerChangedEvent) {
-                this.markUnsaved();
+                console.log(this.options.propertiesFields.inputParams.name);
+                if (this.options.propertiesFields.inputParams.name === "") {
+                    this.markUnsaved();
+                } else {
+                    this.markSaved();
+                }
             }
         },
+//        onLayerChanged: function() {
+//            if (!this.preventLayerChangedEvent) {
+//                console.log("...onLayerChanged... ");
+//                var name = this.options.propertiesFields.inputParams.name;
+//                console.log(name);
+//                console.log("Name: " + name);
+//                if (name === "") {
+//                    console.log("markUnsaved === \"\"");
+//                    this.savedStatusEl.style.display = 'none';
+//                    this.savedStatusEl = WireIt.cn('div', {
+//                        className: 'noSavedStatus',
+//                        title: 'Not saved'
+//                    }, {
+//                        display: ''
+//                    }, "Not saved");
+//                    this.savedStatusEl.render();
+//                } else {
+//                    console.log("onLayerChagnged-" + name);
+//                    this.savedStatusEl.style.display = 'none';
+//                    this.savedStatusEl = WireIt.cn('div', {
+//                        className: 'savedStatus',
+//                        title: 'Saved'
+//                    }, {
+//                        display: ''
+//                    }, "You are composing the " + name + "  service");
+//                    this.savedStatusEl.render();
+//                    console.log("markSaved");
+//                }                
+//            }
+//        },
+        /** 
+         * Hide the save indicator
+         */
         markSaved: function() {
-            this.savedStatusEl.style.display = 'none';
+
+            if (this.options.propertiesFields.inputParams.name !== "") {
+                this.savedStatusEl.style.display = '';
+                this.savedStatusEl.innerHTML = "You are composing the " + this.options.propertiesFields.inputParams.name + " service";
+            } else {
+                this.savedStatusEl.style.display = 'none';
+            }
         },
+        /** 
+         * Show the save indicator
+         */
         markUnsaved: function() {
             this.savedStatusEl.style.display = '';
+            this.savedStatusEl.innerHTML = "Not Saved";
         },
+        /** 
+         * Is saved ?
+         */
         isSaved: function() {
             return (this.savedStatusEl.style.display === 'none');
         },
@@ -954,4 +959,4 @@ You can generate your own Telco2.0 Services without ever having to write a line 
 
 
 })();
-   
+
