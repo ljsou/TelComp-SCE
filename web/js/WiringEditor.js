@@ -177,18 +177,15 @@ You can generate your own Telco2.0 Services without ever having to write a line 
 
             this.adapter = options.adapter || WireIt.WiringEditor.adapters.JsonRpc;
 
-            this.options.languageName = options.languageName || '';
-
-            this.options.propertiesFields = options.propertiesFields || [
-                {
-                    "type": "string",
-                    inputParams: {
-                        "name": "name",
-                        label: "Search",
-                        typeInvite: "Enter a query..."
-                    }
-                }
-            ];
+            this.options.propertiesFields = options.propertiesFields ||
+                    {
+                        "type": "string",
+                        inputParams: {
+                            "name": "-",
+                            label: "Search",
+                            typeInvite: "Enter a query..."
+                        }
+                    };
 
             this.options.layoutOptions = options.layoutOptions || {
                 units: [
@@ -271,21 +268,14 @@ You can generate your own Telco2.0 Services without ever having to write a line 
 
             this.adapter = options.adapter || WireIt.WiringEditor.adapters.JsonRpc;
 
-            this.options.languageNames = this.options.languageNames || new Array();
-
-            this.options.languageName = options.languageName || '';
-
-            this.options.propertiesFields = options.propertiesFields || [
-                {
-                    "type": "string",
-                    inputParams: {
-                        "name": "name",
-                        label: "Search",
-                        typeInvite: "Enter a query..."
-                    }
-                },
-                //{"type": "text", inputParams: {"name": "description", label: "Description", cols: 30, rows: 4} }
-            ];
+            this.options.propertiesFields = options.propertiesFields || {
+                "type": "string",
+                inputParams: {
+                    "name": "+",
+                    label: "Search",
+                    typeInvite: "Enter a query..."
+                }
+            };
 
             this.options.layoutOptions = options.layoutOptions || {
                 units: [
@@ -523,7 +513,7 @@ You can generate your own Telco2.0 Services without ever having to write a line 
             this.savedStatusEl = WireIt.cn('div', {
                 className: 'savedStatus',
                 title: 'Not saved'
-            }, {display: 'none'}, "*");
+            }, {display: 'none'}, "");
             top.appendChild(this.savedStatusEl);
         },
         /**
@@ -578,16 +568,18 @@ You can generate your own Telco2.0 Services without ever having to write a line 
          * @method onNew
          */
         onNew: function() {
+
+            if (!this.isSaved()) {
+                if (!confirm("Warning: Your work is not saved yet ! Press ok to continue anyway.")) {
+                    return;
+                }
+            }
             document.getElementById('new-btn').click();
+            this.preventLayerChangedEvent = true;
+            this.layer.clear();
+            this.propertiesForm.clear(false); // false to tell inputEx to NOT send the updatedEvt
             this.markSaved();
-//            if (!confirm("Warning: The name already exists! Please, change the name.")) {
-//                document.getElementById('new-btn').click();
-//
-//            } else if (!this.isSaved()) {
-//                if (!confirm("Warning: Your Composition is not saved yet! Press ok to continue anyway.")) {
-//                    return;
-//                }
-//            }
+            this.preventLayerChangedEvent = false;
         },
         /**
          * @method onDelete
@@ -595,21 +587,16 @@ You can generate your own Telco2.0 Services without ever having to write a line 
         onDelete: function() {
             console.log("onDelete");
             if (confirm("Are you sure you want to delete this wiring ?")) {
-                this.options.languageName = "";
-                this.preventLayerChangedEvent = true;
-                this.layer.clear();
-                this.propertiesForm.clear(false); // false to tell inputEx to NOT send the updatedEvt
-                this.markUnsaved();
-                this.preventLayerChangedEvent = false;
-                this.alert("Deleted!");
+                this.onNew();
             }
         },
         /**
          * @method Deploy
          */
         onDeploy: function() {
-            console.log(this.options.languageName);
-            if (this.options.languageName === "") {
+            console.log(this.options.propertiesFields.inputParams.name);
+            var name = this.options.propertiesFields.inputParams.name;
+            if (name === "") {
                 this.alert("Please choose a name");
                 return;
             } else {
@@ -624,7 +611,7 @@ You can generate your own Telco2.0 Services without ever having to write a line 
          */
         onRun: function() {
             console.log("onRun");
-            if (this.options.languageName === "") {
+            if (this.options.propertiesFields.inputParams.name === "") {
                 this.alert("Please choose a name");
                 return;
             } else {
@@ -852,42 +839,67 @@ You can generate your own Telco2.0 Services without ever having to write a line 
         },
         onLayerChanged: function() {
             if (!this.preventLayerChangedEvent) {
-                console.log("...onLayerChanged...");
-                var top = Dom.get('top');
-                if (this.options.languageName === "") {
-                    console.log("markUnsaved === \"\"");
-                    this.savedStatusEl.style.display = 'none';
-                    this.savedStatusEl = WireIt.cn('div', {
-                        className: 'noSavedStatus',
-                        title: 'Not saved'
-                    }, {
-                        display: ''
-                    }, "Not saved");
+                console.log(this.options.propertiesFields.inputParams.name);
+                if (this.options.propertiesFields.inputParams.name === "") {
+                    this.markUnsaved();
                 } else {
-                    console.log("onLayerChagnged-" + this.options.languageName);
-                    this.savedStatusEl.style.display = 'none';
-                    this.savedStatusEl = WireIt.cn('div', {
-                        className: 'savedStatus',
-                        title: 'Saved'
-                    }, {
-                        display: ''
-                    }, "You are composing the " + this.options.languageName + " service");
-                    console.log("markSaved");
+                    this.markSaved();
                 }
-                top.appendChild(this.savedStatusEl);
             }
         },
+//        onLayerChanged: function() {
+//            if (!this.preventLayerChangedEvent) {
+//                console.log("...onLayerChanged... ");
+//                var name = this.options.propertiesFields.inputParams.name;
+//                console.log(name);
+//                console.log("Name: " + name);
+//                if (name === "") {
+//                    console.log("markUnsaved === \"\"");
+//                    this.savedStatusEl.style.display = 'none';
+//                    this.savedStatusEl = WireIt.cn('div', {
+//                        className: 'noSavedStatus',
+//                        title: 'Not saved'
+//                    }, {
+//                        display: ''
+//                    }, "Not saved");
+//                    this.savedStatusEl.render();
+//                } else {
+//                    console.log("onLayerChagnged-" + name);
+//                    this.savedStatusEl.style.display = 'none';
+//                    this.savedStatusEl = WireIt.cn('div', {
+//                        className: 'savedStatus',
+//                        title: 'Saved'
+//                    }, {
+//                        display: ''
+//                    }, "You are composing the " + name + "  service");
+//                    this.savedStatusEl.render();
+//                    console.log("markSaved");
+//                }                
+//            }
+//        },
+        /** 
+         * Hide the save indicator
+         */
         markSaved: function() {
-            this.savedStatusEl.style.display = 'none';
-        },
-        markUnsaved: function() {
-            this.savedStatusEl.style.display = 'none';
-            if (!confirm("Warning: Your Composition is not saved yet! Press ok to continue anyway.")) {
-                return;
+
+            if (this.options.propertiesFields.inputParams.name !== "") {
+                this.savedStatusEl.style.display = '';
+                this.savedStatusEl.innerHTML = "You are composing the " + this.options.propertiesFields.inputParams.name + " service";
+            } else {
+                this.savedStatusEl.style.display = 'none';
             }
         },
+        /** 
+         * Show the save indicator
+         */
+        markUnsaved: function() {
+            this.savedStatusEl.style.display = '';
+            this.savedStatusEl.innerHTML = "Not Saved";
+        },
+        /** 
+         * Is saved ?
+         */
         isSaved: function() {
-            console.log("isSaved");
             return (this.savedStatusEl.style.display === 'none');
         },
         /**

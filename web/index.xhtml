@@ -143,6 +143,7 @@
             var telcompLanguage;
             var editor;
             var changedData = false;
+            var compositionName = "";
 
             function initializeHome() {
                 YAHOO.util.Event.onDOMReady(function() {
@@ -158,6 +159,7 @@
                 console.log("Entra a loadSearchPanel" + language.toString());
                 editor.modulesByName = {};
                 editor.setAjaxOptions(language);
+                editor.options.propertiesFields.inputParams.name = compositionName; //Esto es necesario ya que la variable language no define el atributo "name"
                 editor.el = YAHOO.util.Dom.get(editor.options.parentEl);
                 editor.helpPanel.render();
                 editor.layout.render();
@@ -254,8 +256,11 @@
             }
 
             function setName() {
-                var compositionName = document.getElementById("newText").value;                            
-                editor.options.languageName = compositionName;
+                compositionName = document.getElementById("newText").value;
+                console.log("compositionName: " + compositionName);
+                console.log("Name: " + editor.options.propertiesFields.inputParams.name);
+                editor.options.propertiesFields.inputParams.name = compositionName;
+                console.log("New name: " + editor.options.propertiesFields.inputParams.name);
             }
 
 

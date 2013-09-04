@@ -491,9 +491,10 @@ public class ComponentInteractionManagedBean {
     }
 
     public boolean removeService(String serviceName) {
+        System.out.println("Removing service: " + serviceName);
         return deleteServiceOnJSLEE(serviceName);
     }
-
+   
     public String sendJson() {
         try {
             System.out.println("Complex Component Name: " + this.complexComponentName);
