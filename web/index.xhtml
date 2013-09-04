@@ -575,18 +575,12 @@
             </h:form>
 
             <h:form id="rsp" prependId="false">
-<<<<<<< HEAD
-                <p:commandButton id="response-btn" onclick="imgDlg.show();" update=":rsp:fresponse, :rsp:fresponseImg" style="display: none;"></p:commandButton>
-                <p:dialog header="System Response" modal="true" showEffect="fade" hideEffect="fade" widgetVar="imgDlg" resizable="false" dynamic="true">                                      
-                    <p:commandLink id="fresponse" value="#{componentInteractionManagedBean.viewResponse()}" style="display: none;"/>                    
-=======
                 <p:commandButton id="run-btn" onclick="#{componentInteractionManagedBean.runComplexComponent()}" style="display: none;"></p:commandButton>
                 <p:commandButton id="response-btn" onclick="imgDlg.show();" update=":rsp:fresponse,:rsp:fresponseImg" style="display: none;"></p:commandButton>
                 <p:dialog header="System Response" modal="true" showEffect="fade" hideEffect="fade" widgetVar="imgDlg" resizable="false" dynamic="true">                  
                     <br />
                     <p:commandLink id="fresponse" value="#{componentInteractionManagedBean.viewResponse()}" style="display: none;"/>
                     <br />
->>>>>>> developing
                     <br />
                     <p:graphicImage id="fresponseImg" value="#{componentInteractionManagedBean.viewResponse()}" alt="aquí debería ir algo"></p:graphicImage>
                     <br />

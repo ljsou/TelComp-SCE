@@ -83,8 +83,7 @@ public class ComponentInteractionManagedBean {
 //        }
     }
 
-    public UserDataAssociation createUserDataAssociation() {
-        System.out.println("user data association");
+    public UserDataAssociation createUserDataAssociation() {        
         UserDataAssociation uda = new UserDataAssociation();
         System.out.println("getUserDataQuery: " + this.userDataQuery);
         System.out.println("getSelectedTarget: " + this.selectedTarget);
@@ -94,8 +93,7 @@ public class ComponentInteractionManagedBean {
         return uda;
     }
 
-    public DataAssociation createAssociation() {
-        System.out.println("entró!!");
+    public DataAssociation createAssociation() {        
         int l = getSelectedSource().length;
         for (int i = 0; i < this.sourceDataElements.size(); i++) {
             for (int j = 0; j < l; j++) {
@@ -104,16 +102,6 @@ public class ComponentInteractionManagedBean {
                 }
             }
         }
-
-//        for (int k = 0; k < l; k++) {
-//            for (Iterator<telcomp.retrieval.matchmaking.ws.Data> it = this.sourceDataElements.iterator(); it.hasNext();) {
-//                telcomp.retrieval.matchmaking.ws.Data data = it.next();
-//                if (getSelectedSource()[k].getDataElementName().equalsIgnoreCase(data.getDataElementName())) {
-//                    //System.out.println("sourceDataElements.get(j): " + data.getDataElementName());
-//                    this.selectedSources.add(data);
-//                }
-//            }
-//        }
 
         for (int i = 0; i < this.selectedSources.size(); i++) {
             this.association = new DataAssociation();
@@ -133,8 +121,7 @@ public class ComponentInteractionManagedBean {
                     outputData.add(data);
                 }
             }
-            this.sourceDataElements = outputData;
-            //System.out.println("source data: " + this.sourceDataElements.size());
+            this.sourceDataElements = outputData;           
         }
         return this.sourceDataElements;
 
@@ -149,7 +136,6 @@ public class ComponentInteractionManagedBean {
             }
         }
         this.targetDataElements = inputData;
-        // System.out.println("target data: " + this.targetDataElements.size());
         return this.targetDataElements;
     }
 
@@ -161,15 +147,14 @@ public class ComponentInteractionManagedBean {
                 inputData.add(data);
             }
         }
-        this.targetUserDataElements = inputData;
-        // System.out.println("target data: " + this.targetDataElements.size());
+        this.targetUserDataElements = inputData;       
         return this.targetUserDataElements;
     }
 
     public List<telcomp.retrieval.matchmaking.ws.Data> getComponentInputs() {
         List<telcomp.retrieval.matchmaking.ws.Data> inputData = new ArrayList<telcomp.retrieval.matchmaking.ws.Data>();
         if (this.component != null) {
-            System.out.println("getComponentInputs: " + this.component.getDataElements().size());
+//            System.out.println("getComponentInputs: " + this.component.getDataElements().size());
             for (int i = 0; i < this.component.getDataElements().size(); i++) {
                 telcomp.retrieval.matchmaking.ws.Data data = this.component.getDataElements().get(i);
                 if (data.isInput()) {
@@ -183,7 +168,7 @@ public class ComponentInteractionManagedBean {
     public List<telcomp.retrieval.matchmaking.ws.Data> getComponentOutputs() {
         List<telcomp.retrieval.matchmaking.ws.Data> outputData = new ArrayList<telcomp.retrieval.matchmaking.ws.Data>();
         if (this.component != null) {
-            System.out.println("getComponentOutputs: " + this.component.getDataElements().size());
+//            System.out.println("getComponentOutputs: " + this.component.getDataElements().size());
             for (int i = 0; i < this.component.getDataElements().size(); i++) {
                 telcomp.retrieval.matchmaking.ws.Data data = this.component.getDataElements().get(i);
                 if (!data.isInput()) {
@@ -195,7 +180,6 @@ public class ComponentInteractionManagedBean {
     }
 
     public String getComplexComponentName() {
-        System.out.println("get Name: " + this.complexComponentName);
         return this.complexComponentName;
     }
 
@@ -236,8 +220,7 @@ public class ComponentInteractionManagedBean {
         this.userDataOperationName = userDataOperationName;
     }
 
-    public String getComponentId() {
-        System.out.println("this.componentId: " + this.componentId);
+    public String getComponentId() {        
         return componentId;
     }
 
@@ -319,33 +302,27 @@ public class ComponentInteractionManagedBean {
         this.targetUserData = targetUserData;
     }
 
-    public telcomp.retrieval.matchmaking.ws.Data[] getSelectedSource() {
-        System.out.println("//getSelectedSource: " + selectedSource);
+    public telcomp.retrieval.matchmaking.ws.Data[] getSelectedSource() {        
         return selectedSource;
     }
 
     public void setSelectedSource(telcomp.retrieval.matchmaking.ws.Data[] selectedSource) {
         this.selectedSource = selectedSource;
-        System.out.println("//setSelectedSource: " + this.selectedSource);
     }
 
-    public String getSelectedUserDataTarget() {
-        System.out.println("//getSelectedUserDataTarget " + this.selectedUserDataTarget);
+    public String getSelectedUserDataTarget() {        
         return this.selectedUserDataTarget;
     }
 
-    public void setSelectedUserDataTarget(String selectedUserDataTarget) {
-        System.out.println("//setSelectedUserDataTarget --> " + selectedUserDataTarget);
+    public void setSelectedUserDataTarget(String selectedUserDataTarget) {        
         this.selectedUserDataTarget = selectedUserDataTarget;
     }
 
-    public String getSelectedTarget() {
-        System.out.println("//getSelectedTarget " + this.selectedTarget);
+    public String getSelectedTarget() {        
         return this.selectedTarget;
     }
 
-    public void setSelectedTarget(String selectedTarget) {
-        System.out.println("//setSelectedTarget --> " + selectedTarget);
+    public void setSelectedTarget(String selectedTarget) {        
         this.selectedTarget = selectedTarget;
         if (selectedTarget.equalsIgnoreCase("")) {
 //            System.out.println("setSelectedTarget: blanco");
@@ -353,11 +330,11 @@ public class ComponentInteractionManagedBean {
 //            System.out.println("setSelectedTarget: else");
             for (int i = 0; i < targetDataElements.size(); i++) {
                 if (targetDataElements.get(i).getDataElementName().equalsIgnoreCase(selectedTarget)) {
-                    System.out.println("target seleccionado: " + targetDataElements.get(i));
+//                    System.out.println("target seleccionado: " + targetDataElements.get(i));
                     this.selectedTargets.add(targetDataElements.get(i));
                 }
             }
-            System.out.println("setSelectedTargets: " + this.selectedTargets.size());
+//            System.out.println("setSelectedTargets: " + this.selectedTargets.size());
         }
     }
 
@@ -418,11 +395,6 @@ public class ComponentInteractionManagedBean {
     }
 
     public void eraseAll() {
-//        this.selectedSources = new ArrayList<telcomp.retrieval.matchmaking.ws.Data>();
-//        this.selectedTargets = new ArrayList<telcomp.retrieval.matchmaking.ws.Data>();
-//        this.association = new DataAssociation();
-//        this.associations = new ArrayList<DataAssociation>();
-        System.out.println("this.selectedUserDataTarget value before erase: " + this.selectedUserDataTarget);
         this.selectedSource = null;
         this.selectedTarget = "";
         this.selectedUserDataTarget = null;
@@ -461,8 +433,7 @@ public class ComponentInteractionManagedBean {
     }
 
     public void addMessage() {
-        //String summary = checked ? "Now, this edge will be both data and control." : "Now, this one will be just a data flow edge. ";
-        System.out.println("message!");
+        //String summary = checked ? "Now, this edge will be both data and control." : "Now, this one will be just a data flow edge. ";        
         //String summary = checked ? "Edge type changed!" : "Edge type changed!!";
         String summary = "Now, this is both a data and control flow edge";
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(summary));
