@@ -47,6 +47,7 @@ public class ComponentInteractionManagedBean {
     private List<UserDataAssociation> userDataassociations;
     private String userDataOperationName;
     private boolean checked;
+    private String checkedString;
     private String jsonGraph;
     private String complexComponentName;
     private String response;
@@ -66,6 +67,7 @@ public class ComponentInteractionManagedBean {
         this.query = new Operation();
         this.target = new Operation();
         this.targetUserData = new Operation();
+        this.checked = false;
 
 
 //        for (int i = 0; i < 3; i++) {
@@ -83,7 +85,7 @@ public class ComponentInteractionManagedBean {
 //        }
     }
 
-    public UserDataAssociation createUserDataAssociation() {        
+    public UserDataAssociation createUserDataAssociation() {
         UserDataAssociation uda = new UserDataAssociation();
         System.out.println("getUserDataQuery: " + this.userDataQuery);
         System.out.println("getSelectedTarget: " + this.selectedTarget);
@@ -93,7 +95,7 @@ public class ComponentInteractionManagedBean {
         return uda;
     }
 
-    public DataAssociation createAssociation() {        
+    public DataAssociation createAssociation() {
         int l = getSelectedSource().length;
         for (int i = 0; i < this.sourceDataElements.size(); i++) {
             for (int j = 0; j < l; j++) {
@@ -121,7 +123,7 @@ public class ComponentInteractionManagedBean {
                     outputData.add(data);
                 }
             }
-            this.sourceDataElements = outputData;           
+            this.sourceDataElements = outputData;
         }
         return this.sourceDataElements;
 
@@ -147,7 +149,7 @@ public class ComponentInteractionManagedBean {
                 inputData.add(data);
             }
         }
-        this.targetUserDataElements = inputData;       
+        this.targetUserDataElements = inputData;
         return this.targetUserDataElements;
     }
 
@@ -220,7 +222,7 @@ public class ComponentInteractionManagedBean {
         this.userDataOperationName = userDataOperationName;
     }
 
-    public String getComponentId() {        
+    public String getComponentId() {
         return componentId;
     }
 
@@ -302,7 +304,7 @@ public class ComponentInteractionManagedBean {
         this.targetUserData = targetUserData;
     }
 
-    public telcomp.retrieval.matchmaking.ws.Data[] getSelectedSource() {        
+    public telcomp.retrieval.matchmaking.ws.Data[] getSelectedSource() {
         return selectedSource;
     }
 
@@ -310,19 +312,19 @@ public class ComponentInteractionManagedBean {
         this.selectedSource = selectedSource;
     }
 
-    public String getSelectedUserDataTarget() {        
+    public String getSelectedUserDataTarget() {
         return this.selectedUserDataTarget;
     }
 
-    public void setSelectedUserDataTarget(String selectedUserDataTarget) {        
+    public void setSelectedUserDataTarget(String selectedUserDataTarget) {
         this.selectedUserDataTarget = selectedUserDataTarget;
     }
 
-    public String getSelectedTarget() {        
+    public String getSelectedTarget() {
         return this.selectedTarget;
     }
 
-    public void setSelectedTarget(String selectedTarget) {        
+    public void setSelectedTarget(String selectedTarget) {
         this.selectedTarget = selectedTarget;
         if (selectedTarget.equalsIgnoreCase("")) {
 //            System.out.println("setSelectedTarget: blanco");
@@ -424,18 +426,24 @@ public class ComponentInteractionManagedBean {
         return port.retrieveComponentById(arg0);
     }
 
-    public void setChecked(boolean checked) {
-        this.checked = checked;
+    public String getCheckedString() {
+        return checkedString;
     }
 
-    public boolean isChecked() {
-        return checked;
+    public void setCheckedString(String checkedString) {
+        this.checkedString = checkedString;
+        if (checkedString.equalsIgnoreCase("true")) {
+            this.checked = true;
+        } else if (checkedString.equalsIgnoreCase("false")) {
+            this.checked = false;
+        }
     }
 
     public void addMessage() {
-        //String summary = checked ? "Now, this edge will be both data and control." : "Now, this one will be just a data flow edge. ";        
-        //String summary = checked ? "Edge type changed!" : "Edge type changed!!";
-        String summary = "Now, this is both a data and control flow edge";
+
+        //String summary = checked ? "Now, this edge will be both data and control." : "Now, this one will be just a data flow edge. ";                
+        String summary = this.checked ? "Now, this edge will be both data and control." : "Now, this one will be just a data flow edge.";
+        System.out.println(summary);
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(summary));
     }
 
@@ -465,7 +473,7 @@ public class ComponentInteractionManagedBean {
         System.out.println("Removing service: " + serviceName);
         return deleteServiceOnJSLEE(serviceName);
     }
-   
+
     public String sendJson() {
         try {
             System.out.println("Complex Component Name: " + this.complexComponentName);
@@ -478,6 +486,7 @@ public class ComponentInteractionManagedBean {
         } catch (Exception e) {
             System.out.println("trigger exception..." + e);
         }
+        System.out.println("Response send Json: " + this.response);           
         return this.response;
     }
 

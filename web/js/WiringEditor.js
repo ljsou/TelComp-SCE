@@ -603,9 +603,16 @@ You can generate your own Telco2.0 Services without ever having to write a line 
             } else {
                 var wiring = this.layer.getWiring();
                 document.getElementById('json-graph').value = JSON.stringify(wiring);       //Set the Json graph.
-                document.getElementById('json-graph-Btn').click();                          //Send the Json Graph to the Adaptation and Deployment modules.
-                document.getElementById('jsonResult').innerHTML = JSON.stringify(wiring);   //To view the Json graph on the panel.
+                document.getElementById('json-graph-Btn').click();                          //Send the Json Graph to the Adaptation and Deployment modules.                
+                document.getElementById('jsonResult').innerHTML = JSON.stringify(wiring);   //To view the Json graph on the panel.  
+                //window.setInterval(setOutput(), 2000);
+                console.log("listo!");
+                
             }
+        },
+        setOutput: function() {
+            console.log("esperando...");
+            document.getElementById('output').click();
         },
         /**
          * @method onRun

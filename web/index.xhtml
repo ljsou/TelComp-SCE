@@ -208,10 +208,12 @@
             function changeEdgeType() {
                 if (changedData === false) {
                     changedData = true;
+                    document.getElementById('change').value = JSON.stringify(changedData);
                     console.log("changedData cambió a: " + changedData);
                     //alert("Are you sure? Now, this edge is both data and control. " + changedData);
                 } else {
                     changedData = false;
+                    document.getElementById('change').value = JSON.stringify(changedData);
                     console.log("changedData cambió a: " + changedData);
                     //alert("Now, this one is just a data flow edge. " + changedData);
                 }
@@ -248,11 +250,26 @@
             }
 
             function setResponse() {
-                //var resp = document.getElementById("frame-response").getAttribute("src");
-                //var resp = "#{componentInteractionManagedBean.sendJson()}";
+                //var resp = document.getElementById("frame-response").getAttribute("src");                                                
+                console.log("Name:" + editor.options.propertiesFields.inputParams.name);
                 console.log("Respuesta:" + "#{componentInteractionManagedBean.response}");
-                //                document.getElementById("frame-response").setAttribute("src", resp);
-                //                alert(resp);
+                var resp = "" + "#{componentInteractionManagedBean.response}";
+                console.log(resp);
+                var successful = "http://192.168.190.100:8084/JSLEEorchestrator/" + editor.options.propertiesFields.inputParams.name + ".png";
+                var error = "http://192.168.190.100:8084/JSLEEorchestrator/error.png";
+                console.log(error);
+                console.log(successful);
+                if (resp === successful) {
+                    document.getElementById("response").innerHTML = JSON.stringify("BUILD SUCCESSFUL:  The service was deployed correctly!");
+                    document.getElementById("response").style.color = 'green';
+                } else if (resp === error) {
+                    document.getElementById("response").innerHTML = JSON.stringify("BUILD FAILED:  The service could not be deployed!");
+                    document.getElementById("response").style.color = 'red';
+                } else {
+                    document.getElementById("response").innerHTML = JSON.stringify("None");
+                    document.getElementById("response").style.color = 'blue';
+                }
+                console.log("Response:" + resp);
             }
 
             function setName() {
@@ -316,9 +333,12 @@
                     <div>
                         <h:form prependId="false">
                             <h:inputHidden id="json-graph" value="#{componentInteractionManagedBean.jsonGraph}"/>
-                            <p:commandButton id="json-graph-Btn" actionListener="#{componentInteractionManagedBean.sendJson()}" onclick="setResponse()" style="display: none;"></p:commandButton>
+                            <p:commandButton id="json-graph-Btn" actionListener="#{componentInteractionManagedBean.sendJson()}" style="display: none;"></p:commandButton>
                             <h2 style="width: 100px; margin: 15px 5px -3px 5px; font-weight: 600; color: #777;">JSON Graph</h2>
                             <p id="jsonResult" style="display: block; overflow: scroll; margin: 5px; font-size: 11px;padding: 5px; width: 232px; height: 200px; border: #999 dotted 1px;"></p>
+                            <br />
+                            <h2 style="width: 100px; margin: 15px 5px -3px 5px; font-weight: 600; color: #777;">Output</h2>
+                            <p id="response" style="display: block; margin: 5px; font-size: 11px;padding: 5px; width: 232px; height: 40px; border: #999 dotted 1px;"></p>
                         </h:form>
                     </div>
                 </li>	
@@ -522,7 +542,9 @@
                                              update=":form2:display"/>
                         </f:facet> 
                     </p:dataTable>                    
-                    <p:commandButton id="change" value="Change" onclick="changeEdgeType();" actionListener="#{componentInteractionManagedBean.addMessage()}" update="msg" style="float: left; font-size: 11px; padding: 0px -3px 0pc -3px; margin: 5px 5px 15px 0px; width: 59px; height: 27px;" />                        
+                    <p:commandButton value="Change" onclick="changeEdgeType();" actionListener="#{componentInteractionManagedBean.addMessage()}" update="msg" style="float: left; font-size: 11px; padding: 0px -3px 0pc -3px; margin: 5px 5px 15px 0px; width: 59px; height: 27px;" />                        
+                    <h:inputHidden id="change" value="#{componentInteractionManagedBean.checkedString}" />                        
+
                     <h:outputText value="When this button is pressed, the edge is considered both data and control.Otherwise, this will be a data only edge." style="color: #aaa; font-weight: 600; font-size: 11px; float: left; margin: 7px 5px 15px 0px; width: 360px; text-align: left;"/>                       
                 </p:overlayPanel>
 
@@ -574,7 +596,7 @@
                 </p:dialog>
             </h:form>
 
-            <h:form id="rsp" prependId="false">
+            <h:form id="rsp" prependId="false">                
                 <p:commandButton id="run-btn" onclick="#{componentInteractionManagedBean.runComplexComponent()}" style="display: none;"></p:commandButton>
                 <p:commandButton id="response-btn" onclick="imgDlg.show();" update=":rsp:fresponse,:rsp:fresponseImg" style="display: none;"></p:commandButton>
                 <p:dialog header="System Response" modal="true" showEffect="fade" hideEffect="fade" widgetVar="imgDlg" resizable="false" dynamic="true">                  
