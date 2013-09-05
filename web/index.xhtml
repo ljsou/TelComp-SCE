@@ -250,9 +250,13 @@
             }
 
             function setResponse() {
-                //var resp = document.getElementById("frame-response").getAttribute("src");                                                
+                //var resp = document.getElementById("frame-response").getAttribute("src");    
                 console.log("Name:" + editor.options.propertiesFields.inputParams.name);
+                console.log("Json" + "#{componentInteractionManagedBean.sendJson()}");
                 console.log("Respuesta:" + "#{componentInteractionManagedBean.response}");
+            }
+
+            function initValues() {
                 var resp = "" + "#{componentInteractionManagedBean.response}";
                 console.log(resp);
                 var successful = "http://192.168.190.100:8084/JSLEEorchestrator/" + editor.options.propertiesFields.inputParams.name + ".png";
@@ -333,10 +337,10 @@
                     <div>
                         <h:form prependId="false">
                             <h:inputHidden id="json-graph" value="#{componentInteractionManagedBean.jsonGraph}"/>
-                            <p:commandButton id="json-graph-Btn" actionListener="#{componentInteractionManagedBean.sendJson()}" style="display: none;"></p:commandButton>
+                            <p:commandButton id="json-graph-Btn" onclick="setTimeout(function() {console.log('init setResponse');setResponse();},2500);" style="display: none;"></p:commandButton>
                             <h2 style="width: 100px; margin: 15px 5px -3px 5px; font-weight: 600; color: #777;">JSON Graph</h2>
                             <p id="jsonResult" style="display: block; overflow: scroll; margin: 5px; font-size: 11px;padding: 5px; width: 232px; height: 200px; border: #999 dotted 1px;"></p>
-                            <br />
+                            <br />                            
                             <h2 style="width: 100px; margin: 15px 5px -3px 5px; font-weight: 600; color: #777;">Output</h2>
                             <p id="response" style="display: block; margin: 5px; font-size: 11px;padding: 5px; width: 232px; height: 40px; border: #999 dotted 1px;"></p>
                         </h:form>
