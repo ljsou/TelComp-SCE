@@ -450,13 +450,13 @@ public class ComponentInteractionManagedBean {
     }
 
     private static boolean deleteServiceOnJSLEE(java.lang.String arg0) {
-        System.out.println("Service Name: " + arg0);
+        System.out.println("Service Name to delete: " + arg0);
         webservice.JSLEEorchestrator_Service deleteService = new JSLEEorchestrator_Service();
         return deleteService.getJSLEEorchestratorPort().deleteService(arg0);
     }
 
     private static String setJsonGraphToJSEEOrchestrate(java.lang.String arg0, String name) {
-        System.out.println("setJsonGraph! " + arg0);
+        System.out.println("setJsonGraph " + arg0);
         webservice.JSLEEorchestrator_Service jslees = new JSLEEorchestrator_Service();
         return jslees.getJSLEEorchestratorPort().orchestrateService(arg0, name, true);
     }
@@ -493,19 +493,18 @@ public class ComponentInteractionManagedBean {
     }
 
     public String viewResponse() {
-        System.out.println("viewResponse: " + this.getResponse());
         return this.response;
     }
 
     public void eraseResponse() {
-        System.out.println("delete...");
+        System.out.println("deleting " + this.response);
         this.response = null;
     }
 
     public String getResponse() {
 //        RequestContext context = RequestContext.getCurrentInstance();
 //        context.update(":rsp:fresponse");
-        System.out.println("getResponse: " + this.response);
+        System.out.println("Response: " + this.response);
         return this.response;
     }
 

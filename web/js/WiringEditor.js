@@ -587,6 +587,7 @@ You can generate your own Telco2.0 Services without ever having to write a line 
         onDelete: function() {
             console.log("onDelete");
             if (confirm("Are you sure you want to delete this wiring ?")) {
+                this.markUnsaved();
                 this.onNew();
             }
         },
