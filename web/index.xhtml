@@ -250,16 +250,14 @@
             }
 
             function setResponse() {
-                //var resp = document.getElementById("frame-response").getAttribute("src");    
+                var resp = #{componentInteractionManagedBean.response};
                 console.log("Name:" + editor.options.propertiesFields.inputParams.name);
-//                console.log("Json" + "#{componentInteractionManagedBean.sendJson()}");
-                console.log("Respuesta:" + "#{componentInteractionManagedBean.response}");
-                initValues();
+                console.log("Respuesta:" + resp);    
+                initValues(resp);
             }
 
-            function initValues() {
-                var resp = "" + "#{componentInteractionManagedBean.response}";
-                console.log(resp);
+            function initValues(resp) {                    
+                console.log("respuesta " + resp);
                 var successful = "http://192.168.190.100:8084/JSLEEorchestrator/" + editor.options.propertiesFields.inputParams.name + ".png";
                 var error = "http://192.168.190.100:8084/JSLEEorchestrator/error.png";
                 console.log(error);
