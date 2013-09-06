@@ -252,8 +252,9 @@
             function setResponse() {
                 //var resp = document.getElementById("frame-response").getAttribute("src");    
                 console.log("Name:" + editor.options.propertiesFields.inputParams.name);
-                console.log("Json" + "#{componentInteractionManagedBean.sendJson()}");
+//                console.log("Json" + "#{componentInteractionManagedBean.sendJson()}");
                 console.log("Respuesta:" + "#{componentInteractionManagedBean.response}");
+                initValues();
             }
 
             function initValues() {
@@ -337,7 +338,7 @@
                     <div>
                         <h:form prependId="false">
                             <h:inputHidden id="json-graph" value="#{componentInteractionManagedBean.jsonGraph}"/>
-                            <p:commandButton id="json-graph-Btn" onclick="setTimeout(function() {console.log('init setResponse');setResponse();},2500);" style="display: none;"></p:commandButton>
+                            <p:commandButton id="json-graph-Btn" actionListener="#{componentInteractionManagedBean.sendJson()}" onclick="setTimeout(function() {console.log('init setResponse');setResponse();},2500);" style="display: none;"></p:commandButton>
                             <h2 style="width: 100px; margin: 15px 5px -3px 5px; font-weight: 600; color: #777;">JSON Graph</h2>
                             <p id="jsonResult" style="display: block; overflow: scroll; margin: 5px; font-size: 11px;padding: 5px; width: 232px; height: 200px; border: #999 dotted 1px;"></p>
                             <br />                            
