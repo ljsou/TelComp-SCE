@@ -486,7 +486,8 @@ public class ComponentInteractionManagedBean {
         } catch (Exception e) {
             System.out.println("trigger exception..." + e);
         }
-        System.out.println("Response send Json: " + this.response);           
+        System.out.println("Response send Json: " + this.response);   
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(this.response));
         return this.response;
     }
 

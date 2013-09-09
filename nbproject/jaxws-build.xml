@@ -44,7 +44,7 @@
     </target>
     <target name="wsimport-client-JSLEEorchestrator" depends="wsimport-init">
         <mkdir dir="${build.generated.dir}/jax-wsCache/JSLEEorchestrator"/>
-        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/JSLEEorchestrator" destdir="${build.generated.dir}/jax-wsCache/JSLEEorchestrator" wsdl="${basedir}/${conf-dir}xml-resources/web-service-references/JSLEEorchestrator/wsdl/192.168.200.15_8080/JSLEEorchestrator/JSLEEorchestrator.wsdl" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" wsdlLocation="http://192.168.190.100:8080/JSLEEorchestrator/JSLEEorchestrator?wsdl" xnocompile="true" xendorsed="true">
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/JSLEEorchestrator" destdir="${build.generated.dir}/jax-wsCache/JSLEEorchestrator" wsdl="${basedir}/${conf-dir}xml-resources/web-service-references/JSLEEorchestrator/wsdl/192.168.200.15_8080/JSLEEorchestrator/JSLEEorchestrator.wsdl" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" wsdlLocation="http://192.168.190.100:8084/JSLEEorchestrator/JSLEEorchestrator?wsdl" xnocompile="true" xendorsed="true">
             <depends file="${basedir}/${conf-dir}xml-resources/web-service-references/JSLEEorchestrator/wsdl/192.168.200.15_8080/JSLEEorchestrator/JSLEEorchestrator.wsdl"/>
             <produces dir="${build.generated.dir}/jax-wsCache/JSLEEorchestrator"/>
         </wsimport>
