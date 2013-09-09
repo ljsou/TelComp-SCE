@@ -444,7 +444,7 @@ public class ComponentInteractionManagedBean {
         //String summary = checked ? "Now, this edge will be both data and control." : "Now, this one will be just a data flow edge. ";                
         String summary = this.checked ? "Now, this edge will be both data and control." : "Now, this one will be just a data flow edge.";
         System.out.println(summary);
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(summary));
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(summary));              
     }
 
     public String getJsonGraph() {
@@ -461,6 +461,20 @@ public class ComponentInteractionManagedBean {
         System.out.println("Service Name to delete: " + arg0);
         webservice.JSLEEorchestrator_Service deleteService = new JSLEEorchestrator_Service();
         return deleteService.getJSLEEorchestratorPort().deleteService(arg0);
+    }
+    
+    private static boolean searchServiceOnJSLEE(java.lang.String arg0){
+        boolean exist = false;
+        System.out.println("Searching... " + arg0);
+        webservice.JSLEEorchestrator_Service deleteService = new JSLEEorchestrator_Service();
+        List<String> deployedServices = new ArrayList<String>();
+        deployedServices = deleteService.getJSLEEorchestratorPort().getDeployedServices();
+        for (String service : deployedServices) {
+            if(service.equalsIgnoreCase(arg0)){
+                exist = true;
+            }                
+        }
+        return exist;
     }
 
     private static String setJsonGraphToJSEEOrchestrate(java.lang.String arg0, String name) {
@@ -488,6 +502,7 @@ public class ComponentInteractionManagedBean {
         }
         System.out.println("Response send Json: " + this.response);   
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(this.response));
+        RequestContext.getCurrentInstance().execute("document.getElementById('update-output').click()");
         return this.response;
     }
 
@@ -503,6 +518,7 @@ public class ComponentInteractionManagedBean {
     }
 
     public String viewResponse() {
+        System.out.println("view resp: " + this.response);
         return this.response;
     }
 
@@ -514,7 +530,7 @@ public class ComponentInteractionManagedBean {
     public String getResponse() {
 //        RequestContext context = RequestContext.getCurrentInstance();
 //        context.update(":rsp:fresponse");
-        System.out.println("Response: " + this.response);
+        System.out.println("get Response: " + this.response);
         return this.response;
     }
 
