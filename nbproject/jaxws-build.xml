@@ -28,7 +28,7 @@
     </target>
     <target name="wsimport-client-ComponentMatchmakerWSPort" depends="wsimport-init">
         <mkdir dir="${build.generated.dir}/jax-wsCache/ComponentMatchmakerWSPort"/>
-        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/ComponentMatchmakerWSPort" destdir="${build.generated.dir}/jax-wsCache/ComponentMatchmakerWSPort" wsdl="${basedir}/${conf-dir}xml-resources/web-service-references/ComponentMatchmakerWSPort/wsdl/190.90.112.7_8080/telcomp-retrieval/services/ComponentMatchmakerWSPort.wsdl" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" wsdlLocation="http://localhost:8080/telcomp-retrieval/services/ComponentMatchmakerWSPort?wsdl" xnocompile="true" xendorsed="true" package="telcomp.retrieval.matchmaking.ws">
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/ComponentMatchmakerWSPort" destdir="${build.generated.dir}/jax-wsCache/ComponentMatchmakerWSPort" wsdl="${basedir}/${conf-dir}xml-resources/web-service-references/ComponentMatchmakerWSPort/wsdl/190.90.112.7_8080/telcomp-retrieval/services/ComponentMatchmakerWSPort.wsdl" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" wsdlLocation="http://192.168.190.100:8080/telcomp-retrieval/services/ComponentMatchmakerWSPort?wsdl" xnocompile="true" xendorsed="true" package="telcomp.retrieval.matchmaking.ws">
             <depends file="${basedir}/${conf-dir}xml-resources/web-service-references/ComponentMatchmakerWSPort/wsdl/190.90.112.7_8080/telcomp-retrieval/services/ComponentMatchmakerWSPort.wsdl"/>
             <produces dir="${build.generated.dir}/jax-wsCache/ComponentMatchmakerWSPort"/>
         </wsimport>
@@ -44,7 +44,7 @@
     </target>
     <target name="wsimport-client-JSLEEorchestrator" depends="wsimport-init">
         <mkdir dir="${build.generated.dir}/jax-wsCache/JSLEEorchestrator"/>
-        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/JSLEEorchestrator" destdir="${build.generated.dir}/jax-wsCache/JSLEEorchestrator" wsdl="${basedir}/${conf-dir}xml-resources/web-service-references/JSLEEorchestrator/wsdl/192.168.200.15_8080/JSLEEorchestrator/JSLEEorchestrator.wsdl" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" wsdlLocation="http://localhost:8084/JSLEEorchestrator/JSLEEorchestrator?wsdl" xnocompile="true" xendorsed="true">
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/JSLEEorchestrator" destdir="${build.generated.dir}/jax-wsCache/JSLEEorchestrator" wsdl="${basedir}/${conf-dir}xml-resources/web-service-references/JSLEEorchestrator/wsdl/192.168.200.15_8080/JSLEEorchestrator/JSLEEorchestrator.wsdl" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" wsdlLocation="http://192.168.190.100:8080/JSLEEorchestrator/JSLEEorchestrator?wsdl" xnocompile="true" xendorsed="true">
             <depends file="${basedir}/${conf-dir}xml-resources/web-service-references/JSLEEorchestrator/wsdl/192.168.200.15_8080/JSLEEorchestrator/JSLEEorchestrator.wsdl"/>
             <produces dir="${build.generated.dir}/jax-wsCache/JSLEEorchestrator"/>
         </wsimport>
