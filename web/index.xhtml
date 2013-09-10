@@ -280,7 +280,7 @@
                 document.getElementById("response").innerHTML = JSON.stringify("BUILD FAILED:  The service " + name + " could not be deployed!");
                 document.getElementById("response").style.color = 'red';
             } else {
-                document.getElementById("response").innerHTML = JSON.stringify("None...");
+                document.getElementById("response").innerHTML = JSON.stringify(response);
                 document.getElementById("response").style.color = 'blue';
             }
             console.log("Result: " + response);
@@ -292,8 +292,8 @@
     <h:body styleClass="yui-skin-sam" style="background: #f5f5f5;" onload="initializeHome();">
         <div id="dvLoading"></div>
         <div id="top" >
-            <div class="logo"><a href="help.xhtml" style="text-decoration:none;">TelComp</a></div>
-            <div class="logoUp">2.0</div>            
+            <div class="logo"><a href="help.xhtml" style="text-decoration:none; color: #0B243B;">TelComp</a></div>
+            <div class="logoUp"><a href="help.xhtml" style="text-decoration:none; color: #0B243B;">2.0</a></div>            
             <div id="toolbar"></div>
         </div>
 
@@ -588,7 +588,7 @@
                     <p:outputPanel id="newCompositionPanel">  
                         <h:outputLabel value="Type a name for your composition:" style="float: left; font-size: 12px; margin-top: 10px;"/>
                         <br />
-                        <h:inputText id="newText" value="#{componentInteractionManagedBean.complexComponentName}" style="float: left; width: 250px; margin-top: 8px;"></h:inputText>
+                        <h:inputText id="newText" value="#{componentInteractionManagedBean.complexComponentName}" required="true" style="float: left; width: 250px; margin-top: 8px;"></h:inputText>
                         <p:commandButton icon="ui-icon-disk" onclick="jsf.ajax.request(this, event, {execute: 'newText'});
                 newDlg.hide();
                 setName();

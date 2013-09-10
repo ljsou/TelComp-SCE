@@ -404,12 +404,12 @@ WireIt.Layer.prototype = {
                 this.wires[i].dataFlow = true;
                 this.wires[i].dataFlowControl = dataFlowControl;
                 if (!dataFlowControl) {
-                    this.wires[i].options.color = 'rgb(102, 255, 153)';
+                    this.wires[i].options.color = 'rgb(100, 254, 46)';
                     this.wires[i].options.bordercolor = 'rgb(0, 102, 0)';
                     this.wires[i].redraw();
-                } else if (dataFlowControl) {
-                    this.wires[i].options.color = 'rgb(50, 205, 50)';
-                    this.wires[i].options.bordercolor = 'rgb(0, 102, 0)';
+                } else if (dataFlowControl) { //Just DataFlow                    
+                    this.wires[i].options.color = 'rgb(129, 129, 247)';
+                    this.wires[i].options.bordercolor = 'rgb(46, 46, 254)';
                     this.wires[i].redraw();
                 }
                 this.wires[i].sourceData = this.sourceDataElement;

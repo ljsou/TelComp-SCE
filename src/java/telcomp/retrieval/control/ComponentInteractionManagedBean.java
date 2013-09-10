@@ -502,6 +502,7 @@ public class ComponentInteractionManagedBean {
             return this.response;
         } catch (Exception e) {
             System.out.println("trigger exception..." + e);
+            RequestContext.getCurrentInstance().execute("setResponse('" + "Trigger exception: " + e + "')");
             return "there is not response";
         }
 
