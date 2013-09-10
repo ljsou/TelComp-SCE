@@ -508,16 +508,16 @@ public class ComponentInteractionManagedBean {
 
     }
 
-    public void runComplexComponent() {
-        if (this.complexComponentName != null) {
-            System.out.println("CC Name for Run: " + this.complexComponentName);
-            if (!removeService(this.complexComponentName)) {
-                System.out.println("The service " + this.complexComponentName + " is ready for running");
-            } else {
-                System.out.println("The service " + this.complexComponentName + " was removed");
-            }
-        }
-    }
+//    public void runComplexComponent() {
+//        if (this.complexComponentName != null) {
+//            System.out.println("CC Name for Run: " + this.complexComponentName);
+//            if (!removeService(this.complexComponentName)) {
+//                System.out.println("The service " + this.complexComponentName + " is ready for running");
+//            } else {
+//                System.out.println("The service " + this.complexComponentName + " was removed");
+//            }
+//        }
+//    }
 
     public String viewResponse() {
         System.out.println("view resp: " + this.response);

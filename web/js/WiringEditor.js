@@ -617,11 +617,11 @@ You can generate your own Telco2.0 Services without ever having to write a line 
                 this.alert("Please choose a name");
                 return;
             } else {
-                document.getElementById('run-btn').click();
+//                document.getElementById('run-btn').click();
                 document.getElementById('response-btn').click();
             }
         },
-        /**
+        /**+
          * @method renderLoadPanel
          */
         renderLoadPanel: function() {

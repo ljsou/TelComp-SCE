@@ -598,7 +598,7 @@
             </h:form>
 
             <h:form id="rsp" prependId="false">                                  
-                <p:commandButton id="run-btn" onclick="#{componentInteractionManagedBean.runComplexComponent()}" style="display: none;"></p:commandButton>
+<!--                <p:commandButton id="run-btn" onclick="{componentInteractionManagedBean.runComplexComponent()}" style="display: none;"></p:commandButton>-->
                 <p:commandButton id="response-btn" onclick="imgDlg.show();" update=":rsp:fresponse,:rsp:fresponseImg" style="display: none;"></p:commandButton>
                 <p:dialog header="System Response" modal="true" showEffect="fade" hideEffect="fade" widgetVar="imgDlg" resizable="false" dynamic="true">                  
                     <br />
