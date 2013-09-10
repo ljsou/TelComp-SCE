@@ -253,33 +253,6 @@
                 console.log("none...");
             }
 
-            function setResponse() {
-                var response = document.getElementById('get-respose').value;
-                console.log("Name:" + editor.options.propertiesFields.inputParams.name);
-                console.log("Respuesta:" + response);
-                initValues(response);
-
-            }
-
-            function initValues(response) {
-                console.log("respuesta " + response);
-                var successful = "http://192.168.190.100:8084/JSLEEorchestrator/" + editor.options.propertiesFields.inputParams.name + ".png";
-                var error = "http://192.168.190.100:8084/JSLEEorchestrator/error.png";
-                console.log(error);
-                console.log(successful);
-                if (response === successful) {
-                    document.getElementById("response").innerHTML = JSON.stringify("BUILD SUCCESSFUL:  The service was deployed correctly!");
-                    document.getElementById("response").style.color = 'green';
-                } else if (response === error) {
-                    document.getElementById("response").innerHTML = JSON.stringify("BUILD FAILED:  The service could not be deployed!");
-                    document.getElementById("response").style.color = 'red';
-                } else {
-                    document.getElementById("response").innerHTML = JSON.stringify("None");
-                    document.getElementById("response").style.color = 'blue';
-                }
-                console.log("Response:" + response);
-            }
-
             function setName() {
                 compositionName = document.getElementById("newText").value;
                 console.log("compositionName: " + compositionName);
@@ -287,6 +260,31 @@
                 editor.options.propertiesFields.inputParams.name = compositionName;
                 console.log("New name: " + editor.options.propertiesFields.inputParams.name);
             }
+
+            function setResponse(respuesta) {
+                console.log("# " + respuesta);
+                var name = editor.options.propertiesFields.inputParams.name;      
+                initValues(respuesta, name);
+            }
+            
+            function initValues(response, name) {                                                    
+            console.log("++Response: " + response);            
+            var successful = "http://192.168.190.100:8084/JSLEEorchestrator/" + name + ".png";
+            var error = "http://192.168.190.100:8084/JSLEEorchestrator/error.png";
+            console.log("Error: " + error);
+            console.log("Successful: " + successful);            
+            if (response === successful) {
+                document.getElementById("response").innerHTML = JSON.stringify("BUILD SUCCESSFUL:  The service " + name + " was deployed correctly!");
+                document.getElementById("response").style.color = 'green';
+            } else if (response === error) {
+                document.getElementById("response").innerHTML = JSON.stringify("BUILD FAILED:  The service " + name + " could not be deployed!");
+                document.getElementById("response").style.color = 'red';
+            } else {
+                document.getElementById("response").innerHTML = JSON.stringify("None...");
+                document.getElementById("response").style.color = 'blue';
+            }
+            console.log("Result: " + response);
+        }
 
 
         </script>
@@ -334,12 +332,12 @@
                 </li>
                 <li>                    
                     <div>
-                        <h:form prependId="false">
+                        <h:form id="view-result" prependId="false">
                             <h:inputHidden id="json-graph" value="#{componentInteractionManagedBean.jsonGraph}"/>
                             <p:commandButton id="json-graph-Btn" actionListener="#{componentInteractionManagedBean.sendJson()}" style="display: none;"></p:commandButton>
                             <h2 style="width: 100px; margin: 15px 5px -3px 5px; font-weight: 600; color: #777;">JSON Graph</h2>
                             <p id="jsonResult" style="display: block; overflow: scroll; margin: 5px; font-size: 11px;padding: 5px; width: 232px; height: 200px; border: #999 dotted 1px;"></p>
-                            <br />                            
+                            <br /> 
                             <h2 style="width: 100px; margin: 15px 5px -3px 5px; font-weight: 600; color: #777;">Output</h2>
                             <p id="response" style="display: block; margin: 5px; font-size: 11px;padding: 5px; width: 232px; height: 40px; border: #999 dotted 1px;"></p>
                         </h:form>
@@ -599,9 +597,7 @@
                 </p:dialog>
             </h:form>
 
-            <h:form id="rsp" prependId="false">                 
-                <p:commandButton id="update-output" onclick="setResponse();" style="display: none" />    
-                <p:outputLabel id="get-respose" value="#{componentInteractionManagedBean.viewResponse()}" style="display: none;"/>
+            <h:form id="rsp" prependId="false">                                  
                 <p:commandButton id="run-btn" onclick="#{componentInteractionManagedBean.runComplexComponent()}" style="display: none;"></p:commandButton>
                 <p:commandButton id="response-btn" onclick="imgDlg.show();" update=":rsp:fresponse,:rsp:fresponseImg" style="display: none;"></p:commandButton>
                 <p:dialog header="System Response" modal="true" showEffect="fade" hideEffect="fade" widgetVar="imgDlg" resizable="false" dynamic="true">                  
@@ -612,8 +608,7 @@
                     <p:graphicImage id="fresponseImg" value="#{componentInteractionManagedBean.viewResponse()}" alt="aquí debería ir algo"></p:graphicImage>
                     <br />
                     <br />
-                    <p:commandButton value="Ok" onclick="imgDlg.hide();
-                setResponse();"/>
+                    <p:commandButton value="Ok" onclick="imgDlg.hide();"/>
                 </p:dialog>
             </h:form>
 

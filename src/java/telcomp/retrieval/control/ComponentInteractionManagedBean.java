@@ -68,6 +68,7 @@ public class ComponentInteractionManagedBean {
         this.target = new Operation();
         this.targetUserData = new Operation();
         this.checked = false;
+        this.response = "JavierS";
 
 
 //        for (int i = 0; i < 3; i++) {
@@ -444,7 +445,7 @@ public class ComponentInteractionManagedBean {
         //String summary = checked ? "Now, this edge will be both data and control." : "Now, this one will be just a data flow edge. ";                
         String summary = this.checked ? "Now, this edge will be both data and control." : "Now, this one will be just a data flow edge.";
         System.out.println(summary);
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(summary));              
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(summary));
     }
 
     public String getJsonGraph() {
@@ -462,17 +463,17 @@ public class ComponentInteractionManagedBean {
         webservice.JSLEEorchestrator_Service deleteService = new JSLEEorchestrator_Service();
         return deleteService.getJSLEEorchestratorPort().deleteService(arg0);
     }
-    
-    private static boolean searchServiceOnJSLEE(java.lang.String arg0){
+
+    private static boolean searchServiceOnJSLEE(java.lang.String arg0) {
         boolean exist = false;
         System.out.println("Searching... " + arg0);
         webservice.JSLEEorchestrator_Service deleteService = new JSLEEorchestrator_Service();
         List<String> deployedServices = new ArrayList<String>();
         deployedServices = deleteService.getJSLEEorchestratorPort().getDeployedServices();
         for (String service : deployedServices) {
-            if(service.equalsIgnoreCase(arg0)){
+            if (service.equalsIgnoreCase(arg0)) {
                 exist = true;
-            }                
+            }
         }
         return exist;
     }
@@ -492,17 +493,18 @@ public class ComponentInteractionManagedBean {
         try {
             System.out.println("Complex Component Name: " + this.complexComponentName);
             System.out.println("Json: " + this.jsonGraph);
-            System.out.println("Reply from Adaptation and Deployment modules: " + this.getResponse());            
+            System.out.println("Reply from Adaptation and Deployment modules: " + this.getResponse());
             String result = setJsonGraphToJSEEOrchestrate(this.jsonGraph, this.complexComponentName);
-            this.setResponse(result);
+            this.response = result;
             System.out.println("Reply from Adaptation and Deployment modules (Cat): " + this.response);
+            System.out.println("Response send Json: " + this.response);
+            RequestContext.getCurrentInstance().execute("setResponse('" + this.response + "')");
+            return this.response;
         } catch (Exception e) {
             System.out.println("trigger exception..." + e);
+            return "there is not response";
         }
-        System.out.println("Response send Json: " + this.response);   
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(this.response));
-        RequestContext.getCurrentInstance().execute("document.getElementById('update-output').click()");
-        return this.response;
+
     }
 
     public void runComplexComponent() {

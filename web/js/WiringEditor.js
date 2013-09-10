@@ -605,11 +605,9 @@ You can generate your own Telco2.0 Services without ever having to write a line 
                 document.getElementById('json-graph').value = JSON.stringify(wiring);       //Set the Json graph.
                 document.getElementById('json-graph-Btn').click();                          //Send the Json Graph to the Adaptation and Deployment modules.                
                 document.getElementById('jsonResult').innerHTML = JSON.stringify(wiring);   //To view the Json graph on the panel.                  
-                console.log("listo!");
-                
             }
         },
-        
+
         /**
          * @method onRun
          */
