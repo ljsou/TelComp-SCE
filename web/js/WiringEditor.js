@@ -197,8 +197,8 @@ You can generate your own Telco2.0 Services without ever having to write a line 
                     },
                     {
                         position: 'right',
-                        width: 265,
-                        resize: true,
+                        width: 270,
+                        resize: false,
                         body: 'right',
                         gutter: '5px',
                         collapse: true,
@@ -286,8 +286,8 @@ You can generate your own Telco2.0 Services without ever having to write a line 
                     },
                     {
                         position: 'right',
-                        width: 230,
-                        resize: true,
+                        width: 235,
+                        resize: false,
                         body: 'right',
                         gutter: '5px',
                         collapse: true,
@@ -303,7 +303,7 @@ You can generate your own Telco2.0 Services without ever having to write a line 
                     },
                     {
                         position: 'left',
-                        width: 265,
+                        width: 270,
                         resize: true,
                         body: 'left',
                         gutter: '5px',
