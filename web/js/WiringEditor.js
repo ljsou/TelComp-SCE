@@ -570,7 +570,7 @@ You can generate your own Telco2.0 Services without ever having to write a line 
         onNew: function() {
 
             if (!this.isSaved()) {
-                if (!confirm("Warning: Your work is not saved yet ! Press ok to continue anyway.")) {
+                if (!confirm("Are you sure you want to leave this composition? Press ok to continue anyway.")) {
                     return;
                 }
             }
@@ -601,13 +601,13 @@ You can generate your own Telco2.0 Services without ever having to write a line 
                 this.alert("Please choose a name");
                 return;
             } else {
+                this.markSaved();
                 var wiring = this.layer.getWiring();
                 document.getElementById('json-graph').value = JSON.stringify(wiring);       //Set the Json graph.
                 document.getElementById('json-graph-Btn').click();                          //Send the Json Graph to the Adaptation and Deployment modules.                
                 document.getElementById('jsonResult').innerHTML = JSON.stringify(wiring);   //To view the Json graph on the panel.                  
             }
         },
-
         /**
          * @method onRun
          */
