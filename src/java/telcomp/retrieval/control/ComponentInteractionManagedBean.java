@@ -494,6 +494,13 @@ public class ComponentInteractionManagedBean {
             System.out.println("Complex Component Name: " + this.complexComponentName);
             System.out.println("Json: " + this.jsonGraph);
             System.out.println("Reply from Adaptation and Deployment modules: " + this.getResponse());
+
+            if (!removeService(this.complexComponentName)) {
+                System.out.println("Ther is no " + this.complexComponentName + " service");
+            } else {
+                System.out.println("The service " + this.complexComponentName + " was removed");
+            }
+
             String result = setJsonGraphToJSEEOrchestrate(this.jsonGraph, this.complexComponentName);
             this.response = result;
             System.out.println("Reply from Adaptation and Deployment modules (Cat): " + this.response);
@@ -518,7 +525,6 @@ public class ComponentInteractionManagedBean {
 //            }
 //        }
 //    }
-
     public String viewResponse() {
         System.out.println("view resp: " + this.response);
         return this.response;

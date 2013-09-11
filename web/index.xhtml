@@ -263,28 +263,28 @@
 
             function setResponse(respuesta) {
                 console.log("# " + respuesta);
-                var name = editor.options.propertiesFields.inputParams.name;      
+                var name = editor.options.propertiesFields.inputParams.name;
                 initValues(respuesta, name);
             }
-            
-            function initValues(response, name) {                                                    
-            console.log("++Response: " + response);            
-            var successful = "http://192.168.190.100:8084/JSLEEorchestrator/" + name + ".png";
-            var error = "http://192.168.190.100:8084/JSLEEorchestrator/error.png";
-            console.log("Error: " + error);
-            console.log("Successful: " + successful);            
-            if (response === successful) {
-                document.getElementById("response").innerHTML = JSON.stringify("BUILD SUCCESSFUL:  The service " + name + " was deployed correctly!");
-                document.getElementById("response").style.color = 'green';
-            } else if (response === error) {
-                document.getElementById("response").innerHTML = JSON.stringify("BUILD FAILED:  The service " + name + " could not be deployed!");
-                document.getElementById("response").style.color = 'red';
-            } else {
-                document.getElementById("response").innerHTML = JSON.stringify(response);
-                document.getElementById("response").style.color = 'blue';
+
+            function initValues(response, name) {
+                console.log("++Response: " + response);
+                var successful = "http://192.168.190.100:8084/JSLEEorchestrator/" + name + ".png";
+                var error = "http://192.168.190.100:8084/JSLEEorchestrator/error.png";
+                console.log("Error: " + error);
+                console.log("Successful: " + successful);
+                if (response === successful) {
+                    document.getElementById("response").innerHTML = JSON.stringify("BUILD SUCCESSFUL:  The service " + name + " was deployed correctly!");
+                    document.getElementById("response").style.color = 'green';
+                } else if (response === error) {
+                    document.getElementById("response").innerHTML = JSON.stringify("BUILD FAILED:  The service " + name + " could not be deployed!");
+                    document.getElementById("response").style.color = 'red';
+                } else {
+                    document.getElementById("response").innerHTML = JSON.stringify(response);
+                    document.getElementById("response").style.color = 'blue';
+                }
+                console.log("Result: " + response);
             }
-            console.log("Result: " + response);
-        }
 
 
         </script>
@@ -332,7 +332,7 @@
                 </li>
                 <li>                    
                     <div>
-                        <h:form id="view-result" prependId="false">
+                        <h:form id="view-result" prependId="false">                            
                             <h:inputHidden id="json-graph" value="#{componentInteractionManagedBean.jsonGraph}"/>
                             <p:commandButton id="json-graph-Btn" actionListener="#{componentInteractionManagedBean.sendJson()}" style="display: none;"></p:commandButton>
                             <h2 style="width: 100px; margin: 15px 5px -3px 5px; font-weight: 600; color: #777;">JSON Graph</h2>
@@ -580,8 +580,7 @@
                 </p:dialog>    
             </h:form>
             <h:form id="newComposition" prependId="false">
-                <h:commandButton id="new-btn" value="Submit"  style="height: 30px; font-size: 13px; display: none;"
-                                 onclick="newDlg.show();
+                <h:commandButton id="new-btn" value="Submit"  style="display: none;" onclick="newDlg.show();
                 return false;"/>
                 <p:dialog header="New Composition" modal="true" showEffect="fade" hideEffect="fade" widgetVar="newDlg" resizable="false">  
                     <p:outputPanel id="newCompositionPanel">  
@@ -597,7 +596,7 @@
             </h:form>
 
             <h:form id="rsp" prependId="false">                                  
-<!--                <p:commandButton id="run-btn" onclick="{componentInteractionManagedBean.runComplexComponent()}" style="display: none;"></p:commandButton>-->
+                <!--                <p:commandButton id="run-btn" onclick="{componentInteractionManagedBean.runComplexComponent()}" style="display: none;"></p:commandButton>-->
                 <p:commandButton id="response-btn" onclick="imgDlg.show();" update=":rsp:fresponse,:rsp:fresponseImg" style="display: none;"></p:commandButton>
                 <p:dialog header="System Response" modal="true" showEffect="fade" hideEffect="fade" widgetVar="imgDlg" resizable="false" dynamic="true">                  
                     <br />
