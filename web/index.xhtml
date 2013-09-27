@@ -4,7 +4,10 @@ To change this template, choose Tools | Templates
 and open the template in the editor.
 -->
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets" lang="en">
     <head>
         <title>TelComp 2.0 Project</title>
         <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen"/>        
@@ -41,101 +44,28 @@ and open the template in the editor.
                     </ul>
                     <div class="tab-content">
                         <div class="tab-pane active" id="tab1">
-                            <p>Inicio...</p>
+                            <ui:include src="home.xhtml" />
                         </div>
                         <div class="tab-pane" id="tab2">
-                            <p>Proyecto...</p>
+                            <ui:include src="project.xhtml" />
                         </div>
                         <div class="tab-pane" id="tab3">
-                            <p>Miembros...</p>
+                            <ui:include src="members.xhtml" />
                         </div>
                         <div class="tab-pane" id="tab4">
-                            <ul class="thumbnails">
-                                <li class="span3">
-                                    <div class="thumbnail">
-                                        <img src="images/team/leandro.png"></img>
-                                        <h4 class="text-info">Leandro Ordoñez Ante</h4>
-                                        <p style="font-size: 12px; line-height: 15px;">MSc.(c) en Ingeniería Telemática,<br/> 
-                                            <strong>Universidad del Cauca</strong>
-                                        </p>
-                                        <address style="font-size: 12px; line-height: 15px;">                                             
-                                            <strong>Email: </strong><a href="mailto:#">first.last@example.com</a>
-                                        </address>                                       
-                                    </div>
-                                </li>                                
-                                <li class="span3">
-                                    <div class="thumbnail">
-                                        <img src="images/team/julianC.png" alt=""/>
-                                       <h4 class="text-info">Julián Andrés Caicedo</h4>
-                                        <p style="font-size: 12px; line-height: 15px;">MSc.(c) en Ingeniería Telemática,<br/> 
-                                            <strong>Universidad del Cauca</strong>
-                                        </p>
-                                        <address style="font-size: 12px; line-height: 15px;">                                             
-                                            <strong>Email: </strong><a href="mailto:#">first.last@example.com</a>
-                                        </address> 
-                                    </div>
-                                </li>                                
-                                <li class="span3">
-                                    <div class="thumbnail">
-                                        <img src="images/team/davidR.png" alt=""/>                                       
-                                        <h4 class="text-info">Jesús David Ramírez</h4>
-                                        <p style="font-size: 12px; line-height: 15px;">MSc.(c) en Ingeniería Telemática,<br/> 
-                                            <strong>Universidad del Cauca</strong>
-                                        </p>
-                                        <address style="font-size: 12px; line-height: 15px;">                                             
-                                            <strong>Email: </strong><a href="mailto:#">first.last@example.com</a>
-                                        </address>  
-                                    </div>
-                                </li>                                
-                                <li class="span3">
-                                    <div class="thumbnail">
-                                        <img src="images/team/julianR.png" alt=""/>                                                                                
-                                        <h4 class="text-info">Julián Andrés Rojas</h4>
-                                        <p style="font-size: 12px; line-height: 15px;">MSc.(c) en Ingeniería Telemática,<br/> 
-                                            <strong>Universidad del Cauca</strong>
-                                        </p>
-                                        <address style="font-size: 12px; line-height: 15px;">                                             
-                                            <strong>Email: </strong><a href="mailto:#">first.last@example.com</a>
-                                        </address> 
-                                    </div>
-                                </li>                                
-                                <li class="span3">
-                                    <div class="thumbnail">
-                                        <img src="images/team/luis.png" alt=""/>                                        
-                                        <h4 class="text-info">Luis António Rojas</h4>
-                                        <p style="font-size: 12px; line-height: 15px;">MSc.(c) en Ingeniería Telemática,<br/> 
-                                            <strong>Universidad del Cauca</strong>
-                                        </p>
-                                        <address style="font-size: 12px; line-height: 15px;">                                             
-                                            <strong>Email: </strong><a href="mailto:#">first.last@example.com</a>
-                                        </address>  
-                                    </div>
-                                </li>                                
-                                <li class="span3">
-                                    <div class="thumbnail">
-                                        <img src="images/team/javier.png" alt=""/>
-                                        <h4 class="text-info">Luis Javier Suarez</h4>                                        
-                                        <p style="font-size: 12px; line-height: 15px;">MSc.(c) en Ingeniería Telemática,<br/> 
-                                            <strong>Universidad del Cauca</strong>
-                                        </p>
-                                        <address style="font-size: 12px; line-height: 15px;">                                            
-                                            <strong>Email: </strong><a href="mailto:#">first.last@example.com</a>
-                                        </address> 
-                                    </div>
-                                </li>                                                                                       
-                            </ul>
+                            <ui:include src="team.xhtml" />
                         </div>
                         <div class="tab-pane" id="tab5">
-                            <p>Dirección...</p>
+                            <ui:include src="management.xhtml" />
                         </div>
                         <div class="tab-pane" id="tab6">
-                            <p>Recursos...</p>
+                            <ui:include src="resources.xhtml" />
                         </div>
                         <div class="tab-pane" id="tab7">
-                            <p>Documentos Internos...</p>
+                            <ui:include src="internal.xhtml" />
                         </div>
                         <div class="tab-pane" id="tab8">
-                            <p>Contacto...</p>
+                            <ui:include src="contact.xhtml" />
                         </div>
                     </div>
                 </div>
