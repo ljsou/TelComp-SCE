@@ -5,9 +5,9 @@ and open the template in the editor.
 -->
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:f="http://java.sun.com/jsf/core"
-    xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:ui="http://java.sun.com/jsf/facelets" lang="en">
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets" lang="en">
     <head>
         <title>TelComp 2.0 Project</title>
         <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen"/>        
@@ -15,7 +15,7 @@ and open the template in the editor.
         <script src="bootstrap/js/bootstrap.min.js"></script>
     </head>
     <body>
-        <div class="container">
+        <div class="container-fluid">
             <div>
                 <img src="images/GITlogo.png" width="40" height="40" style="float: left; opacity: .8; margin: 8px 4px 0px 0px;"/>
                 <div style="float: left">
@@ -30,47 +30,101 @@ and open the template in the editor.
                     </blockquote>
                 </div>
             </div> 
-            <div style="margin-top: 70px;">
-                <div class="tabbable">  
-                    <ul class="nav nav-tabs">
-                        <li class="active"><a href="#tab1" data-toggle="tab"><i class="icon-home"></i> Inicio</a></li>
-                        <li><a href="#tab2" data-toggle="tab"> Proyecto</a></li>
-                        <li><a href="#tab3" data-toggle="tab"> Miembros</a></li>
-                        <li><a href="#tab4" data-toggle="tab"><i class="icon-flag"></i> Equipo</a></li>
-                        <li><a href="#tab5" data-toggle="tab"><i class="icon-briefcase"></i> Dirección</a></li>
-                        <li><a href="#tab6" data-toggle="tab">Recursos</a></li>
-                        <li><a href="#tab7" data-toggle="tab"><i class="icon-lock"></i>Documentos Internos</a></li>
-                        <li><a href="#tab8" data-toggle="tab">Contacto</a></li>
-                    </ul>
-                    <div class="tab-content">
-                        <div class="tab-pane active" id="tab1">
-                            <ui:include src="home.xhtml" />
+            <div class="row-fluid">
+                <div class="span9">
+
+                    <div class="tabbable">  
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a href="#tab1" data-toggle="tab"><i class="icon-home"></i> Inicio</a></li>
+                            <li><a href="#tab2" data-toggle="tab"> Proyecto</a></li>
+                            <li><a href="#tab3" data-toggle="tab"> Miembros</a></li>
+                            <li><a href="#tab4" data-toggle="tab"><i class="icon-flag"></i> Equipo</a></li>
+                            <li><a href="#tab5" data-toggle="tab"><i class="icon-briefcase"></i> Dirección</a></li>
+                            <li><a href="#tab6" data-toggle="tab">Recursos</a></li>
+                            <li><a href="#tab7" data-toggle="tab"><i class="icon-lock"></i>Documentos Internos</a></li>
+                            <li><a href="#tab8" data-toggle="tab">Contacto</a></li>
+                            <!--<li class="dropdown pull-right">
+                                <a href="#" data-toggle="dropdown" class="dropdown-toggle">Dropdown<strong class="caret"></strong></a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="#">Action</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Another action</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Something else here</a>
+                                    </li>
+                                    <li class="divider">
+                                    </li>
+                                    <li>
+                                        <a href="#">Separated link</a>
+                                    </li>
+                                </ul>
+                            </li>-->
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="tab1">
+                                <div class="hero-unit">
+                                    <ui:include src="home.xhtml" />
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="tab2">
+                                <div class="hero-unit">
+                                    <ui:include src="project.xhtml" />
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="tab3">
+                                <div class="hero-unit">
+                                    <ui:include src="members.xhtml" />
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="tab4">
+                                <div class="hero-unit">
+                                    <ui:include src="team.xhtml" />
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="tab5">
+                                <div class="hero-unit">
+                                    <ui:include src="management.xhtml" />
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="tab6">
+                                <div class="hero-unit">
+                                    <ui:include src="resources.xhtml" />
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="tab7">
+                                <div class="hero-unit">
+                                    <ui:include src="internal.xhtml" />
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="tab8">
+                                <div class="hero-unit">
+                                    <ui:include src="contact.xhtml" />
+                                </div>
+                            </div>
                         </div>
-                        <div class="tab-pane" id="tab2">
-                            <ui:include src="project.xhtml" />
-                        </div>
-                        <div class="tab-pane" id="tab3">
-                            <ui:include src="members.xhtml" />
-                        </div>
-                        <div class="tab-pane" id="tab4">
-                            <ui:include src="team.xhtml" />
-                        </div>
-                        <div class="tab-pane" id="tab5">
-                            <ui:include src="management.xhtml" />
-                        </div>
-                        <div class="tab-pane" id="tab6">
-                            <ui:include src="resources.xhtml" />
-                        </div>
-                        <div class="tab-pane" id="tab7">
-                            <ui:include src="internal.xhtml" />
-                        </div>
-                        <div class="tab-pane" id="tab8">
-                            <ui:include src="contact.xhtml" />
+                    </div>
+
+
+                </div>
+                <div class="span3">
+                    <!--<div style="margin-top: 15%">-->
+                    <form class="form-search">
+                        <input type="text" class="input-medium search-query" /> <button type="submit" class="btn">Search</button>
+                    </form>
+                    <div class="media">
+                        <a href="#" class="pull-left"><img src="http://lorempixel.com/64/64/" class="media-object" alt='' /></a>
+                        <div class="media-body">
+                            <h4 class="media-heading">
+                                Nested media heading
+                            </h4> Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.
                         </div>
                     </div>
                 </div>
+                <!--</div>-->
             </div>
-
             <div style="border-top: #ddd solid 1px;">
                 <small class="muted">Copyright © 2013 Telematics Engineering Group - All rights reserved.</small>
             </div>
