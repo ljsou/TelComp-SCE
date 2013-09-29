@@ -7,157 +7,261 @@ and open the template in the editor.
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head></head>
     <body>
-        <h3> Proyecto TelComp2.0 </h3>
-        <div class="row-fluid">
-            <div class="span12">
-                <div class="accordion" id="accordion-508021">
-                    <div class="accordion-group">
-                        <div class="accordion-heading">
-                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-508021" href="#accordion-element-1">Problema</a>
-                        </div>
-                        <div id="accordion-element-1" class="accordion-body collapse">
-                            <div class="accordion-inner">
-                                <p style="font-size: medium">
-                                    La Web ha evolucionado desde la consulta de información por medio de simples páginas Web, hasta la extracción personalizada de la misma a través de aplicaciones y Servicios Web. En efecto, en la actualidad, se puede encontrar una variada oferta de recursos y servicios (Web 2.0), entre los que se encuentran: comunidades virtuales, servicios de redes sociales (SNS), blogs, wikis y mashups. Esto ha constituido un cambio radical en la forma en que las personas y las empresas perciben la información, a tal punto que ha modificado la manera en que éstas interactúan.
-                                    <br /><br />Por ejemplo, la industria de las telecomunicaciones ha generado un nuevo modelo conocido como Telco 2.0, el cual relaciona los conceptos, servicios y tecnologías de la Web 2.0 con los servicios de telecomunicaciones tradicionales. Esto permite que los operadores amplíen su portafolio de servicios y que sus clientes se relacionen de manera más directa y confiable. Sin embargo, ante la fuerte competencia de este sector, los operadores se han visto obligados a abrir su plataforma de servicios de telecomunicaciones y permitir que empresas de desarrollo de software, como las PYME (Pequeñas Y Medianas Empresas) proveedoras de aplicaciones y contenido, puedan crear servicios innovadores con base en su plataforma. Por esta razón, tanto los operadores como las PYMES proveedoras de aplicaciones y contenido, deben adecuar su infraestructura TI (Tecnologías de la Información) con el fi n de desarrollar capacidades para crear y desplegar nuevos servicios convergentes con un bajo tiempo de salida al mercado (Time-to-Market). En otras palabras, adelantarse a la competencia en el lanzamiento de un servicio con el fin de generar altos beneficios para amortizar rápidamente los gastos de creación y despliegue.
-                                </p>
-                                <div style="text-align: center">
-                                    <img src="images/problem.png" style="width: 70%; text-align: center" alt="Problema" />
-                                    <br /><p style="font-size: small"><em>Planteamiento del Problema</em></p>
-                                </div>
-                                <br />
-                                <p style="font-size: medium">
-                                    <br />Infortunadamente, uno de los principales problemas que afrontan las PYME del sector TIC radica precisamente en la carencia de estrategias que les permitan responder de forma rápida a las exigencias del mercado, por consiguiente, precisan definir mecanismos para el despliegue dinámico de servicios en ambientes convergentes, enfrentando tres grandes retos:
-                                </p>
-                                <br />
-                                <ul>
-                                    <li>
-                                        Definir mecanismos adecuados para la selección de servicios a partir del amplio y creciente portafolio ofrecido por las PYME del sector TIC, grandes empresas en la Web 2.0 y los Operadores de Telecomunicaciones.
-                                    </li>
-                                    <li>
-                                        Adaptar de manera óptima los servicios seleccionados teniendo en cuenta que pueden ser actualizados en tiempo de ejecución.
-                                    </li>
-                                    <li>
-                                        Proporcionar una integración adecuada de recursos ofrecidos por diversas organizaciones (PYME, grandes empresas Web 2.0 y Operadores de Telecomunicaciones).
-                                    </li>
-                                </ul>
-                                <br />
-                                <p style="font-size: medium">
-                                    De acuerdo a lo planteado, la recuperación, adaptación y composición de servicios convergentes se reafirman en conjunto como una de las áreas de investigación más importantes en el campo de las TIC, puesto que soportan y promueven la rápida provisión de nuevos servicios y la consecuente expansión de los mercados de los operadores de telecomunicaciones. En este sentido, la hipótesis que plantea la presente propuesta considera que los servicios convergentes pueden ser descritos como CC (Componentes Complejos1) de tal manera, que el problema de la recuperación y adaptación de servicios, se redirige a:
-                                </p>
-                                <br />
-                                <ul>
-                                    <li>
-                                        Capturar la semántica de los CC utilizando representaciones formales (grafos, autómatas, redes de petri, pi-calculus, etc).
-                                    </li>
-                                    <li>
-                                        Desarrollar técnicas de recuperación, adaptación y composición de los CC.
-                                    </li>
-                                </ul>
+        <div style="margin: 0 auto; width: 700px">
+            <h3> Proyecto TelComp2.0 </h3>
+            <div class="row-fluid">
+                <div class="span12">
+                    <div class="accordion" id="accordion-508021">
+                        <div class="accordion-group">
+                            <div class="accordion-heading">
+                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-508021" href="#accordion-element-1">Problema</a>
                             </div>
-                        </div>
-                    </div>
-                    <div class="accordion-group">
-                        <div class="accordion-heading">
-                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-508021" href="#accordion-element-2">Motivación</a>
-                        </div>
-                        <div id="accordion-element-2" class="accordion-body collapse">
-                            <div class="accordion-inner">
-                                <p style="font-size: medium">
-                                    Los Servicios de Redes Sociales se han consolidado como una poderosa herramienta para la comunicación y colaboración a través de Internet; muestra de ello, es que la red social Facebook ha superado el número de usuarios y de visitas de buscadores como Google; tendencia que se mantendrá a futuro según diversos estudios.
-                                    <br /><br />En su evolución, los proveedores de SNS han enfocado sus esfuerzos en dar movilidad a sus servicios, procurando enriquecer la accesibilidad de la red social y facilitar la comunicación entre sus miembros. Así, el acceso ubicuo a los SNS es considerado esencial, puesto que de esta manera, los servicios podrán ser desplegados sobre cualquier red (convergencia a nivel de red) y accedidos desde cualquier dispositivo (convergencia a nivel de dispositivo).
-                                    <br /><br />Por consiguiente, dotar a los SNS de características ubicuas requiere la combinación de recursos procedentes de distintos entornos (Web 2.0 y Telco), y dada la cantidad de servicios existentes, los mecanismos de recuperación y composición dinámica son imprescindibles para que los desarrolladores y usuarios finales puedan crear servicios convergentes de una manera fácil y práctica en cuatro escenarios:
-                                </p>
-                                <dl style="font-size: medium">
-                                    <dt>
-                                        Comunicaciones Ubicuas.
-                                    </dt> 
-                                    <dd>
-                                        La incorporación de este tipo de servicios enriquecerá las interacciones de los miembros de los SNS; así, los operadores de telecomunicaciones móviles pueden ofrecer servicios de comunicación para ser integrados en los SNS. Esto permite que los miembros de la comunidad se comuniquen de una manera natural y espontánea. Para este propósito se puede hacer uso de: llamadas de voz, llamadas de video, mensajería (SMS, MMS e IM), multi-conferencia, Push To Talk over Cellular, etc.
-                                    </dd>
-                                    <dt>
-                                        Contenido generado por el usuario.
-                                    </dt>
-                                    <dd>
-                                        La generación de contenidos por parte de los usuarios de la red, es uno de los paradigmas esenciales de la Web 2.0; en este sentido, es importante que los operadores de telecomunicaciones ofrezcan mecanismos que permitan a los usuarios generar contenido desde sus terminales fijos y/o móviles. Así, los usuarios de los SNS podrán capturar y publicar el contenido a través de servicios de telecomunicaciones en tiempo real (publicar un video que se está grabando, publicar un video clip utilizando una video llamada, publicar un video vía chat, publicar un video a través de IPTV, etc.).
-                                    </dd>
-                                    <dt>
-                                        Usuarios enriquecidos con contexto. 
-                                    </dt>
-                                    <dd>
-                                        Los terminales de usuario (fijos/móviles) son una fuente potencial relevante para capturar dos parámetros fundamentales en la determinación del contexto de entrega de un servicio: presencia y localización. La combinación de estos dos parámetros son usados generalmente para enriquecer y personalizar dinámicamente la operación de los SNS y todas las aplicaciones desarrolladas a través de ellos.
-                                    </dd>
-                                    <dt>
-                                        Seguimiento de las actividades realizadas por los usuarios.
-                                    </dt>
-                                    <dd>
-                                        Las actividades de los usuarios en la red de telecomunicaciones pueden ser monitoreadas y analizadas para proveer un alto grado de automatización y dinamismo en la operación de los SNS. Por ejemplo, la relevancia de las relaciones pueden ser inferidas a través de la frecuencia de llamadas de teléfono realizadas por los miembros de la red. Por lo tanto, la red del operador puede ser considerada como una red social a ser enriquecida con los SNS.
-                                    </dd>
-                                </dl>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="accordion-group">
-                        <div class="accordion-heading">
-                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-508021" href="#accordion-element-3">Objetivos del Proyecto</a>
-                        </div>
-                        <div id="accordion-element-3" class="accordion-body collapse">
-                            <div class="accordion-inner">
-                                <div style="font-size: medium">
-                                    <ul>
+                            <div id="accordion-element-1" class="accordion-body collapse">
+                                <div class="accordion-inner">
+                                    <p class="normal_text">
+                                        La Web ha evolucionado desde la consulta de información por medio de simples páginas Web, hasta la extracción personalizada de la misma a través de aplicaciones y Servicios Web. En efecto, en la actualidad, se puede encontrar una variada oferta de recursos y servicios (Web 2.0), entre los que se encuentran: comunidades virtuales, servicios de redes sociales (SNS), blogs, wikis y mashups. Esto ha constituido un cambio radical en la forma en que las personas y las empresas perciben la información, a tal punto que ha modificado la manera en que éstas interactúan.
+                                        <br /><br />Por ejemplo, la industria de las telecomunicaciones ha generado un nuevo modelo conocido como Telco 2.0, el cual relaciona los conceptos, servicios y tecnologías de la Web 2.0 con los servicios de telecomunicaciones tradicionales. Esto permite que los operadores amplíen su portafolio de servicios y que sus clientes se relacionen de manera más directa y confiable. Sin embargo, ante la fuerte competencia de este sector, los operadores se han visto obligados a abrir su plataforma de servicios de telecomunicaciones y permitir que empresas de desarrollo de software, como las PYME (Pequeñas Y Medianas Empresas) proveedoras de aplicaciones y contenido, puedan crear servicios innovadores con base en su plataforma. Por esta razón, tanto los operadores como las PYMES proveedoras de aplicaciones y contenido, deben adecuar su infraestructura TI (Tecnologías de la Información) con el fin de desarrollar capacidades para crear y desplegar nuevos servicios convergentes con un bajo tiempo de salida al mercado (Time-to-Market). En otras palabras, adelantarse a la competencia en el lanzamiento de un servicio con el fin de generar altos beneficios para amortizar rápidamente los gastos de creación y despliegue.
+                                    </p>
+                                    <div style="text-align: center">
+                                        <img src="images/problem.png" style="width: 70%; text-align: center" alt="Problema" />
+                                        <br /><p style="font-size: small"><em>Figura 1. Planteamiento del Problema</em></p>
+                                    </div>
+                                    <br />
+                                    <p class="normal_text">
+                                        <br />Infortunadamente, uno de los principales problemas que afrontan las PYME del sector TIC radica precisamente en la carencia de estrategias que les permitan responder de forma rápida a las exigencias del mercado, por consiguiente, precisan definir mecanismos para el despliegue dinámico de servicios en ambientes convergentes, enfrentando tres grandes retos:
+                                    </p>
+                                    <br />
+                                    <ul class="normal_text">
                                         <li>
-                                            <dl>
-                                                <dt>
-                                                    <b>Objetivo General</b>
-                                                </dt>
-                                                <dd>
-                                                    <br />Definir mecanismos para la recuperación automática y la composición dinámica de componentes complejos (CC) utilizando representaciones formales que faciliten la integración de servicios de redes sociales en un entorno Telco 2.0 (Convergencia Telco - Web 2.0)
-                                                </dd>
-                                            </dl>
+                                            Definir mecanismos adecuados para la selección de servicios a partir del amplio y creciente portafolio ofrecido por las PYME del sector TIC, grandes empresas en la Web 2.0 y los Operadores de Telecomunicaciones.
                                         </li>
                                         <li>
-                                            <dl>
-                                                <dt>
-                                                    <b>Objetivos Específicos</b>
-                                                </dt>
-                                                <dd>
-                                                    <br />
-                                                    <ol>
-                                                        <li>
-                                                            Definir mecanismos para la representación formal de los servicios de redes sociales, como CC en un entorno Telco2.0.
-                                                        </li>
-                                                        <li>
-                                                            Construir un repositorio para el almacenamiento de CC.
-                                                        </li>
-                                                        <li>
-                                                            Desarrollar técnicas de recuperación automática de CC de baja complejidad computacional a partir de descripciones semánticas.
-                                                        </li>
-                                                        <li>
-                                                            Crear mecanismos para la composición dinámica de los CC recuperados.
-                                                        </li>
-                                                        <li>
-                                                            Crear un prototipo de servicios de redes sociales que implemente los métodos propuestos para el descubrimiento automático y la composición dinámica.
-                                                        </li>
-                                                        <li>
-                                                            Evaluar la precisión y el rendimiento de los mecanismos implementados en el prototipo, en un ambiente Telco2.0.
-                                                        </li>
-                                                    </ol>
-                                                </dd>
-                                            </dl>
-
+                                            Adaptar de manera óptima los servicios seleccionados teniendo en cuenta que pueden ser actualizados en tiempo de ejecución.
+                                        </li>
+                                        <li>
+                                            Proporcionar una integración adecuada de recursos ofrecidos por diversas organizaciones (PYME, grandes empresas Web 2.0 y Operadores de Telecomunicaciones).
                                         </li>
                                     </ul>
+                                    <br />
+                                    <p class="normal_text">
+                                        De acuerdo a lo planteado, la recuperación, adaptación y composición de servicios convergentes se reafirman en conjunto como una de las áreas de investigación más importantes en el campo de las TIC, puesto que soportan y promueven la rápida provisión de nuevos servicios y la consecuente expansión de los mercados de los operadores de telecomunicaciones. En este sentido, la hipótesis que plantea la presente propuesta considera que los servicios convergentes pueden ser descritos como CC (Componentes Complejos<a href="#sup-problem"><sup>1</sup></a>) de tal manera, que el problema de la recuperación y adaptación de servicios, se redirige a:
+                                    </p>
+                                    <br />
+                                    <ul class="normal_text">
+                                        <li>
+                                            Capturar la semántica de los CC utilizando representaciones formales (grafos, autómatas, redes de petri, pi-calculus, etc).
+                                        </li>
+                                        <li>
+                                            Desarrollar técnicas de recuperación, adaptación y composición de los CC.
+                                        </li>
+                                    </ul>
+                                    <hr style="width: 200px" />
+                                    <a id="sup-problem" />
+                                    <p style="font-size: 9px">
+                                        <sup>1</sup>El termino <em>Componente Complejo</em> hace referencia a la representación de la semántica inmersa en objetos tales como documentos, procesos de negocio, servicios de telecomunicaciones y servicios Web2.0.
+                                    </p>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="accordion-group">
-                        <div class="accordion-heading">
-                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-508021" href="#accordion-element-4">Descripción de la Solución</a>
+                        <div class="accordion-group">
+                            <div class="accordion-heading">
+                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-508021" href="#accordion-element-2">Motivación</a>
+                            </div>
+                            <div id="accordion-element-2" class="accordion-body collapse">
+                                <div class="accordion-inner">
+                                    <p class="normal_text">
+                                        Los Servicios de Redes Sociales se han consolidado como una poderosa herramienta para la comunicación y colaboración a través de Internet; muestra de ello, es que la red social Facebook ha superado el número de usuarios y de visitas de buscadores como Google; tendencia que se mantendrá a futuro según diversos estudios.
+                                        <br /><br />En su evolución, los proveedores de SNS han enfocado sus esfuerzos en dar movilidad a sus servicios, procurando enriquecer la accesibilidad de la red social y facilitar la comunicación entre sus miembros. Así, el acceso ubicuo a los SNS es considerado esencial, puesto que de esta manera, los servicios podrán ser desplegados sobre cualquier red (convergencia a nivel de red) y accedidos desde cualquier dispositivo (convergencia a nivel de dispositivo).
+                                        <br /><br />Por consiguiente, dotar a los SNS de características ubicuas requiere la combinación de recursos procedentes de distintos entornos (Web 2.0 y Telco), y dada la cantidad de servicios existentes, los mecanismos de recuperación y composición dinámica son imprescindibles para que los desarrolladores y usuarios finales puedan crear servicios convergentes de una manera fácil y práctica en cuatro escenarios:
+                                    </p>
+                                    <dl class="normal_text">
+                                        <dt>
+                                            Comunicaciones Ubicuas.
+                                        </dt> 
+                                        <dd>
+                                            La incorporación de este tipo de servicios enriquecerá las interacciones de los miembros de los SNS; así, los operadores de telecomunicaciones móviles pueden ofrecer servicios de comunicación para ser integrados en los SNS. Esto permite que los miembros de la comunidad se comuniquen de una manera natural y espontánea. Para este propósito se puede hacer uso de: llamadas de voz, llamadas de video, mensajería (SMS, MMS e IM), multi-conferencia, Push To Talk over Cellular, etc.
+                                        </dd>
+                                        <dt>
+                                            Contenido generado por el usuario.
+                                        </dt>
+                                        <dd>
+                                            La generación de contenidos por parte de los usuarios de la red, es uno de los paradigmas esenciales de la Web 2.0; en este sentido, es importante que los operadores de telecomunicaciones ofrezcan mecanismos que permitan a los usuarios generar contenido desde sus terminales fijos y/o móviles. Así, los usuarios de los SNS podrán capturar y publicar el contenido a través de servicios de telecomunicaciones en tiempo real (publicar un video que se está grabando, publicar un video clip utilizando una video llamada, publicar un video vía chat, publicar un video a través de IPTV, etc.).
+                                        </dd>
+                                        <dt>
+                                            Usuarios enriquecidos con contexto. 
+                                        </dt>
+                                        <dd>
+                                            Los terminales de usuario (fijos/móviles) son una fuente potencial relevante para capturar dos parámetros fundamentales en la determinación del contexto de entrega de un servicio: presencia y localización. La combinación de estos dos parámetros son usados generalmente para enriquecer y personalizar dinámicamente la operación de los SNS y todas las aplicaciones desarrolladas a través de ellos.
+                                        </dd>
+                                        <dt>
+                                            Seguimiento de las actividades realizadas por los usuarios.
+                                        </dt>
+                                        <dd>
+                                            Las actividades de los usuarios en la red de telecomunicaciones pueden ser monitoreadas y analizadas para proveer un alto grado de automatización y dinamismo en la operación de los SNS. Por ejemplo, la relevancia de las relaciones pueden ser inferidas a través de la frecuencia de llamadas de teléfono realizadas por los miembros de la red. Por lo tanto, la red del operador puede ser considerada como una red social a ser enriquecida con los SNS.
+                                        </dd>
+                                    </dl>
+                                </div>
+                            </div>
                         </div>
-                        <div id="accordion-element-4" class="accordion-body collapse">
-                            <div class="accordion-inner">
-                                Anim pariatur cliche...
+                        <div class="accordion-group">
+                            <div class="accordion-heading">
+                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-508021" href="#accordion-element-3">Objetivos del Proyecto</a>
+                            </div>
+                            <div id="accordion-element-3" class="accordion-body collapse">
+                                <div class="accordion-inner">
+                                    <div class="normal_text">
+                                        <ul>
+                                            <li>
+                                                <dl>
+                                                    <dt>
+                                                        <b>Objetivo General</b>
+                                                    </dt>
+                                                    <dd>
+                                                        <br />Definir mecanismos para la recuperación automática y la composición dinámica de componentes complejos (CC) utilizando representaciones formales que faciliten la integración de servicios de redes sociales en un entorno Telco 2.0 (Convergencia Telco - Web 2.0)
+                                                    </dd>
+                                                </dl>
+                                            </li>
+                                            <li>
+                                                <dl>
+                                                    <dt>
+                                                        <b>Objetivos Específicos</b>
+                                                    </dt>
+                                                    <dd>
+                                                        <br />
+                                                        <ol>
+                                                            <li>
+                                                                Definir mecanismos para la representación formal de los servicios de redes sociales, como CC en un entorno Telco2.0.
+                                                            </li>
+                                                            <li>
+                                                                Construir un repositorio para el almacenamiento de CC.
+                                                            </li>
+                                                            <li>
+                                                                Desarrollar técnicas de recuperación automática de CC de baja complejidad computacional a partir de descripciones semánticas.
+                                                            </li>
+                                                            <li>
+                                                                Crear mecanismos para la composición dinámica de los CC recuperados.
+                                                            </li>
+                                                            <li>
+                                                                Crear un prototipo de servicios de redes sociales que implemente los métodos propuestos para el descubrimiento automático y la composición dinámica.
+                                                            </li>
+                                                            <li>
+                                                                Evaluar la precisión y el rendimiento de los mecanismos implementados en el prototipo, en un ambiente Telco2.0.
+                                                            </li>
+                                                        </ol>
+                                                    </dd>
+                                                </dl>
+
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-group">
+                            <div class="accordion-heading">
+                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-508021" href="#accordion-element-4">Descripción de la Solución</a>
+                            </div>
+                            <div id="accordion-element-4" class="accordion-body collapse">
+                                <div class="accordion-inner">
+                                    <div class="normal_text">
+                                        <p>
+                                            Teniendo en cuenta los anteriores objetivos, en el marco del proyecto TelComp2.0, se propone la generación de una plataforma para soportar el proceso de creación de nuevos CC, brindando a los desarrolladores y diseñadores herramientas que les permitan la articulación de Componentes Complejos (Servicios Telco 2.0) sobre un entorno unificado<a href="#sup-solution"><sup>2</sup></a>, a partir de la composición de módulos (Servicios atómicos o componentes), con el objetivo de definir nuevas funcionalidades de ágil desarrollo, análogas a los procesos de negocio en el sector Web. Así, en la Figura 2, se presenta el proceso de generación de componentes complejos al utilizar la plataforma propuesta. Los procesos y módulos desarrollados al interior del proyecto TelComp2.0 son resaltados con azul.
+                                        </p>
+                                        <div style="text-align: center">
+                                            <img src="images/process-telcomp.png" style="width: 70%; text-align: center" alt="Generación de CC" />
+                                            <br /><p style="font-size: small"><em>Figura 2. Proceso de generación de componentes Complejos TelComp2.0</em></p>
+                                        </div>
+                                        <p>
+                                            <br /><br />El proceso empieza cuando el diseñador accede al entorno de creación mediante su interfaz gráfica, la cual le permite definir el nuevo CC utilizando una representación formal de grafos. Esta interfaz gráfica asiste al diseñador mediante la automatización de funcionalidades de recuperación que operan sobre los componentes atómicos registrados en el repositorio de componentes complejos. Para esto, se ha considerado cuatro tipos de recuperación:
+                                            <br /><br />Por consiguiente, dotar a los SNS de características ubicuas requiere la combinación de recursos procedentes de distintos entornos (Web 2.0 y Telco), y dada la cantidad de servicios existentes, los mecanismos de recuperación y composición dinámica son imprescindibles para que los desarrolladores y usuarios finales puedan crear servicios convergentes de una manera fácil y práctica en cuatro escenarios:
+                                        </p>
+                                        <ol class="normal_text">
+                                            <li>
+                                                Recuperación de componentes similares, basados en la similitud lingüística de su descripción.
+                                            </li>
+                                            <li>
+                                                Recuperación por dependencia Causal, es decir, la recuperación de aquellos componentes que han sido utilizados antes o después del componente actual de consulta, en secuencias anteriores.
+                                            </li>
+                                            <li>
+                                                Recuperación por compatibilidad de entradas y salidas.
+                                            </li>
+                                            <li>
+                                                Recuperación de componentes concurrentes.
+                                            </li>
+                                        </ol>
+                                        <p>
+                                            <br />Cabe resaltar que tradicionalmente los diseñadores deben realizar las anteriores tareas de manera manual, ya que en la mayoría de plataformas de composición no se considera su automatización. Seguido, el diseñador puede utilizar las funcionalidades de composición para estructurar el flujo de ejecución (orden de ejecución de los componentes atómicos) y el flujo de datos (transacción de datos entre los componentes atómicos) del nuevo CC. Como soporte a la fase final de la etapa de creación se encuentran las funcionalidades de adaptación, las cuales automatizan la generación del código del ejecutable del nuevo componente complejo. En esta última fase se tiene en cuenta técnicas para el manejo de excepciones en el componente complejo, con el fin de garantizar su alta disponibilidad.
+                                            <br /><br />Por otro lado, la plataforma considera la publicación de nuevos componentes atómicos y complejos mediante un repositorio, el cual actúa como un registro común donde se almacena la información de los servicios de redes sociales (SNS), funcionalidades Telco y servicios web básicos. En este repositorio se guarda dos tipos de información relacionada con los componentes: sus documentos descriptores (WSDL) y su modelo formal de representación (Grafos y Redes de Petri).
+                                            <br /><br />Como último paso en el proceso de generación de componentes se encuentra el despliegue del ejecutable del CC en el entorno de ejecución del operador de telecomunicaciones. En el presente proyecto se eligió a Jain Slee como el estándar para el entorno de ejecución de los componentes complejos generados.  Entre las ventajas de esta tecnología se encuentra su alta escalabilidad y la existencia de adaptadores de recursos que permiten la integración de los servicios externos al operador. Una vez desplegado el ejecutable, el usuario puede acceder a sus funcionalidades por medio de la infraestructura de telecomunicaciones del operador.
+                                            <br /><br />Por otra parte, en la figura que se presenta acontinuación, se describe la arquitectura interna de la solución propuesta por el Proyecto Telcomp2.0, la cual corresponde a la vista funcional de los módulos que intervienen en el proceso de generación de Componentes Complejos, donde se puede apreciar tres capas de funcionalidades, basadas en el patrón Modelo Vista y Control (MVC).
+                                        </p>
+                                        <div style="text-align: center">
+                                            <img src="" style="width: 70%; text-align: center" alt="Arquitectura TelComp2.0" />
+                                            <br /><p style="font-size: small"><em>Figura 3. Módulos funcionales del proceso de composición de componentes complejos, TelComp 2.0</em></p>
+                                        </div>
+                                        <br />
+                                        <dl class="normal_text">
+                                            <dt>
+                                                Presentación:
+                                            </dt> 
+                                            <dd>
+                                                Capa dedicada a la interacción entre los usuarios y el sistema, tanto para la composición, como para el consumo de componentes complejos finales. Entre los módulos de esta capa se destacan:
+                                            </dd>
+                                            <dt>
+                                                Interfaz de composición de componentes complejos:
+                                            </dt>
+                                            <dd>
+                                                Corresponde a la GUI (Graphical user interface) encargada de exponer al usuario experto<a href="#sup-problem"><sup>3</sup></a> las funcionalidades de Publicación, Recuperación, Composición y Despliegue de servicios, que permiten crear componentes rápidamente, controlando diversos parámetros de configuración en el proceso.
+                                            </dd>
+                                            <dt>
+                                                Entorno de Ejecución de Componentes complejos:
+                                            </dt>
+                                            <dd>
+                                                Es el módulo en el cual se despliegan los componentes complejos desarrollados. Este módulo permite al usuario final<a href="#sup-problem"><sup>4</sup></a> consumir las nuevas funcionalidades soportadas por los componentes complejos creados, que son expuestas (publicadas) por el módulo de despliegue de componentes complejos de la capa de control.
+                                                <br />Por otra parte, cabe resaltar que en el caso de la Figura 2, aunque el entorno de ejecución es representado únicamente como un proveedor de aplicaciones, en la capa de “Vista”; sus funcionalidades se encuentran distribuidas en todos los niveles: "Modelo" y "Control".
+                                            </dd>
+                                            <dt>
+                                                Control de la lógica de Composición:
+                                            </dt>
+                                            <dd>
+                                                Esta capa es caracterizada por soportar un procesamiento intensivo de datos, ya que los módulos presentes en ella son implementaciones de algoritmos para la publicación, recuperación, composición y despliegue; tareas costosas en cuanto a consumo de recursos. Entre sus módulos se caracterizan:
+                                                <ul>
+                                                    <li>
+                                                        <b>Publicación de Componentes:</b> encargado de abstraer los datos de los descriptores de nuevos servicios atómicos, y garantizar la persistencia de los componentes complejos creados, mediante el uso del repositorio de componentes complejos. La publicación se refiere al proceso de hacer visible (exponer) los recursos con los que cuenta el creador de servicios, mediante su registro en el repositorio de servicios.
+                                                    </li>
+                                                    <li>
+                                                        <b>Recuperación de Componentes:</b> en este módulo son realizadas las implementaciones de los algoritmos de recuperación de componentes, los cuales utilizan funcionalidades provistas por el repositorio para sugerir los servicios que más se ajusten a las consultas realizadas por los usuarios.
+                                                    </li>
+                                                    <li>
+                                                        <b>Composición de Componentes:</b> es el encargado de dar soporte a la lógica de composición de servicios convergentes, tareas de transformación entre representaciones formales y creación de los componentes complejos.
+                                                    </li>
+                                                    <li>
+                                                        <b>Despliegue de Componentes:</b> es el módulo que realiza la función de exponer los componentes creados en el entorno de ejecución de componentes complejos sobre un entorno unificado. Además, entre sus funcionalidades, está el control del ciclo de vida de los mismos y manejo de excepciones, teniendo la capacidad de, en caso de ser necesario, darlos de baja.
+                                                    </li>
+                                                </ul>
+                                            </dd>
+                                            <dt>
+                                                Persistencia y abstracción de datos:
+                                            </dt>
+                                            <dd>
+                                                Es la capa encargada del almacenamiento de los servicios atómicos y los componentes complejos. El representante de esta capa es el repositorio de componentes complejos:
+                                            </dd>
+                                            <dt>
+                                                Repositorio de Componentes Complejos:
+                                            </dt>
+                                            <dd>
+                                                Este módulo almacena tanto representaciones formales, como descriptores en XML de los componentes utilizados en el proceso de creación.
+                                            </dd>                                        
+                                        </dl>
+                                        <hr style="width: 200px" />
+                                        <a id="sup-solution" />
+                                        <p style="font-size: 9px">
+                                            <sup>2</sup><em>Entorno Unificado</em>, un entorno en el cual convergen funcionalidades del mundo de las telecomunicaciones y servicios del mundo Web.
+                                            <br /><br /><sup>3</sup><em>Usuario experto</em>, corresponde a aquél usuario que tiene los conocimientos necesarios en servicios de telecomunicaciones, para lograr crear un componente complejo en un entorno unificado. Generalmente este usuario experto es un integrante del operador de telecomunicaciones, que cuenta con experiencia en entornos de ejecución de servicios.
+                                            <br /><br /><sup>4</sup><em>Usuario final</em>, es el usuario del operador de telecomunicaciones, quien consumirá el servicio creado. Su perfil está caracterizado por un desconocimiento de las tecnologías subyacentes que utiliza el servicio consumido.
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
