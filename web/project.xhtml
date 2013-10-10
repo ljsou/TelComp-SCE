@@ -264,6 +264,66 @@ and open the template in the editor.
                                 </div>
                             </div>
                         </div>
+                        <div class="accordion-group">
+                            <div class="accordion-heading">
+                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-508021" href="#accordion-element-5">Escenario de Aplicación: Ejemplo</a>
+                            </div>
+                            <div id="accordion-element-5" class="accordion-body collapse">
+                                <div class="accordion-inner">
+                                    <h4>Servicio de red social LinkedInJobNotificator</h4>
+                                    <p class="normal_text">
+                                        Esta sección describe la estructura y funcionamiento del servicio de red social <strong>LinkedInJobNotificator</strong>, el cual fue diseñado e implementado aplicando los conceptos de composición dinámica de servicios Telco2.0, utilizando las capacidades disponibles en la plataforma TelComp 2.0. Este servicio corresponde al piloto que posibilita la evaluación funcional de los componentes que hacen parte de la capa de aplicación de la plataforma desarrollada en el proyecto.    
+                                    </p>
+                                    <br />
+                                    <h5>Descripción general del servicio de red social</h5>
+                                    <p class="normal_text">
+                                        El servicio <strong>LinkedInJobNotificator</strong> envía como mensaje una oferta de trabajo (según el perfil del usuario de <em>LinkedIn</em>) a su cuenta en Twitter, al correo personal, y al celular a través de una llamada de voz, transformando el texto de la oferta de trabajo a un archivo de audio.
+                                        <br />
+                                        La estructura del servicio compuesto está representada por el <em>flujo de control</em> y <em>flujo de datos</em> (flujo de ejecución), expuestos en las Figuras 1 y 2 respectivamente.
+                                    </p>
+                                    <div style="text-align: center">
+                                        <img src="images/problem.png" style="width: 70%; text-align: center" alt="Problema" />
+                                        <br /><p style="font-size: small"><em>Figura 1. Flujo de Control del Servicio LinkedInJobNotificator.</em></p>
+                                    </div>
+                                    <br />
+                                    <p class="normal_text">
+                                        El flujo de control expuesto en la Figura 1 define el orden de ejecución de los servicios atómicos que componen el <abbr title="Componente Complejo">CC</abbr>. 
+                                        La estructura de control está compuesta de dos servicios Web (<code>LinkedIn, Twitter</code>), de dos servicios Telco (<code>Email, Media Call</code>), 
+                                        de un servicio de acceso a datos (<code>DataAccess</code>), y de patrones de control (<code>Trigger, Sequence, Parallel Split, Synchronization</code>).
+                                        <br />
+                                        <br />                                       
+                                        El servicio inicia cuando el usuario activa la aplicación desde su dispositivo móvil. 
+                                        El sistema reacciona a la petición haciendo uso del servicio <em>DataAccess</em> para obtener el identificador del usuario en la 
+                                        red social LinkedIn (Paso 1 de ejecución); después de realizada la consulta, el sistema consume el <em>servicio LinkedIn-WS</em> con el fin de 
+                                        obtener las ofertas de trabajo registradas en esa red social (Paso 2 de ejecución); una vez se tenga respuesta, 
+                                        se consulta tanto el identificador de la red social Twitter como el identificador de correo electrónico del usuario (Paso 4 de ejecución), 
+                                        ambos necesarios para el envío de las ofertas de trabajo a los medios respectivos (Paso 5 de ejecución). Posteriormente, 
+                                        las respuestas de los servicios <em>Email Telco Servce</em> y <em>Twitter-WS</em> se sincronizan para dar inicio al servicio de notificación por voz (Paso 6 de ejecución). 
+                                        Finalmente, se consulta en un repositorio el número móvil del usuario y se procede hacer la llamada de voz indicándole, a través de un archivo de audio, 
+                                        las ofertas de trabajo disponibles (Pasos 7 y 8 de ejecución).
+                                    </p>
+                                    <br />
+                                    <div style="text-align: center">
+                                        <img src="images/problem.png" style="width: 70%; text-align: center" alt="Problema" />
+                                        <br /><p style="font-size: small"><em>Figura 2. Flujo de Datos del Servicio LinkedInJobNotificator.</em></p>
+                                    </div>
+                                    <br />
+                                    <p class="normal_text">
+                                        El flujo de datos de la Figura 2 define los parámetros de entrada y de salida para cada uno de los servicios que componen el <abbr title="Componente Complejo">CC</abbr>. 
+                                        En ese sentido, cada arista está identificada con la notación [in/out], [NombreVariable], [TipoDato]. <strong>In/Out</strong> si el dato es de entrada o salida; 
+                                        <strong>NombreVariable</strong>, nombre de la variable que representa el dato de entrada o salida de un servicio atómico; <strong>TipoDato</strong>, tipo de dato enviado como resultado de una operación o como parámetro de entrada de un servicio atómico.
+                                        <br />
+                                        El componente <em>Developer</em> de la Figura 2 representa la lógica interna del servicio, la cual está implementada según las reglas específicas de negocio del servicio.
+                                    </p>
+                                    <br />
+                                    <br />
+                                    <h4>Creación del Servicio LinkedInJobNotificator</h4>
+                                    <div>
+                                        <video width="320" height="240" src="#" style=""/>                                       
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
