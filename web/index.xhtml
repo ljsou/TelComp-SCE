@@ -13,6 +13,7 @@ and open the template in the editor.
         <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen"/>        
         <script type="text/javascript" src="bootstrap/js/jquery.js"></script>
         <script src="bootstrap/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="https://www.dropbox.com/static/api/1/dropins.js" id="dropboxjs" data-app-key="n1c2a034gngb6vk"></script>
         <style type="text/css">
             .normal_text {
                 font-size:12px;
@@ -20,6 +21,37 @@ and open the template in the editor.
                 text-align:justify;
             }
         </style>
+        <script type="text/javascript" >
+            options = {
+
+            // Required. Called when a user selects an item in the Chooser.
+            success: function(files) {
+                alert("Here's the file link:" + files[0].link);
+            },
+
+            // Optional. Called when the user closes the dialog without selecting a file
+            // and does not include any parameters.
+            cancel: function() {
+
+            },
+
+            // Optional. "preview" (default) is a preview link to the document for sharing,
+            // "direct" is an expiring link to download the contents of the file. For more
+            // information about link types, see Link types below.
+            linkType: "preview",
+
+            // Optional. A value of false (default) limits selection to a single file, while
+            // true enables multiple file selection.
+            multiselect: false,
+        
+            // Optional. This is a list of file extensions. If specified, the user will
+            // only be able to select files with these extensions. You may also specify
+            // file types, such as "video" or "images" in the list. For more information,
+            // see File types below. By default, all extensions are allowed.
+            extensions: ['.pdf', '.doc', '.docx']
+            
+        };
+        </script>
     </head>
     <body>
         <div class="container-fluid">           
