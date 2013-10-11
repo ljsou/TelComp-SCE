@@ -16,7 +16,7 @@ and open the template in the editor.
         <link href="bootstrap/css/bootstrap.min.css" media="screen" rel="stylesheet" type="text/css" />
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
         <script src="bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-        
+
         <script type="text/javascript" src="https://www.dropbox.com/static/api/1/dropins.js" id="dropboxjs" data-app-key="n1c2a034gngb6vk"></script>
         <style type="text/css">
             .normal_text {
@@ -26,14 +26,36 @@ and open the template in the editor.
             }
         </style>
         <script type="text/javascript" >
+            //<![CDATA[  
             options = {
                 // Required. Called when a user selects an item in the Chooser.
                 success: function(files) {
                     //alert("Here's the file link:" + files[0].link);
                     //document.getElementById("modal-979155").click();
-                    document.getElementById("file-name").innerHTML=files[0].name;
-                    document.getElementById("file-name").href=files[0].link;
-                    document.getElementById("file-size").innerHTML=files[0].bytes + " bytes";
+
+                    //document.getElementById("file-name").innerHTML = files[0].name;
+                    //document.getElementById("file-name").href = files[0].link;
+                    //document.getElementById("file-size").innerHTML = files[0].bytes + " bytes";
+
+                    var html = '';
+                    //content = JSON.stringify(data);
+                    //console.log(content);
+                    // Step through the rows of the data.
+                    for(var i = 0; i < files.length; i++) {
+                        console.log(files[i]);
+                        html += '<tr>\n';
+                        html += '<td>\n';
+                        html += (i+1) + '\n';
+                        html += '</td>';
+                        html += '<td>\n';
+                        html += '<a href="' + files[i].link + '" target="_blank">' + files[i].name + '</a>' + '\n';
+                        html += '</td>';
+                        html += '<td>\n';
+                        html += files[i].bytes + ' bytes\n';
+                        html += '</td>';
+                        html += '</tr>\n';
+                    }
+                    document.getElementById("modal-tbody").innerHTML = html;
                     $('#modal-container-979155').modal('show');
                 },
                 // Optional. Called when the user closes the dialog without selecting a file
@@ -47,14 +69,14 @@ and open the template in the editor.
                 linkType: "preview",
                 // Optional. A value of false (default) limits selection to a single file, while
                 // true enables multiple file selection.
-                multiselect: false,
+                multiselect: true,
                 // Optional. This is a list of file extensions. If specified, the user will
-                // only be able to select files with these extensions. You may also specify
-                // file types, such as "video" or "images" in the list. For more information,
+                // only be able to select files with these extensions. You may also specify                 // file types, such as "video" or "images" in the list. For more information,
                 // see File types below. By default, all extensions are allowed.
                 extensions: ['.pdf', '.doc', '.docx']
 
             };
+          //]]>  
         </script>
     </head>
     <body>
