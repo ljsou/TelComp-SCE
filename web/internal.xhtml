@@ -29,8 +29,52 @@ and open the template in the editor.
                                 <div class="controls">
                                     <button type="button" class="btn btn-primary" onclick="Dropbox.choose(options);">Acceso TelComp-Docs</button>
                                 </div>
+
                             </div>
                         </form>
+                        <a id="modal-979155" href="#modal-container-979155" hidden="hidden" role="button" data-toggle="modal"></a>
+
+                        <div id="modal-container-979155" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                <h3 id="myModalLabel">
+                                    Archivo Seleccionado...
+                                </h3>
+                            </div>
+                            <div class="modal-body">
+                                <table class="table normal_text">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                #
+                                            </th>
+                                            <th>
+                                                Archivo
+                                            </th>
+                                            <th>
+                                                Tamaño
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                1
+                                            </td>
+                                            <td>
+                                                <a id="file-name" href="" target="_blank"></a>
+                                            </td>
+                                            <td id="file-size">
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
