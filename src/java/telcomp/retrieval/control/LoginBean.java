@@ -76,8 +76,10 @@ public class LoginBean {
 
     public void loggout() {
         System.out.println("logout!");
-        this.isLoggedIn = false;
-        FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Thanks!", "Bye");
-        FacesContext.getCurrentInstance().addMessage(null, msg);
+        if (this.isLoggedIn) {
+            this.isLoggedIn = false;
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Thanks!", "Bye");
+            FacesContext.getCurrentInstance().addMessage(null, msg);
+        }
     }
 }

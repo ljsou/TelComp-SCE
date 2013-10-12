@@ -79,7 +79,8 @@ and open the template in the editor.
                         // see File types below. By default, all extensions are allowed.
 
             };
-            //]]>  
+            //]]>          
+
             function handleLoginRequest(xhr, status, args) {
                 if (args.validationFailed || !args.loggedIn) {
                     dlg.jq.effect("shake", {times: 5}, 100);
@@ -92,10 +93,15 @@ and open the template in the editor.
                         $('#edit-perfil').show();
                         $('#settings').show();
                         $('.divider').show();
+                        $('#logout').show();
                     });
                 }
-            }
-            ;
+            };
+
+            function logOut(xhr, status, args) {
+                logout.hide();
+                init();
+            };
 
             function init() {
                 $(function() {
@@ -103,6 +109,7 @@ and open the template in the editor.
                     $('#edit-perfil').hide();
                     $('#settings').hide();
                     $('.divider').hide();
+                    $('#logout').hide();
                 });
             }
         </script>
@@ -128,10 +135,16 @@ and open the template in the editor.
                     </f:facet>  
                 </h:panelGrid>  
             </p:dialog>  
-            <p:confirmDialog widgetVar="logout" showEffect="fade" hideEffect="explode" message="Are you sure?">  
-                <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" action="#{loginBean.loggout()}"/>  
-                <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close"/>       
-            </p:confirmDialog>   
+            <p:dialog id="dialog-logout" header="Login" widgetVar="logout" resizable="false" modal="true">  
+                <h:panelGrid columns="2" cellpadding="5">  
+                    <h:outputLabel for="username" value="Are you sure?" />                      
+                    <f:facet name="footer">  
+                        <p:commandButton id="logoutButton" value="Login" update="growl"   
+                                         actionListener="#{loginBean.loggout()}"                                            
+                                         oncomplete="logOut(xhr, status, args)"/>  
+                    </f:facet>  
+                </h:panelGrid>  
+            </p:dialog>                
         </h:form>                              
         <!-- Modal -->
         <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -170,7 +183,7 @@ and open the template in the editor.
                                     <li><a href="#" onclick="dlg.show();"><i class="icon-off"></i> Login</a></li>                                                                                                          
                                 </ul>
                             </li>
-                            <li class="active"><a href="#" onclick="logout.show();"><i class="icon-off"></i> </a></li>
+                            <li id="logout" class="active"><a href="#" onclick="logout.show();"><i class="icon-off"></i> </a></li>
                         </ul>                          
                     </div>                                      
                 </div>
