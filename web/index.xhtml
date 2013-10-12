@@ -93,7 +93,7 @@ and open the template in the editor.
                         $('#edit-perfil').show();
                         $('#settings').show();
                         $('.divider').show();
-                        $('#logout').show();
+                        $('#lout').show();
                     });
                 }
             };
@@ -104,13 +104,13 @@ and open the template in the editor.
             };
 
             function init() {
-                $(function() {
+//                $(function() {
                     $('#perfil').hide();
                     $('#edit-perfil').hide();
                     $('#settings').hide();
                     $('.divider').hide();
-                    $('#logout').hide();
-                });
+                    $('#lout').hide();
+//                });
             }
         </script>
 
@@ -168,7 +168,7 @@ and open the template in the editor.
                         <a class="brand" href="#">TelComp2.0</a>
                     </div>
                     <div class="nav-collapse collapse pull-right">                        
-                        <ul class="nav">
+                        <ul id="all-nav" class="nav">
                             <!--                                                        <li class="active"><a href="#">Home</a></li>
                                                                                     <li><a href="#">About</a></li>
                             -->
@@ -183,7 +183,7 @@ and open the template in the editor.
                                     <li><a href="#" onclick="dlg.show();"><i class="icon-off"></i> Login</a></li>                                                                                                          
                                 </ul>
                             </li>
-                            <li id="logout" class="active"><a href="#" onclick="logout.show();"><i class="icon-off"></i> </a></li>
+                            <li id="lout" class="active"><a href="#" onclick="logout.show();"><i class="icon-off"></i> </a></li>
                         </ul>                          
                     </div>                                      
                 </div>
