@@ -43,13 +43,15 @@ public class LoginBean {
     public void login(ActionEvent actionEvent) throws IOException {
         System.out.println("login");
         RequestContext context = RequestContext.getCurrentInstance();
-        FacesMessage msg = null;        
+        FacesMessage msg = null;
 
-        if (username != null && username.equals("admin") && password != null && password.equals("admin")) {
-            this.isLoggedIn = true;            
+        if (username != null && username.equals("admin") && password != null && password.equals("admin") && !this.isLoggedIn) {
+            this.isLoggedIn = true;
             msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Welcome", username);
             //FacesContext.getCurrentInstance().getExternalContext().redirect("http://localhost:8084/TelCompTerminal/");
 
+        } else if (this.isLoggedIn) {
+            msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "", "you are already logged in");
         } else {
             this.isLoggedIn = false;
             msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Login Error", "Invalid credentials");
@@ -71,8 +73,11 @@ public class LoginBean {
             FacesContext.getCurrentInstance().addMessage(null, msg);
         }
     }
-    
-    public void loggout(){
+
+    public void loggout() {
+        System.out.println("logout!");
         this.isLoggedIn = false;
+        FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Thanks!", "Bye");
+        FacesContext.getCurrentInstance().addMessage(null, msg);
     }
 }
