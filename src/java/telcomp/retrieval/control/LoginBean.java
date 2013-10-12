@@ -22,7 +22,7 @@ public class LoginBean {
 
     private String username;
     private String password;
-    private boolean loggedIn2 = false;
+    private boolean isLoggedIn = false;
 
     public String getUsername() {
         return username;
@@ -41,29 +41,38 @@ public class LoginBean {
     }
 
     public void login(ActionEvent actionEvent) throws IOException {
+        System.out.println("login");
         RequestContext context = RequestContext.getCurrentInstance();
-        FacesMessage msg = null;
-        boolean loggedIn = false;
-        
+        FacesMessage msg = null;        
+
         if (username != null && username.equals("admin") && password != null && password.equals("admin")) {
-            loggedIn = true;
+            this.isLoggedIn = true;            
             msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Welcome", username);
-            FacesContext.getCurrentInstance().getExternalContext().redirect("http://localhost:8084/TelCompTerminal/");
+            //FacesContext.getCurrentInstance().getExternalContext().redirect("http://localhost:8084/TelCompTerminal/");
 
         } else {
-            loggedIn = false;
+            this.isLoggedIn = false;
             msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Login Error", "Invalid credentials");
-            //FacesContext.getCurrentInstance().getExternalContext().redirect("faces/index.xhtml#tab4");
+            //FacesContext.getCurrentInstance().getExternalContext().redirect("faces/index.xhtml#tab4");            
         }
 
         FacesContext.getCurrentInstance().addMessage(null, msg);
-        context.addCallbackParam("loggedIn", loggedIn);
+        context.addCallbackParam("loggedIn", this.isLoggedIn);
     }
 
     public void access() throws IOException {
-        System.out.println("access!" + this.loggedIn2);
-        if (this.loggedIn2) {
+        FacesMessage msg = null;
+        System.out.println("access! " + this.isLoggedIn);
+        if (this.isLoggedIn) {
             FacesContext.getCurrentInstance().getExternalContext().redirect("http://localhost:8084/TelCompTerminal/");
+        } else {
+            //FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,"Sample warn message", "Watch out for PrimeFaces!"));  
+            msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Warning!", "\nTo access this resource you must login.");
+            FacesContext.getCurrentInstance().addMessage(null, msg);
         }
+    }
+    
+    public void loggout(){
+        this.isLoggedIn = false;
     }
 }
