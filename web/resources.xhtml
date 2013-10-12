@@ -39,16 +39,19 @@ and open the template in the editor.
                                         <h3>
                                             Terminal de Gestión  
                                         </h3>                                                                                   
-                                            <p:graphicImage value="images/terminal.png" height="300" width="300"/>  
-                                            <br /><br />                                        
+                                        <p:graphicImage value="images/terminal.png" height="300" width="300"/>  
+                                        <br /><br />                                        
                                     </div>
                                     <p style="text-align: justify; font-size: 14px; line-height: 15px;">
                                         Este recurso permite gestionar los servicios de valor agregado creados mediante el Entorno de Creación de Servicios (SCE) del Proyecto TelComp 2.0.
                                     </p>
                                     <p>
-                                        <a class="btn btn-primary" href="http://localhost:8084/TelCompTerminal/">Acceder</a>
-                                        <h:form>
-                                            <h:commandButton class="btn btn-primary" value="Acceder" actionListener="#{loginBean.access()}" onclick="return false;"/>
+                                        <!--                                        <a class="btn btn-primary" href="http://localhost:8084/TelCompTerminal/">Acceder</a>-->
+                                        <h:form id="formResource">
+                                            <p:commandButton value="Acceder" action="#{loginBean.access()}" style="height: 30px; font-size: 13px;"/>
+                                            <div style="font-size: 10px;">
+                                                <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />  
+                                            </div>
                                         </h:form>
                                     </p>
                                 </div>
