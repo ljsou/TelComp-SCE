@@ -46,14 +46,53 @@ and open the template in the editor.
                                         Este recurso permite gestionar los servicios de valor agregado creados mediante el Entorno de Creación de Servicios (SCE) del Proyecto TelComp 2.0.
                                     </p>
                                     <p>
-                                        <a class="btn btn-primary" href="http://localhost:8084/TelCompTerminal/">Acceder</a>
+                                        <!--<a class="btn btn-primary" href="http://localhost:8084/TelCompTerminal/">Acceder</a>-->
                                         <h:form>
                                             <h:commandButton class="btn btn-primary" value="Acceder" actionListener="#{loginBean.access()}" onclick="return false;"/>
                                         </h:form>
                                     </p>
                                 </div>
                             </div>
-                        </li>                        
+                        </li>
+                    </ul>
+                    <h3>Documentos</h3>
+                    <ul>
+                        <li class="span6">
+                            <div class="thumbnail" style="background-color: #fff;">                                
+                                <div class="caption">
+                                    <div style="text-align: center;">
+                                        <h3>
+                                            Publicaciones
+                                        </h3>
+                                        <a href="faces/index.xhtml#"><img alt="TelComp-SCE" height="300" width="300" src="images/papers.png" /></a><br /><br />
+                                    </div>
+                                    <p style="text-align: justify; font-size: 14px; line-height: 15px;">
+                                        Documentos Públicos generados en el desarrollo del proyectoTelComp 2.0.
+                                    </p>
+                                    <p>
+                                        <a class="btn btn-primary" href="faces/application.xhtml">Acceder</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="span6">
+                            <div class="thumbnail" style="background-color: #fff;">                                
+                                <div class="caption">
+                                    <div style="text-align: center;">
+                                        <h3>
+                                            Presentaciones
+                                        </h3>
+                                        <a href="faces/index.xhtml#"><img alt="TelComp-SCE" height="300" width="300" src="images/presentations.png" /></a><br /><br />
+                                    </div>
+                                    <p style="text-align: justify; font-size: 14px; line-height: 15px;">
+                                        Presentacoines disponibles del proyecto TelComp 2.0.
+                                    </p>
+                                    <p>
+                                        <a class="btn btn-primary" href="faces/application.xhtml">Acceder</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </li>
                     </ul>
                 </div>
             </div>
