@@ -53,7 +53,7 @@ public class LoginBean {
         } else {
             loggedIn = false;
             msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Login Error", "Invalid credentials");
-            FacesContext.getCurrentInstance().getExternalContext().redirect("faces/index.xhtml#tab4");
+            //FacesContext.getCurrentInstance().getExternalContext().redirect("faces/index.xhtml#tab4");
         }
 
         FacesContext.getCurrentInstance().addMessage(null, msg);
