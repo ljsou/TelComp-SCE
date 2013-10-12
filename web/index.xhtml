@@ -81,11 +81,11 @@ and open the template in the editor.
         </script>
 
         <script type="text/javascript">
-            function handleLoginRequest(xhr, status, args) {
-                if (args.validationFailed || !args.loggedIn) {
+            function handleLoginRequest(xhr, status, args) {                
+                if (args.validationFailed || !args.loggedIn) {                    
                     dlg.jq.effect("shake", {times: 5}, 100);
                 }
-                else {
+                else {                    
                     dlg.hide();
                     $('#loginLink').fadeOut();
                 }
@@ -93,10 +93,10 @@ and open the template in the editor.
         </script>  
 
     </h:head>
-    <body>
-        <h:form id="form1">  
+    <h:body>
+        <h:form id="form">  
             <p:growl id="growl" showDetail="true" life="3000" />  
-            <p:dialog id="dialog" header="Login" widgetVar="dlg" resizable="false" modal="true" appendToBody="true">  
+            <p:dialog id="dialog" header="Login" widgetVar="dlg" resizable="false" modal="true">  
                 <h:panelGrid columns="2" cellpadding="5">  
                     <h:outputLabel for="username" value="Username:" />  
                     <p:inputText value="#{loginBean.username}"   
@@ -203,5 +203,5 @@ and open the template in the editor.
                 <small class="muted">Copyright © 2013 Telematics Engineering Group - All rights reserved.</small>
             </div>
         </div>
-    </body>
+    </h:body>
 </html>

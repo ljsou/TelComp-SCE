@@ -22,6 +22,7 @@ public class LoginBean {
 
     private String username;
     private String password;
+    private boolean loggedIn2 = false;
 
     public String getUsername() {
         return username;
@@ -43,7 +44,7 @@ public class LoginBean {
         RequestContext context = RequestContext.getCurrentInstance();
         FacesMessage msg = null;
         boolean loggedIn = false;
-
+        
         if (username != null && username.equals("admin") && password != null && password.equals("admin")) {
             loggedIn = true;
             msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Welcome", username);
@@ -57,5 +58,12 @@ public class LoginBean {
 
         FacesContext.getCurrentInstance().addMessage(null, msg);
         context.addCallbackParam("loggedIn", loggedIn);
+    }
+
+    public void access() throws IOException {
+        System.out.println("access!" + this.loggedIn2);
+        if (this.loggedIn2) {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("http://localhost:8084/TelCompTerminal/");
+        }
     }
 }
